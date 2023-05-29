@@ -1,5 +1,5 @@
 Package: MartysCookbook
-Title: My book of tricks & tricks for nice reports.
+Title: My book of tricks & tricks for nice reports
 Version: 0.1.0
 Authors@R: 
     person("Márton", "Kiss", email = "mrkmarton@gmail.com", role = c("aut", "cre"))
