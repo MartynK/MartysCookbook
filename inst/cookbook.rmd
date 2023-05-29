@@ -5,18 +5,18 @@ author: "Harci Marci"
 date: "2118 november 20."
 always_allow_html: yes
 output:
-  pdf_document: 
-    fig_caption: yes
-    keep_tex: yes
-    number_sections: yes
-    toc: yes
-    toc_depth: 3
   html_document:
     df_print: paged
     keep_tex: yes
     fig_caption: yes
     toc: yes
     number_sections: yes
+  pdf_document: 
+    fig_caption: yes
+    keep_tex: yes
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
   word_document: 
     fig_caption: yes
     toc: yes
@@ -77,8 +77,8 @@ Ez itt egy ábrajegyzéket készít, pedig ábráink még nincsenek. De sebaj, k
 # biblio-style: apalike
 # link-citations: yes
 
-source(here::here("functions","load_stuff.r"))
-source(here::here("functions", "wrangling.r"))
+source(here::here("inst","functions","load_stuff.r"))
+source(here::here("inst","functions", "wrangling.r"))
 
 knitr::opts_chunk$set(
     echo = FALSE,                           # Ne mutassa a kódokat
@@ -90,14 +90,14 @@ knitr::opts_chunk$set(
     fig.asp = .75,                          # Ábra Hossz/szélesség
     tidy.opts = list(width.cutoff = 60),    # legyenek 60 karakter szélességűre tördelve
     tidy = "styler",                        # legyenek clean codingra megformázva
-    dev = 'tiff',                            # PNG legyen az alapértelmezett képformátum
+    dev = 'png',#'tiff',                            # PNG legyen az alapértelmezett képformátum
     compression = 'lzw',
     dpi = 300,                              # a PNG képek elég jó minőségűek legyenek
     fig.pos = 'H'                           # nem próbálja az ábrákat az oldal tetejére tenni
   )
 
 
-graphics_path <- "../figures/"            # a máshonnan származó ábrák elérési útja
+graphics_path <- "../inst/figures/"            # a máshonnan származó ábrák elérési útja
 graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 options(scipen = 1) # Require 5 instead of 4 for scientific notation (eg. for p-values)
@@ -116,7 +116,7 @@ Ez segít abban, hogy nagyobb magsságú képek se kerüljenek túl messze a chu
 A következő parancs állítja be, hogy milyen könyvtárban keresse a képeket, amiket nem saját maga állít elő. A belső kapcsos zárójelpárból több is lehet, akkor több könyvtárat is néz. 
 --->
 
-\graphicspath{ {../figures} {../rmds/cookbook_files/figure-latex/} {../figure-latex/} {../rmds/01_chap1_files/figure-latex/}}
+\graphicspath{ {../figures} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
 
 <!---
 
@@ -130,13 +130,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non e
 
 Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
 
-```{r chunk-a}
-#| ref.label=c('referenced_chunk'),
-#| fig.cap = "Executive graph for executive thoughts"
+<!-- ```{r chunk-a} -->
+<!-- #| ref.label=c('referenced_chunk'), -->
+<!-- #| fig.cap = "Executive graph for executive thoughts" -->
 
-plot(x,y)
+<!-- plot(x,y) -->
 
-```
+<!-- ``` -->
 
 <!---
 Nagyon érzékeny a filenév a futási helyre meg úgy általában mindenre. Borzasztó, a 
@@ -148,7 +148,7 @@ Amondó vagyok, hogy kézzel minen kimenetet egy adott mappába rángassunk, és
 \begin{figure}[H]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name1.png}
+\includegraphics[width = \linewidth]{mandatory_chunk_name-1.png}
 \caption{Plot the first}
 \label{fig:plotmeans}
 \end{figure}
@@ -156,7 +156,7 @@ Amondó vagyok, hogy kézzel minen kimenetet egy adott mappába rángassunk, és
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name2.png}
+\includegraphics[width = \linewidth]{mandatory_chunk_name-2.png}
 \centering
 \caption{Plot the second}
 \label{fig:histogram}
@@ -244,15 +244,15 @@ $~$\
 
 
 ```{r}
-save.image( file = here::here("states", "before_chap1.Rdata"))
+save.image( file = here::here("inst","states", "before_chap1.Rdata"))
 ```
 
-```{r child = here::here("rmds", "01_chap1.rmd")}
+```{r child = here::here("inst","01_chap1.rmd")}
 
 ```
 
 
-`r save.image( file = here::here("states", "before_chap2.Rdata"))`
+`r save.image( file = here::here("inst","states", "before_chap2.Rdata"))`
 
 ```{r child-cycle}
 valtozok <- c("cyl", "gear", "carb")
@@ -264,7 +264,7 @@ for (i in 1:length(valtozok)) {
                  top_level      = 4,
                  figname_prefix = valtozok[i])
   out <- c(out,
-           knitr::knit_child(here::here('rmds','cyclic_chap2.Rmd'),
+           knitr::knit_child(here::here("inst",'cyclic_chap2.Rmd'),
                              quiet = T))
 }
 out <- paste(out, collapse = "\n")
@@ -295,7 +295,7 @@ plot(x,y)
 The MD5 checksum of the database used: 
 
 ```{r}
-tools::md5sum(here::here("data","Iris.xls"))
+tools::md5sum(here::here("inst","extdata","Iris.xls"))
 ```
 
 Other information regarding the compilation of this document:
@@ -314,7 +314,7 @@ This document was compiled at:
 ```{r last_chunk}
 
 Sys.time()
-save.image(file = here::here("cookbook_out.Rdata"))
+save.image(file = here::here("inst","extdata","cookbook_out.Rdata"))
 
 ```
 

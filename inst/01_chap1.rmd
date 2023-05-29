@@ -29,8 +29,8 @@ lang: en-US
 
 ```{r, echo=FALSE, warning = FALSE, message = FALSE}
 
-source(here::here("functions","load_stuff.r"))
-load( file = here::here("states", "before_chap1.Rdata"))
+source(here::here("inst","functions","load_stuff.r"))
+load( file = here::here("inst","states", "before_chap1.Rdata"))
 
 ```
 
@@ -142,7 +142,7 @@ If commas are missing, option will simply not be evaluated
 ```{r}
 #| mandatory_chunk_name,
 #| fig.show='hide', 
-#| fig.path=paste0(graphics_output_path, "mandatory_chunk_name"),
+#| fig.path=paste0(graphics_output_path),
 #| results='hide', 
 #| collapse=T
 
@@ -197,12 +197,9 @@ tbl_summary( data, by = species_char) %>%
   martys_table_style(caption. = 
                        "Plot without much thought or meaning") %>% 
   # You can 'overwrite' setting which don't conflict your defaults
-  kable_styling(font_size = 8) %>%
+  set_font_size(7) %>%
   ###### row_spec(0, bold = T, font_size = 7)# %>% # Dis crashes the whole thing
-   column_spec(column = 1, 
-               width = "18em", 
-               #bold = F
-               )
+   set_width(.4)
 
 ```
 
@@ -334,7 +331,7 @@ sjPlot::tab_model(mod,
     , show.p = FALSE # if you're also skeptical of p-values
     , bootstrap = TRUE
     , iterations = 100 # actually works for lmer(!)
-    , file = here::here("stuff","temp.html") # have to export temporarily
+    , file = here::here("inst","stuff","temp.html") # have to export temporarily
   )
 
 
@@ -342,9 +339,9 @@ sjPlot::tab_model(mod,
   # spawns a copy of the previous image  
 invisible({
   #taking a 'snapshot' of the html and converting it to .png
-  webshot2::webshot(url=here::here("stuff","temp.html"), 
+  webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
                     cliprect = c(0,0,400,400),
-                    file = here::here("figures","webshot.png"))
+                    file = here::here("inst","figures","webshot.png"))
 })
 
 
