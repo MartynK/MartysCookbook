@@ -130,13 +130,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non e
 
 Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
 
-<!-- ```{r chunk-a} -->
-<!-- #| ref.label=c('referenced_chunk'), -->
-<!-- #| fig.cap = "Executive graph for executive thoughts" -->
+```{r chunk-a}
+#| ref.label=c('referenced_chunk'),
+#| fig.cap = "Executive graph for executive thoughts"
 
-<!-- plot(x,y) -->
+plot(x,y)
 
-<!-- ``` -->
+```
 
 <!---
 Nagyon érzékeny a filenév a futási helyre meg úgy általában mindenre. Borzasztó, a 
