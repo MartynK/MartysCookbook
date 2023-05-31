@@ -4,8 +4,6 @@ navbar:
   right:
     - text: "GitHub"
       href: https://github.com/MartynK/Martysbloodsugar/
-    - text: "Vignettes"
-      href: articles/
 news:
   title: News
   description: >

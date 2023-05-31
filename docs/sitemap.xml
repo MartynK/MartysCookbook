@@ -7,10 +7,10 @@
     <loc>http://yourname.github.io/yourpackage/articles/cookbook.html</loc>
   </url>
   <url>
-    <loc>http://yourname.github.io/yourpackage/authors.html</loc>
+    <loc>http://yourname.github.io/yourpackage/articles/index.html</loc>
   </url>
   <url>
-    <loc>http://yourname.github.io/yourpackage/cookbook.html</loc>
+    <loc>http://yourname.github.io/yourpackage/authors.html</loc>
   </url>
   <url>
     <loc>http://yourname.github.io/yourpackage/index.html</loc>
