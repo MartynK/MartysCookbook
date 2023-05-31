@@ -1,6 +1,8 @@
 # MartysCookbook
 Examples n' things for my R work
 
+To view the output, visit [this link](cookbook.html).
+
 # Notes
 
 Ran *usethis::use_mit_license("Márton Kiss")* to set up the licence.  

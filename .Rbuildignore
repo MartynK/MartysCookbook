@@ -1,5 +1,5 @@
 ^\.Rproj\.user$
 ^\.Rproj\.user$
-^\vignettes/01_chap1.rmd$
-^\vignettes/cyclic_chap2.rmd$
+^\vignettes\01_chap1.rmd$
+^\vignettes\cyclic_chap2.rmd$
 ^.*\.Rproj$

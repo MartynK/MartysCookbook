@@ -4,7 +4,13 @@
     <loc>http://yourname.github.io/yourpackage/404.html</loc>
   </url>
   <url>
+    <loc>http://yourname.github.io/yourpackage/articles/cookbook.html</loc>
+  </url>
+  <url>
     <loc>http://yourname.github.io/yourpackage/authors.html</loc>
+  </url>
+  <url>
+    <loc>http://yourname.github.io/yourpackage/cookbook.html</loc>
   </url>
   <url>
     <loc>http://yourname.github.io/yourpackage/index.html</loc>

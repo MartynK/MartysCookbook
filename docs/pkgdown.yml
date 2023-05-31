@@ -1,11 +1,8 @@
 pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
-articles:
-  01_chap1: 01_chap1.html
-  cookbook: cookbook.html
-  cyclic_chap2: cyclic_chap2.html
-last_built: 2023-05-29T16:29Z
+articles: {}
+last_built: 2023-05-31T08:43Z
 urls:
   reference: http://yourname.github.io/yourpackage/reference
   article: http://yourname.github.io/yourpackage/articles
