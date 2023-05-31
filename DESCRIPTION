@@ -1,0 +1,19 @@
+Package: MartysCookbook
+Title: My book of tips & tricks for nice reports
+Version: 0.1.0
+Authors@R: 
+    person("Márton", "Kiss", email = "mrkmarton@gmail.com", role = c("aut", "cre"))
+Description: My book of tricks & tricks for nice reports.
+  Also unit tests, packages and such.
+License: MIT + file LICENSE
+Encoding: UTF-8
+VignetteBuilder: knitr
+LazyData: true
+RoxygenNote: 7.2.3
+Depends:
+    R (>= 3.5.0)
+Suggests: 
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+Config/testthat/edition: 3
