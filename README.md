@@ -1,7 +1,7 @@
 # MartysCookbook
 Examples n' things for my R work
 
-The output is under the 'articles' menu.
+The output is under the 'articles' menu [here](https://martynk.github.io/MartysCookbook/).
 
 # Notes
 
