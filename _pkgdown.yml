@@ -3,12 +3,9 @@ navbar:
   type: default
   right:
     - text: "GitHub"
-      href: https://github.com/MartynK/Martysbloodsugar/
+      href: https://github.com/MartynK/MartysCookbook/
 news:
   title: News
   description: >
     Updates about the yourpackage package.
-home:
-  title: An Amazing R package
-  description: This is a great package that does many things. 
 

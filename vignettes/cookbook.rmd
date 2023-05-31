@@ -331,7 +331,7 @@ This document was compiled at:
 ```{r last_chunk}
 
 Sys.time()
-save.image(file = here::here("inst","extdata","cookbook_out.Rdata"))
+save.image(file = here::here("inst","states","cookbook_out.Rdata"))
 
 ```
 
