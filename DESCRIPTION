@@ -10,6 +10,7 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 LazyData: true
 RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
 Depends:
     R (>= 3.5.0)
 Suggests: 

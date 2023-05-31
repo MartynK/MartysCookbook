@@ -24,4 +24,7 @@
   <url>
     <loc>http://yourname.github.io/yourpackage/reference/index.html</loc>
   </url>
+  <url>
+    <loc>http://yourname.github.io/yourpackage/reference/martys_table_style.html</loc>
+  </url>
 </urlset>

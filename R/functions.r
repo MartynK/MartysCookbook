@@ -1,5 +1,7 @@
 
-library(roxygen2)
+require(roxygen2)
+require(ggplot2)
+require(gtsummary)
 # Defining custom functions
 
 
