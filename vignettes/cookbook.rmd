@@ -5,25 +5,25 @@ author: "Harci Marci"
 date: "2118 november 20."
 always_allow_html: yes
 output:
-  html_document:
-    df_print: paged
-    keep_tex: yes
-    fig_caption: yes
-    toc: yes
-    number_sections: yes
   pdf_document: 
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
     toc: yes
     toc_depth: 3
+  html_document:
+    df_print: paged
+    keep_tex: yes
+    fig_caption: yes
+    toc: yes
+    number_sections: yes
   word_document: 
     fig_caption: yes
     toc: yes
   vignette: >
     %\VignetteIndexEntry{Cookbook output}
-    %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
+    %\VignetteEngine{knitr::rmarkdown}
 header-includes:
   \usepackage{multicol}
   \usepackage{float}
@@ -67,48 +67,7 @@ Ez itt egy ábrajegyzéket készít, pedig ábráink még nincsenek. De sebaj, k
 
 # Results
 
-```{r setup, warning=FALSE, echo = FALSE, message = FALSE}
 
-# https://dotcms.com/docs/latest/markdown-syntax  
-# https://yihui.org/knitr/options/ 
-# https://zbib.org/
-# https://www.r-bloggers.com/2019/09/first-world-problems-very-long-rmarkdown-documents/ 
-
-
-# # For citations insert this into the yaml header (without spaces)
-# # And make a book.bib file to the location of the mother .rmd
-# bibliography: book.bib
-# biblio-style: apalike
-# link-citations: yes
-
-source(here::here("inst","functions","load_stuff.r"))
-source(here::here("inst","functions", "wrangling.r"))
-
-knitr::opts_chunk$set(
-    echo = FALSE,                           # Ne mutassa a kódokat
-    cached = FALSE,                 ###!!!  # Ne cache-eljen
-    warning = FALSE,                        # Ne írja ki a warningokat
-    message = FALSE, 
-    fig.align = 'center',                   # Ábra középre rendezése
-    out.width = '90%',                      # Ábra szélessége, alter.: #fig.fullwidth = TRUE,
-    fig.asp = .75,                          # Ábra Hossz/szélesség
-    tidy.opts = list(width.cutoff = 60),    # legyenek 60 karakter szélességűre tördelve
-    tidy = "styler",                        # legyenek clean codingra megformázva
-    dev = 'png',#'tiff',                            # PNG legyen az alapértelmezett képformátum
-    compression = 'lzw',
-    dpi = 300,                              # a PNG képek elég jó minőségűek legyenek
-    fig.pos = 'H'                           # nem próbálja az ábrákat az oldal tetejére tenni
-  )
-
-
-graphics_path <- "../inst/figures/"            # a máshonnan származó ábrák elérési útja
-graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
-
-options(scipen = 1) # Require 5 instead of 4 for scientific notation (eg. for p-values)
-options(digits = 3) # default no. of digits (!) 
-options(encoding = "UTF-8") 
-
-```
 
 <!---
 Ez segít abban, hogy nagyobb magsságú képek se kerüljenek túl messze a chunktól, amiben előállítottuk őket. A \renewcommand megváltoztatja egy változó jelenlegi értékét. A \floatpagefraction alapértéke 0.5, azt mondja meg, hogy a szöveg magasságának hányadrásze az a kép, amit már feltétlenül külön oldalra kell tenni.
@@ -134,13 +93,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non e
 
 Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
 
-```{r chunk-a}
-#| ref.label=c('referenced_chunk'),
-#| fig.cap = "Executive graph for executive thoughts"
-
-plot(x,y)
-
-```
+<div class="figure" style="text-align: center">
+<img src="figure/chunk-a-1.png" alt="Executive graph for executive thoughts" width="90%" />
+<p class="caption">Executive graph for executive thoughts</p>
+</div>
 
 <!---
 Nagyon érzékeny a filenév a futási helyre meg úgy általában mindenre. Borzasztó, a 
@@ -247,9 +203,7 @@ where,
 $~$\
 
 
-```{r}
-save.image( file = here::here("inst","states", "before_chap1.Rdata"))
-```
+
 
 
 <!--- 
@@ -264,14 +218,1085 @@ A kódból hivatkozott fileok meg - nahát - child Rmd-k normálisan működnek
 
 --->
 
-```{r child = "_01_chap1.rmd"}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Chapter title 
+
+### Relevelling 
+
+_Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie._
+
+Sorry, the below is a dull example of releveling:
+
+
+```r
+# This is an example of factor releveling snatched from
+# https://www.tutorialspoint.com/r/r_factors.htm
+
+data_f <- c("East", "West", "East", "North", "North", "East",
+    "West", "West", "West", "East", "North")
+# Create the factors
+factor_data <- factor(data_f)
+print(factor_data)
+```
+
+```
+##  [1] East  West  East  North North East  West  West  West  East  North
+## Levels: East North West
+```
+
+```r
+# Apply the factor function with required order of the
+# level.
+new_order_data <- factor(factor_data, levels = c("East", "West",
+    "North"))
+print(new_order_data)
+```
+
+```
+##  [1] East  West  East  North North East  West  West  West  East  North
+## Levels: East West North
+```
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+
+### Side-by-side log graphs
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+
+<div class="figure" style="text-align: center">
+<img src="figure/two_log_norm_plot-1.png" alt="Title of the plot above" width="90%" />
+<p class="caption">Title of the plot above</p>
+</div>
+
+\newpage
+
+### Side by side different graphs, different fig. title
+
+<!---
+Pay special attention to the *commas* after opts. in the header and later on below.
+If commas are missing, option will simply not be evaluated
+--->
+
+
+
+\begin{figure}[h]
+\begin{multicols}{2}
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{mandatory_chunk_name1.png}
+\caption{Plot the first}
+\label{fig:plotmeans}
+\end{figure}
+
+\columnbreak
+
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{mandatory_chunk_name2.png}
+\centering
+\caption{Plot the second}
+\label{fig:histogram}
+\end{figure}
+\end{multicols}
+\end{figure}
+
+
+\newpage
+
+### A tbl_summary example
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+
+
+<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 40%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
+<caption style="caption-side: top; text-align: center;">Plot without much thought or meaning</caption><col><col><col><col><tr>
+<th style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"></th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"><p><strong>Setosa</strong>, N = 50</p>
+</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"><p><strong>Verginica</strong>, N = 50</p>
+</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"><p><strong>Versicolor</strong>, N = 50</p>
+</th></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">Numeric representation of species</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;"></td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;"></td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;"></td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-style: italic; font-size: 7pt;">1</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">50 (100%)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">0 (0%)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">0 (0%)</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-style: italic; font-size: 7pt;">2</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">0 (0%)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">0 (0%)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">50 (100%)</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-style: italic; font-size: 7pt;">3</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">0 (0%)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">50 (100%)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">0 (0%)</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">These are the width of the petals</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">0.20 (0.20, 0.30)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">2.00 (1.80, 2.30)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">1.30 (1.20, 1.50)</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: bold; font-size: 7pt;">These are the length of the petals</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">1.50 (1.40, 1.58)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">5.55 (5.10, 5.88)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.35 (4.00, 4.60)</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">These are the width of the sepals</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">3.40 (3.20, 3.68)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">3.00 (2.80, 3.18)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">2.80 (2.53, 3.00)</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: bold; font-size: 7pt;">These are the length of the sepals</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">5.00 (4.80, 5.20)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">6.50 (6.23, 6.90)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">5.90 (5.60, 6.30)</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">This is a date column to illustrate transformations</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">2022-01-01 to 2022-02-19</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">2022-04-11 to 2022-05-30</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">2022-02-20 to 2022-04-10</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: bold; font-size: 7pt;">This is my new example variable, adding up the lengths</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">3.70 (3.40, 3.90)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.95 (4.63, 5.38)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.20 (3.73, 4.40)</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (5.3, 16.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">10.0 (5.0, 14.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">12.5 (6.3, 15.8)</td></tr>
+</table>
+<!--/html_preserve-->
+
+
+
+$~$\
+
+
+
+<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 95%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-10">
+<caption style="caption-side: top; text-align: center;">Dis be the second table</caption><col><col><col><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">mpg</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">cyl</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">disp</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">hp</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">drat</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">wt</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">qsec</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">vs</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">am</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">gear</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">carb</th></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">21</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">160</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">110</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.9</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.62</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">16.46</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">21</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">6</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">160</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">110</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">3.9</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">2.875</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">17.02</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">0</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">1</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">4</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">4</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">22.8</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">108</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">93</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.85</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.32</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">18.61</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">21.4</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">6</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">258</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">110</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">3.08</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">3.215</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">19.44</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">1</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">0</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">3</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">18.7</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">360</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">175</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.15</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.44</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">17.02</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">18.1</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">6</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">225</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">105</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">2.76</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">3.46</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">20.22</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">1</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">0</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">3</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal;">1</td></tr>
+</table>
+<!--/html_preserve-->
+
+
+
+\newpage
+
+### A raincloud plot
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+<!--- 
+'Developing' the plot, *not calling, hiding it* so it wouldnt be printed two times (I know...)
+--->
+
+
+
+
+$~$\
+
+<!--- 
+*NOW* calling it
+--->
+
+<div class="figure" style="text-align: center">
+<img src="figure/raincloud_call-1.png" alt="Raincloud plot(!)" width="90%" />
+<p class="caption">Raincloud plot(!)</p>
+</div>
+
+$~$\
+
+### Mixed model specification
+
+$~$\
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+
+
+
+These are some texts.
+
+<!---
+The below html -> png -> include stuff doesn't work in case of html output (for some reason)
+--->
+
+\begin{figure}[H]
+\includegraphics[width = 30em]{webshot.png}
+\centering
+\caption{Ezt nem az R készítette}
+\label{fig:webshot_sjPlot}
+\end{figure}
+
+Cashycashing....
+
+
+
+plottyplotting...
+
+<div class="figure" style="text-align: center">
+<img src="figure/lmer_predictions-1.png" alt="lmer predictions with bootstrap and labelled facets" width="90%" />
+<p class="caption">lmer predictions with bootstrap and labelled facets</p>
+</div>
+
+
+<!---
+
+trying to actually do the plot
+
+
+<div class="figure" style="text-align: center">
+<img src="figure/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12" width="90%" />
+<p class="caption">plot of chunk unnamed-chunk-12</p>
+</div>
+
+--->
+
+
+
+
+
+<div class="figure" style="text-align: center">
+<img src="figure/ggpairs_plot-1.png" alt="Especially Cool 'pairs' plot" width="90%" />
+<p class="caption">Especially Cool 'pairs' plot</p>
+</div>
+
+
+<!--- 
+
+Ez egy komment. A lenti 'leaflet fdolog nem működik .pdf-ben, 
+mert HTML Widgetet csinál :()
+
+
+
+--->
+
+\FloatBarrier
+\newpage
+
+<table>
+<caption>Wise R sayings</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> author </th>
+   <th style="text-align:center;"> quote </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> Barry Rowlingson </td>
+   <td style="text-align:center;"> Okay, let's stand up and be counted: who has been writing diamond graph code? Mine's 60 lines. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Barry Rowlingson </td>
+   <td style="text-align:center;"> Bug, undocumented behaviour, feature? I don't know. It all seems to work in 1.6.0, so everyone should downgrade now... :) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Robert Gentleman </td>
+   <td style="text-align:center;"> I'm always thrilled when people discover what lexical scoping really means. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Ross Ihaka </td>
+   <td style="text-align:center;"> My institution has a particularly diabolical policy on intellectual property, especially on software. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Paul Murrell </td>
+   <td style="text-align:center;"> If you imagine that this pen is Trellis, then Lattice is not this pen. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Robert Gentleman </td>
+   <td style="text-align:center;"> It is good to look around at what is available, but one shouldn't miss what is under one's nose either. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Robert Gentleman </td>
+   <td style="text-align:center;"> What we have is nice, but we need something very different. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Barry Rowlingson </td>
+   <td style="text-align:center;"> Readable, obvious, maintainable, 'portable' for some value of 'portable'... </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Brian D. Ripley </td>
+   <td style="text-align:center;"> 'They' did write documentation that told you that Perl was needed, but 'they' can't read it for you. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Frank Harrell (SAS User, 1969-1991) </td>
+   <td style="text-align:center;"> Overall, SAS is about 11 years behind R and S-Plus in statistical capabilities (last year it was about 10 years behind) in my estimation. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Peter Dalgaard </td>
+   <td style="text-align:center;"> I want a budget. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Kevin Murphy </td>
+   <td style="text-align:center;"> You can be maximally lazy, but still be efficient. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Andrew Thomas and Peter Green </td>
+   <td style="text-align:center;"> Andrew Thomas: ...and if something goes wrong here it is probably not WinBUGS since that has been running for more than 10 years...&lt;x&gt;Peter Green (from the back): ... and it still hasn't converged! </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Barry Rowlingson </td>
+   <td style="text-align:center;"> This is all documented in TFM. Those who WTFM don't want to have to WTFM again on the mailing list. RTFM. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Brian D. Ripley </td>
+   <td style="text-align:center;"> It really is hard to anticipate just how silly users can be. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Douglas Bates </td>
+   <td style="text-align:center;"> So apparently you wish to report as a bug the fact that R 1.8.0 is different from R 1.4.0. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Ross Ihaka </td>
+   <td style="text-align:center;"> I plan to fix this - the report is just in case I forget or get hit by a bus. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Thomas W. Blackwell and Brian D. Ripley </td>
+   <td style="text-align:center;"> Thomas W. Blackwell: I just discovered to my surprise that I cannot define a function with an argument named 'break' or 'while'!&lt;x&gt;Brian D. Ripley: No, they are reserved names. [...] Most programming languages have reserved words, so I am surprised you are surprised. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Brian D. Ripley </td>
+   <td style="text-align:center;"> R has changed quite a lot recently, and older preconceptions do need to be checked against current information. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Brian D. Ripley </td>
+   <td style="text-align:center;"> But a difference of a few minutes means that this is well under 20% of the total time unless your statistical analysis is very much speedier than mine. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Ross Ihaka </td>
+   <td style="text-align:center;"> I seem to recall that we were targetting 512k Macintoshes. In our dreams we might have seen 16Mb Sun. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Frank Harrell </td>
+   <td style="text-align:center;"> I quit using SAS in 1991 because my productivity jumped at least 20% within one month of using S-Plus. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Rolf Turner </td>
+   <td style="text-align:center;"> When a Certain Guru rips strips off people (God knows he's done it to me often enough) on this list, there's a damned good reason for it. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Barry Rowlingson </td>
+   <td style="text-align:center;"> Ah, so that's why my report of a bug in the RCheapViagra package didn't get through.... </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Henrik Bengtsson and Brian D. Ripley </td>
+   <td style="text-align:center;"> Henrik Bengtsson: Is there a way to turn off the (annoying) beep that occurs when one calls the locator() command and clicks the mouse? [...]&lt;x&gt;Brian D. Ripley: It's a feature of the windows() device. Windows is fond of beeping, and I just mute the sound. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Brian D. Ripley and Patrick Burns </td>
+   <td style="text-align:center;"> Brian D. Ripley: Add to package utils in R-devel, after correction. I was surprised you had fallen into the 1:0 trap.&lt;x&gt;Patrick Burns: I'm surprised too -- good catch. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Knut M. Wittkowski </td>
+   <td style="text-align:center;"> As to whether you can do a Lilliefors test for several groups, that depends entirely on your ability to understand what the underlying question would be (see Adams D 1979). </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Jim Gustafsson and Frank Harrell </td>
+   <td style="text-align:center;"> Jim Gustafsson: I would like to put my SAS-code into R. Could I do that, if yes, how?&lt;x&gt;Frank Harrell: Just reverse the procedure you use when you put R code into SAS. ;) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Brian D. Ripley </td>
+   <td style="text-align:center;"> Is this English or American (you know, the language referred to in the USA as 'English')? [...] As an English English speaker, my sense and my employer's dictionary both suggest doubling here. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Barry Rowlingson </td>
+   <td style="text-align:center;"> As Brian says, there's nothing in the design that lets you do this, but then since you have the source there's nothing on the planet to stop you doing this. The design is not a law :) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Barry Rowlingson and Peter Dalgaard </td>
+   <td style="text-align:center;"> Barry Rowlingson: Your grid above has 8*6 = 42 points.&lt;x&gt;(That was a subtle Hitchhikers Guide To The Galaxy reference there, honest, and not a stupid dumb multiplication mistake on my part after working four 18-hour days on the trot...)&lt;x&gt;Peter Dalgaard: [...] Don't panic, just throw yourself at the ground and miss. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Douglas Bates </td>
+   <td style="text-align:center;"> I have mentioned several times on this list that I'm in the process of developing a new and wonderful implementation of lme and I would prefer to continue working on that rather than modifying old-style code. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Ivo Welch and Brian D. Ripley </td>
+   <td style="text-align:center;"> Ivo Welch: Thanks. I will put in a suggestion that the docs refer to q() in 'see also' for 'stop'.&lt;x&gt;Brian D. Ripley: I don't think anyone else is confusing 'exit' with 'stop', though. I hope you don't when driving .... </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Douglas Bates </td>
+   <td style="text-align:center;"> Before we get too carried away with this thread could you all please consider how the sd function calculates its result? [...] I'll tell you, it takes the square root of the variance. How is the variance calculated for a numeric vector? First you calculate the mean *using floating point arithmetic* in which it is not necessarily true that N * k / N == k [...] Most of those tests [for numerical accuracy] end in a check using the all.equal function which checks if the relative difference is less than a threshold. That's about the best that you can do with floating point arithmetic.&lt;x&gt;Here endeth the sermon. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Federico Calboli </td>
+   <td style="text-align:center;"> The keyboard is the standard Italian layout, which is missing the ~ (tilde) key. [...] Can anyone advice how to produce the ~ symbol, short of a copy/paste from MS Word? </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Barry Rowlingson </td>
+   <td style="text-align:center;"> I'd like to prefix all these solutions with 'Here's how to do it, but don't actually do it you crazy fool'. It's on a par with redefining pi, or redefining '+'. And then redefining '&lt;-'. These techniques have their proper place, and that would be in the currently non-existent obfuscated R contest.&lt;x&gt;No, the R-ish (iRish?) way is to index vectors from 1. That's what the R gods intended! </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> John Fox </td>
+   <td style="text-align:center;"> I think that it's generally a good idea not to resist the most natural way of programming in R. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Rolf Poalis, Biostatistics Denmark </td>
+   <td style="text-align:center;"> For almost 40 years SAS has been the primary tool for statisticians worldwide and its easy-to-learn syntax, unsurpassed graphical system, powerful macro language and recent graphical user interfaces have made SAS the number one statistical software choice for both beginners and advanced users. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Peter Wolf </td>
+   <td style="text-align:center;"> Sorting is a wonderful topic! Especially because you can discuss different fundamental ideas like brute force, divide and conquer, and questions of efficiency, tradeoffs of space and time, etc. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Douglas Bates and Ed L. Cashin </td>
+   <td style="text-align:center;"> Douglas Bates: If you really want to be cautious you could use an octal representation like sep=&quot;\\007&quot; to get a character that is very unlikely to occur in a factor level.&lt;x&gt;Ed L. Cashin: I definitely want to be cautious. Instead of the bell character I think I'll use the field separator character, &quot;\\034&quot;, just because this is the first time I've been able to use it for it's intended purpose! ;)&lt;x&gt;Douglas Bates: Yes, but with &quot;\\034&quot; you don't get to make obscure James Bond references :-) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Bret Collier and Peter Dalgaard </td>
+   <td style="text-align:center;"> Bret Collier: I hope this is not a uniformed question, but I am a little lost.&lt;x&gt;Peter Dalgaard: Don't worry, they all look alike... ;-) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Peter Dalgaard </td>
+   <td style="text-align:center;"> I was actually reading it with some curiosity as to how they managed to find 5 locations that were close to everyone on R-help... </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Dirk Eddelbuettel </td>
+   <td style="text-align:center;"> My preference goes with the numbering scheme attributed to a tribe on some island in the Pacific which consists of a 'factor' with four levels: 'one', 'two', 'three', and 'lots'. Hence, I'd go with 'lots of R users'. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> David Whiting </td>
+   <td style="text-align:center;"> The Huli of Papua New Guinea use '15' to mean a very large number and '15 times 15 samting (something)' to mean something close to infinity. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Brian D. Ripley </td>
+   <td style="text-align:center;"> It seems to me against the spirit of Open Source software to attempt to monitor distribution. We could ask R to 'call home' on first use (in the way e.g. pine does) but I suspect many users would find that objectionable. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Duncan Murdoch </td>
+   <td style="text-align:center;"> Maybe you should contact Microsoft, and get them to modify their tools so they work on the R sources? </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Anthony Rossini </td>
+   <td style="text-align:center;"> Seldom are prizes, credit, and gratitude given, else Brian would be drowning in them. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Detlef Steuer </td>
+   <td style="text-align:center;"> Release 1.0.0&lt;x&gt;(silence)&lt;x&gt;Wow! Thank you! [...] If I am allowed to ask just one question today: How do you fit 48 hours of coding in an ordinary day? Any hints will be appreciated ... :-) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> John Fox </td>
+   <td style="text-align:center;"> If you give people a linear model function you give them something dangerous. </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> Brian D. Ripley </td>
+   <td style="text-align:center;"> To paraphrase provocatively, 'machine learning is statistics minus any checking of models and assumptions'. </td>
+  </tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<!---
+Inserting the de-facto-honest-to-god output of the cyclic child .rmd call.
+'Out' is the tex(?) output of the child .rmd file
+--->
+
+### cyl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---
+Atzs munkája nyomán (copy-paste-tel)
+
+A header-be még ezek kellettek volna, de kivettem, helyette az egész envir.-t frissítem:
+
+params:
+  x: !r c("cyl")
+  top_level: 1
+  figname_prefix: h0
+  
+Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a régi env.-ből a beolvasandó rdata.
+--->
+
+
+
+#### Table
+
+
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[h]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{Frequency of carb categories}
+ \label{tab:unnamed-chunk-15}
+\setlength{\tabcolsep}{0pt}
+\begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{204, 204, 204}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{
+}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{204, 204, 204}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{\textbf{N = 32}
+}\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{carb}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{1}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{2}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{3}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3 (9.4\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+\end{tabularx}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+
+
+#### Figures
+
+
+
+\begin{figure}[h]
+\begin{multicols}{2}
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
+\caption{Bal oldali ábra}
+\label{fig:bar2_a8}
+\end{figure}
+
+\columnbreak
+
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
+\centering
+\caption{Jobb oldali ábra}
+\label{fig:bar2_b8}
+\end{figure}
+\end{multicols}
+\end{figure}
+
+
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+
+
+
+
+### gear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---
+Atzs munkája nyomán (copy-paste-tel)
+
+A header-be még ezek kellettek volna, de kivettem, helyette az egész envir.-t frissítem:
+
+params:
+  x: !r c("cyl")
+  top_level: 1
+  figname_prefix: h0
+  
+Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a régi env.-ből a beolvasandó rdata.
+--->
+
+
+
+#### Table
+
+
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[h]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{Frequency of carb categories}
+ \label{tab:unnamed-chunk-19}
+\setlength{\tabcolsep}{0pt}
+\begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{204, 204, 204}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{
+}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{204, 204, 204}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{\textbf{N = 32}
+}\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{carb}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{1}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{2}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{3}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3 (9.4\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+\end{tabularx}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+
+
+#### Figures
+
+
+
+\begin{figure}[h]
+\begin{multicols}{2}
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
+\caption{Bal oldali ábra}
+\label{fig:bar2_a8}
+\end{figure}
+
+\columnbreak
+
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
+\centering
+\caption{Jobb oldali ábra}
+\label{fig:bar2_b8}
+\end{figure}
+\end{multicols}
+\end{figure}
+
+
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+
+
+
+
+### carb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---
+Atzs munkája nyomán (copy-paste-tel)
+
+A header-be még ezek kellettek volna, de kivettem, helyette az egész envir.-t frissítem:
+
+params:
+  x: !r c("cyl")
+  top_level: 1
+  figname_prefix: h0
+  
+Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a régi env.-ből a beolvasandó rdata.
+--->
+
+
+
+#### Table
+
+
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
+
+\begin{table}[h]
+\begin{centerbox}
+\begin{threeparttable}
+\captionsetup{justification=centering,singlelinecheck=off}
+\caption{Frequency of carb categories}
+ \label{tab:unnamed-chunk-23}
+\setlength{\tabcolsep}{0pt}
+\begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{204, 204, 204}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{
+}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{204, 204, 204}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \textbf{\textbf{N = 32}
+}\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{carb}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{1}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{2}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{3}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3 (9.4\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
+\arrayrulecolor{black}
+\end{tabularx}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+
+
+#### Figures
+
+
+
+\begin{figure}[h]
+\begin{multicols}{2}
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
+\caption{Bal oldali ábra}
+\label{fig:bar2_a8}
+\end{figure}
+
+\columnbreak
+
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
+\centering
+\caption{Jobb oldali ábra}
+\label{fig:bar2_b8}
+\end{figure}
+\end{multicols}
+\end{figure}
+
+
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+
+
+
+
+<div class="figure" style="text-align: center">
+<img src="figure/referenced_chunk-1.png" alt="Executive graph for executive thoughts" width="90%" />
+<p class="caption">Executive graph for executive thoughts</p>
+</div>
+
+
+# Notes
+
+The MD5 checksum of the database used: 
+
+
+```
+## C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/extdata/Iris.xls 
+##                                                                         "1ed4b9d5418675e017479de339aff352"
+```
+
+Other information regarding the compilation of this document:
+
+<!---
+Example of printing chunk stuff without the hideous '##' 
+--->
+
+Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages lme4 (version 1.1.33; Bates D et al., 2015), Matrix (version 1.5.4.1; Bates D et al., 2023), effects (version 4.2.2; Fox J, Weisberg S, 2019), carData (version 3.0.5; Fox J et al., 2022), lubridate (version 1.9.2; Grolemund G, Wickham H, 2011), DHARMa (version 0.4.6; Hartig F, 2022), huxtable (version 5.5.2; Hugh-Jones D, 2022), labelled (version 2.11.0; Larmarange J, 2023), emmeans (version 1.8.6; Lenth R, 2023), nlme (version 3.1.162; Pinheiro J et al., 2023), gtsummary (version 1.7.1; Sjoberg D et al., 2021), ggplot2 (version 3.4.2; Wickham H, 2016), readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.2; Wickham H et al., 2023), knitr (version 1.43.1; Xie Y, 2023) and kableExtra (version 1.3.4; Zhu H, 2021).
+
+References
+----------
+  - Bates D, Mächler M, Bolker B, Walker S (2015). "Fitting Linear Mixed-Effects Models Using lme4." _Journal of Statistical Software_, *67*(1), 1-48. .
+  - Bates D, Maechler M, Jagan M (2023). _Matrix: Sparse and Dense Matrix Classes and Methods_. R package version 1.5-4.1, <https://CRAN.R-project.org/package=Matrix>.
+  - Fox J, Weisberg S (2019). _An R Companion to Applied Regression_, 3rd edition. Sage, Thousand Oaks CA. <https://socialsciences.mcmaster.ca/jfox/Books/Companion/index.html>.
+  - Fox J, Weisberg S, Price B (2022). _carData: Companion to Applied Regression Data Sets_. R package version 3.0-5, <https://CRAN.R-project.org/package=carData>.
+  - Grolemund G, Wickham H (2011). "Dates and Times Made Easy with lubridate." _Journal of Statistical Software_, *40*(3), 1-25. <https://www.jstatsoft.org/v40/i03/>.
+  - Hartig F (2022). _DHARMa: Residual Diagnostics for Hierarchical (Multi-Level / Mixed) Regression Models_. R package version 0.4.6, <https://CRAN.R-project.org/package=DHARMa>.
+  - Hugh-Jones D (2022). _huxtable: Easily Create and Style Tables for LaTeX, HTML and Other Formats_. R package version 5.5.2, <https://CRAN.R-project.org/package=huxtable>.
+  - Larmarange J (2023). _labelled: Manipulating Labelled Data_. R package version 2.11.0, <https://CRAN.R-project.org/package=labelled>.
+  - Lenth R (2023). _emmeans: Estimated Marginal Means, aka Least-Squares Means_. R package version 1.8.6, <https://CRAN.R-project.org/package=emmeans>.
+  - Pinheiro J, Bates D, R Core Team (2023). _nlme: Linear and Nonlinear Mixed Effects Models_. R package version 3.1-162, <https://CRAN.R-project.org/package=nlme>.
+  - R Core Team (2023). _R: A Language and Environment for Statistical Computing_. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
+  - Sjoberg D, Whiting K, Curry M, Lavery J, Larmarange J (2021). "Reproducible Summary Tables with the gtsummary Package." _The R Journal_, *13*, 570-580. , <https://doi.org/10.32614/RJ-2021-053>.
+  - Wickham H (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. ISBN 978-3-319-24277-4, <https://ggplot2.tidyverse.org>.
+  - Wickham H, Bryan J (2023). _readxl: Read Excel Files_. R package version 1.4.2, <https://CRAN.R-project.org/package=readxl>.
+  - Wickham H, Danenberg P, Csárdi G, Eugster M (2022). _roxygen2: In-Line Documentation for R_. R package version 7.2.3, <https://CRAN.R-project.org/package=roxygen2>.
+  - Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.2, <https://CRAN.R-project.org/package=dplyr>.
+  - Xie Y (2023). _knitr: A General-Purpose Package for Dynamic Report Generation in R_. R package version 1.43.1, <https://yihui.org/knitr/>.
+  - Zhu H (2021). _kableExtra: Construct Complex Table with 'kable' and Pipe Syntax_. R package version 1.3.4, <https://CRAN.R-project.org/package=kableExtra>.
+
+This document was compiled at:
+
+
+```
+[1] "2023-06-07 13:12:49 CEST"
 ```
 
 
-`r save.image( file = here::here("inst","states", "before_chap2.Rdata"))`
+# Appendix
 
-```{r child-cycle}
+This is how put all your code into an appendix.
+
+
+```r
+# https://dotcms.com/docs/latest/markdown-syntax  
+# https://yihui.org/knitr/options/ 
+# https://zbib.org/
+# https://www.r-bloggers.com/2019/09/first-world-problems-very-long-rmarkdown-documents/ 
+
+
+# # For citations insert this into the yaml header (without spaces)
+# # And make a book.bib file to the location of the mother .rmd
+# bibliography: book.bib
+# biblio-style: apalike
+# link-citations: yes
+
+source(here::here("inst","functions","load_stuff.r"))
+source(here::here("inst","functions", "wrangling.r"))
+
+knitr::opts_chunk$set(
+    echo = FALSE,                           # Ne mutassa a kódokat
+    cached = FALSE,                 ###!!!  # Ne cache-eljen
+    warning = FALSE,                        # Ne írja ki a warningokat
+    message = FALSE, 
+    fig.align = 'center',                   # Ábra középre rendezése
+    out.width = '90%',                      # Ábra szélessége, alter.: #fig.fullwidth = TRUE,
+    fig.asp = .75,                          # Ábra Hossz/szélesség
+    tidy.opts = list(width.cutoff = 60),    # legyenek 60 karakter szélességűre tördelve
+    tidy = "styler",                        # legyenek clean codingra megformázva
+    dev = 'png',#'tiff',                            # PNG legyen az alapértelmezett képformátum
+    compression = 'lzw',
+    dpi = 300,                              # a PNG képek elég jó minőségűek legyenek
+    fig.pos = 'H'                           # nem próbálja az ábrákat az oldal tetejére tenni
+  )
+
+
+graphics_path <- "../inst/figures/"            # a máshonnan származó ábrák elérési útja
+graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
+
+options(scipen = 1) # Require 5 instead of 4 for scientific notation (eg. for p-values)
+options(digits = 3) # default no. of digits (!) 
+options(encoding = "UTF-8") 
+
+plot(x,y)
+
+save.image( file = here::here("inst","states", "before_chap1.Rdata"))
+
 valtozok <- c("cyl", "gear", "carb")
 out <- NULL
 
@@ -286,17 +1311,6 @@ for (i in 1:length(valtozok)) {
 }
 out <- paste(out, collapse = "\n")
 
-```
-
-<!---
-Inserting the de-facto-honest-to-god output of the cyclic child .rmd call.
-'Out' is the tex(?) output of the child .rmd file
---->
-`r out`
-
-```{r referenced_chunk}
-#| fig.cap = "Executive graph for executive thoughts"
-
 set.seed(12345)
 
 x <- rnorm(100)
@@ -304,48 +1318,438 @@ y <- 0.5 * x + rnorm(100)
 
 plot(x,y, main = "Important plot to reference before its compiled")
 
-```
-
-
-# Notes
-
-The MD5 checksum of the database used: 
-
-```{r}
 tools::md5sum(here::here("inst","extdata","Iris.xls"))
-```
-
-Other information regarding the compilation of this document:
-
-<!---
-Example of printing chunk stuff without the hideous '##' 
---->
-
-```{r, comment='', results='asis'}
 knitr::opts_chunk$set(comment = NA)
 sessionInfo() %>% report::report() %>% cat()
-```
-
-This document was compiled at:
-
-```{r last_chunk}
 
 Sys.time()
 save.image(file = here::here("inst","states","cookbook_out.Rdata"))
 
-```
 
 
-# Appendix
+source(here::here("R","load_stuff.r"))
+load( file = here::here("inst","states", "before_chap1.Rdata"))
 
-This is how put all your code into an appendix.
+# This is an example of factor releveling snatched from
+# https://www.tutorialspoint.com/r/r_factors.htm
 
-```{r}
-#| ref.label=knitr::all_labels(),
-#| echo=TRUE,
-#| eval=FALSE,
-#| tidy=TRUE
+data_f <- c("East","West","East","North","North","East","West",
+   "West","West","East","North")
+# Create the factors
+factor_data <- factor(data_f)
+print(factor_data)
+
+# Apply the factor function with required order of the level.
+new_order_data <- factor(factor_data,levels = c("East","West","North"))
+print(new_order_data)
 
 
+
+# First subplot
+fig_1a <- 
+data %>%
+  ggplot( aes( x = species_no,
+               y = petal_width)) +
+  # Theme
+  theme_default_ggplot +
+  # Layers
+  geom_point() +
+  # axis wrangling
+  scale_y_continuous( 
+    # setting up a custom log transform ( the pre-defined results in error somehow...)
+    trans = scales::trans_new("expmar", exp,
+            function(x){
+                #print(paste("isq",x))  #debug statement
+                x <-ifelse(x<0, 0, x)
+                log(x)
+              })
+  ) +
+  # description(s)
+  labs( x = "Species on this axis wahaha",
+        y = "log transformed variable")
+
+
+# Second subplot
+fig_1b <- 
+data %>%
+  ggplot( aes( x = species_no,
+               y = petal_width)) +
+  # Theme
+  theme_default_ggplot +
+  theme( legend.position="bottom") + # custom legend position if needed
+  # Layers
+  geom_point() +
+  # axis wrangling
+  scale_y_continuous( 
+    limits = c( 0,3.3),
+    breaks = c( 0, .6, 1, 1.8, 2.6)
+  ) +
+  # description(s)
+  labs( x = "Species on the other copy of the axis wahaha",
+        y = "variable on original scale")
+
+# Demonstrating arranging plots
+fig_1comp <- 
+  ggpubr::ggarrange(fig_1a, fig_1b, 
+          #labels = c("", ""), # if you'd like to omit the labels
+          labels = "AUTO",
+          ncol = 2, nrow = 1)
+
+# calling the plot
+(fig_1comp)
+
+
+data_local <- data.frame( x = rnorm(100)) %>%
+                mutate(y = x * 0.5 + rnorm(100))
+
+data_local %>%
+  ggplot( aes(x=x,y=y)) +
+    theme_default_ggplot +
+    geom_point()
+
+hist(data_local$x)
+
+
+
+tbl_summary( data, by = species_char) %>% 
+  martys_table_style(caption. = 
+                       "Plot without much thought or meaning") %>% 
+  # You can 'overwrite' setting which don't conflict your defaults
+  set_font_size(7) %>%
+  ###### row_spec(0, bold = T, font_size = 7)# %>% # Dis crashes the whole thing
+   set_width(.4)
+
+
+head(mtcars) %>%
+  martys_table_style(caption. = "Dis be the second table")
+
+
+
+# Calling the plot
+plot. <- 
+  data %>%
+    ggplot( aes(x = species_char, y = sepal_width, 
+                color = species_char, fill = species_char)) + 
+    theme_default_ggplot +
+    # half smoothed density
+    ggdist::stat_halfeye(
+      ## bandwidth
+      adjust = 0.6,
+      justification = -.2,
+      .width = 0,
+      width = .25
+    ) + 
+    # Boxplot
+    geom_boxplot( width = .08,
+                  # remove outliers from boxplot
+                  outlier.color = NA,
+                  alpha = .5) +
+    # Dotplot
+    ggdist::stat_dots(
+      side = "left", 
+      dotsize = .1, 
+      justification = 1.12, 
+      binwidth = .125
+    ) +
+    labs( 
+      # coord_flip doesn't affect this ;)
+      x = "Species",
+      y = "Width of sepals (mm)",
+      # Including latex, see https://cran.r-project.org/web/packages/latex2exp/vignettes/using-latex2exp.html
+      caption = latex2exp::TeX(r"($   \alpha^{5-i_j}\ is\ a\ nifty\ string   $)"),
+      title = "Its not better to set titles in ggplot2..."
+      ) +
+    scale_y_continuous( 
+      breaks = c(0,1,2,3,4,5), 
+      limits = c(0,5)) +
+    coord_flip()
+
+
+(plot.)
+
+
+library(lme4)
+
+mod <- lmer(
+  petal_width ~
+    petal_length +
+    sepal_width +
+    (1 | mock_ID),
+  data
+)
+
+
+#Output is in html...
+sjPlot::tab_model(mod,
+    # transform = "exp", # makes stuff multiplicative
+    digits.re = 3,
+    show.reflvl = TRUE,
+    pred.labels = list(
+      `(Intercept)` = "Interceeeeept",
+      petal_length  = "Length of petal",
+      sepal_width   = "Width of sepal"
+    ),
+    dv.labels = "Width of petal (mm)",
+    df.method = "kr", # makes it somewhat more conservative I guess
+    title = "Specification of an lmer model"
+    , show.p = FALSE # if you're also skeptical of p-values
+    , bootstrap = TRUE
+    , iterations = 100 # actually works for lmer(!)
+    , file = here::here("inst","stuff","temp.html") # have to export temporarily
+  )
+
+
+  # The "webshot2" stuff needs to be done 'invisibly' or else it 
+  # spawns a copy of the previous image  
+invisible({
+  #taking a 'snapshot' of the html and converting it to .png
+  webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
+                    cliprect = c(0,0,400,400),
+                    file = here::here("inst","figures","webshot.png"))
+})
+
+
+
+# How to predict an lmer model's main effects based on bootstrap
+# slow as it gets if you like it pretty, introducing cache
+
+CRANK <- 30
+
+pred <- expand.grid(
+  petal_length = seq(1, 5, length.out = 10),
+  sepal_width  = seq(1, 5, length.out = 3)
+)
+
+pred_out <- ciTools::add_ci(pred, mod,
+  includeRanef = FALSE, type = "boot",
+  nSims = CRANK # crank up in production
+)
+
+# fig.show='hide'
+
+plot_lmeoutpred <- 
+  pred_out %>%
+    mutate( 
+      # Recoding into factor the facetting value, labels will be based on the labels...
+      sepal_width2 = factor( sepal_width, labels = c("Very small", 
+                                                     "Medium", 
+                                                     "Really large"))) %>%
+    ggplot( aes(x = petal_length, y = pred, 
+                group = sepal_width2, color = sepal_width2
+                , fill = sepal_width)) +
+    theme_default_ggplot +
+    geom_line() +
+    geom_ribbon(mapping = aes( ymin = LCB0.025, 
+                               ymax = UCB0.975), 
+                alpha = .25, 
+                colour = NA) +
+    facet_grid( facets = c("sepal_width2"), labeller = label_value) +
+    labs( x = "Length of Petal",
+          y = "Predicted sepal_width)",
+          caption = "Confidence bands are conditional on the random effects(?)")
+
+plot_lmeoutpred
+
+#|fig.cap="lmer predictions with bootstrap and labelled facets", 
+#|fig.keep ='all'
+#|
+
+(plot_lmeoutpred)
+
+
+# The below is an analogue of pairs()
+
+plot_ggpairs <- 
+  data %>%
+    select(c(
+      "petal_width",  "petal_length", "sepal_width", "newvar", "species_char"
+    )) %>%
+    GGally::ggpairs( .,  
+             aes(color = species_char, alpha = 0.5),
+             columns = 1:4,
+             upper = list(continuous = GGally::wrap("cor", size = 3)),
+             diag =  list(continuous = "blankDiag"),
+             lower = list(continuous = GGally::wrap( "smooth", 
+                                                     se = FALSE, 
+                                                     method = "lm")),
+             progress = FALSE) +
+      theme_default_ggplot
+
+
+(plot_ggpairs)
+
+
+# ## Doesn't work in pdf output(?)
+# 
+# library(leaflet)
+# 
+# leaflet(width = "100%") %>%
+#   addProviderTiles("CartoDB.Positron") %>%
+#   setView(lat = -27.45, lng = 153.075, 10) %>%
+#   addMarkers(lat = -27.45321, lng = 153.0919745, label = "ACC") %>%
+#   addMarkers(lat = -27.452607, lng = 153.029548, label = "MLA") %>%
+#   addMarkers(lat = -27.589169, lng = 153.107316, label = "Teys")
+
+
+# TODO: kableExtra just wont knit!! NO idea why.
+
+require(kableExtra)
+
+fortunes::read.fortunes() %>% 
+  .[1:50,c(2,1)] %>%
+  # Sometimes you have to specify everything if you want to deviate
+  # from the standard look (here: do a longtable)
+  kable(#format = "latex", # Pivoting to 'html'
+                    longtable = TRUE, # Doesn't work with scale_down
+                    booktabs = TRUE,
+                    linesep = "",
+                    caption = "Wise R sayings",
+                    align = "c") #%>%
+  #row_spec(0, bold = T) #%>%
+  #kable_styling( position = "center",
+  #                latex_options = c("striped","repeat_header"
+  #                                  #,"scale_down"
+  #                                  ),
+  #                stripe_color = "gray!05") %>%
+  #landscape() %>%
+  #column_spec(column = 2, width = "50em") %>%
+  # kable_styling(font_size = 7)
+
+
+
+# Defining stuff, including the renaming scheme, and the structure of the output
+
+
+source(here::here("R","load_stuff.r")) # for independent compilation
+load( file = here::here("inst","states", "before_chap2.Rdata"))
+
+if(!exists("child_counter")) {
+  child_counter <- 1
+} else {
+  child_counter <- child_counter + 1
+}
+
+knitr::opts_chunk$set(fig.process = function(x) {
+  x2 = sub(paste0(knitr::opts_current$get("label"), '-'), '', x, fixed = T)
+  if (file.rename(x, x2)) x2 else x
+})
+
+my <- list()
+my$table <- t(table(params$x))
+rownames(my$table) <- c("Darabszámok")
+
+mtcars[[params$x]] %>%
+  as.data.frame %>%
+  `colnames<-`(params$x) %>%
+  tbl_summary() %>%
+  martys_table_style(caption. = paste0("Frequency of ",params$x," categories"))
+
+child_counter <- child_counter + 1
+
+mtcars %>%
+  ggplot( aes(x = mpg,
+          y = .data[[params$x]])) +
+  theme_default_ggplot +
+  geom_point()
+
+mtcars %>%
+  ggplot( aes(x = qsec,
+          y = .data[[params$x]])) +
+  theme_default_ggplot +
+  geom_point()
+
+rm(my)
+
+knitr::opts_chunk$set(fig.process = NULL)
+
+# Defining stuff, including the renaming scheme, and the structure of the output
+
+
+source(here::here("R","load_stuff.r")) # for independent compilation
+load( file = here::here("inst","states", "before_chap2.Rdata"))
+
+if(!exists("child_counter")) {
+  child_counter <- 1
+} else {
+  child_counter <- child_counter + 1
+}
+
+knitr::opts_chunk$set(fig.process = function(x) {
+  x2 = sub(paste0(knitr::opts_current$get("label"), '-'), '', x, fixed = T)
+  if (file.rename(x, x2)) x2 else x
+})
+
+my <- list()
+my$table <- t(table(params$x))
+rownames(my$table) <- c("Darabszámok")
+
+mtcars[[params$x]] %>%
+  as.data.frame %>%
+  `colnames<-`(params$x) %>%
+  tbl_summary() %>%
+  martys_table_style(caption. = paste0("Frequency of ",params$x," categories"))
+
+child_counter <- child_counter + 1
+
+mtcars %>%
+  ggplot( aes(x = mpg,
+          y = .data[[params$x]])) +
+  theme_default_ggplot +
+  geom_point()
+
+mtcars %>%
+  ggplot( aes(x = qsec,
+          y = .data[[params$x]])) +
+  theme_default_ggplot +
+  geom_point()
+
+rm(my)
+
+knitr::opts_chunk$set(fig.process = NULL)
+
+# Defining stuff, including the renaming scheme, and the structure of the output
+
+
+source(here::here("R","load_stuff.r")) # for independent compilation
+load( file = here::here("inst","states", "before_chap2.Rdata"))
+
+if(!exists("child_counter")) {
+  child_counter <- 1
+} else {
+  child_counter <- child_counter + 1
+}
+
+knitr::opts_chunk$set(fig.process = function(x) {
+  x2 = sub(paste0(knitr::opts_current$get("label"), '-'), '', x, fixed = T)
+  if (file.rename(x, x2)) x2 else x
+})
+
+my <- list()
+my$table <- t(table(params$x))
+rownames(my$table) <- c("Darabszámok")
+
+mtcars[[params$x]] %>%
+  as.data.frame %>%
+  `colnames<-`(params$x) %>%
+  tbl_summary() %>%
+  martys_table_style(caption. = paste0("Frequency of ",params$x," categories"))
+
+child_counter <- child_counter + 1
+
+mtcars %>%
+  ggplot( aes(x = mpg,
+          y = .data[[params$x]])) +
+  theme_default_ggplot +
+  geom_point()
+
+mtcars %>%
+  ggplot( aes(x = qsec,
+          y = .data[[params$x]])) +
+  theme_default_ggplot +
+  geom_point()
+
+rm(my)
+
+knitr::opts_chunk$set(fig.process = NULL)
 ```
 

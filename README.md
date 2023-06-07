@@ -17,4 +17,13 @@ Use *devtools::check(document = FALSE)* to check the panckage's integrity.
 
 Use *devtools::install()* to compile the package.
 
+This is *the* goldmine for setting up your pkgdown site:
+https://pkgdown.r-lib.org/articles/customise.html 
+
+This is how we should approach long reports & vignette formats:
+https://ropensci.org/blog/2019/12/08/precompute-vignettes/ 
+
+So do something like: 
+knitr::knit("man/cookbook.Rmd.orig", output = "vignettes/Cookbook.Rmd") 
+
 

@@ -2,8 +2,8 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  cookbook: cookbook.html
-last_built: 2023-06-07T05:55Z
+  Cookbook: Cookbook.html
+last_built: 2023-06-07T11:13Z
 urls:
   reference: http://MartynK.github.io/MartysCookbook/reference
   article: http://MartynK.github.io/MartysCookbook/articles
