@@ -1,10 +1,9 @@
 # Data wrangling goes here
 
 
-# Dependson:
-#Not strictly necessary, but adding here for standalone executability
-source(here::here("inst","functions","load_stuff.r")) 
-
+# # Dependson:
+# #Not strictly necessary, but adding here for standalone executability
+# source(here::here("inst","functions","load_stuff.r")) 
 
 descriptor <- read_excel(here::here("inst","extdata","description.xlsx"), skip = 0)
 

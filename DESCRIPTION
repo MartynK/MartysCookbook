@@ -17,13 +17,10 @@ Depends:
     lubridate,
     gtsummary,
     dplyr,
-    knitr
-Imports:
-    dplyr,
+    knitr,
     huxtable,
     kableExtra
 Suggests: 
     testthat (>= 3.0.0),
-    knitr,
     rmarkdown
 Config/testthat/edition: 3

@@ -1,17 +1,17 @@
 ---
 always_allow_html: yes
 output:
+  html_document:
+    df_print: paged
+    fig_caption: yes
+    toc: yes
+    number_sections: yes
   pdf_document: 
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
     toc: yes
     toc_depth: 3
-  html_document:
-    df_print: paged
-    fig_caption: yes
-    toc: yes
-    number_sections: yes
   word_document: 
     fig_caption: yes
     toc: yes
@@ -484,28 +484,31 @@ mert HTML Widgetet csinál :()
 \FloatBarrier
 \newpage
 
-```{r}
+```{r prob}
 
+# TODO: kableExtra just wont knit!! NO idea why.
+
+require(kableExtra)
 
 fortunes::read.fortunes() %>% 
   .[1:50,c(2,1)] %>%
   # Sometimes you have to specify everything if you want to deviate
   # from the standard look (here: do a longtable)
-  kableExtra::kable(format = "latex",
+  kable(#format = "latex", # Pivoting to 'html'
                     longtable = TRUE, # Doesn't work with scale_down
                     booktabs = TRUE,
                     linesep = "",
                     caption = "Wise R sayings",
-                    align = "c") %>%
-  row_spec(0, bold = T) %>%
-  kable_styling( position = "center",
-                 latex_options = c("striped","repeat_header"
-                                   #,"scale_down"
-                                   ),
-                 stripe_color = "gray!05") %>%
-  landscape() %>%
-  column_spec(column = 2, width = "50em") %>%
-  kable_styling(font_size = 7)
+                    align = "c") #%>%
+  #row_spec(0, bold = T) #%>%
+  #kable_styling( position = "center",
+  #                latex_options = c("striped","repeat_header"
+  #                                  #,"scale_down"
+  #                                  ),
+  #                stripe_color = "gray!05") %>%
+  #landscape() %>%
+  #column_spec(column = 2, width = "50em") %>%
+  # kable_styling(font_size = 7)
 
 
 ```
