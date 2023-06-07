@@ -4,7 +4,7 @@
     <loc>http://MartynK.github.io/MartysCookbook/404.html</loc>
   </url>
   <url>
-    <loc>http://MartynK.github.io/MartysCookbook/articles/Cookbook.html</loc>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/cookbook.html</loc>
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/articles/index.html</loc>
@@ -35,6 +35,12 @@
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/reference/martys_table_style.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/reference/move_recent_files.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/reference/precompile_quick_vignette.html</loc>
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/reference/theme_default_ggplot.html</loc>

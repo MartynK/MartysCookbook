@@ -13,9 +13,9 @@ navbar:
     menu:
     - text: Main Stuff
     - text: Main Vignette
-      href: articles/Cookbook.html
+      href: articles/cookbook.html
     - text: "PDF version"
-      href: articles/Cookbook.pdf
+      href: articles/cookbook.pdf
     - text: -------
     - text: Other Section
   
