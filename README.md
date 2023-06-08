@@ -13,7 +13,7 @@ Use *devtools::test()* to run the unit test(s).
 
 Website made by *pkgdown::build_site()*.
 
-Use *devtools::check(document = FALSE)* to check the panckage's integrity.
+Use *devtools::check(document = FALSE, vignettes = FALSE)* to check the panckage's integrity.
 
 Use *devtools::install()* to compile the package.
 
@@ -23,7 +23,7 @@ https://pkgdown.r-lib.org/articles/customise.html
 This is how we should approach long reports & vignette formats:
 https://ropensci.org/blog/2019/12/08/precompute-vignettes/ 
 
-So do something like: 
-knitr::knit("man/cookbook.Rmd.orig", output = "vignettes/Cookbook.Rmd") 
+Using 'renv' for package for version control.
+Need to specify *Sys.setenv(RENV_DOWNLOAD_METHOD = "libcurl")* in order to work.
 
 

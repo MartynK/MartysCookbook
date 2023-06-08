@@ -152,7 +152,7 @@ Amondó vagyok, hogy kézzel minen kimenetet egy adott mappába rángassunk, és
 \begin{figure}[H]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name-1.png}
+\includegraphics[width = \linewidth]{mandatory_chunk_name1.png}
 \caption{Plot the first}
 \label{fig:plotmeans}
 \end{figure}
@@ -160,7 +160,7 @@ Amondó vagyok, hogy kézzel minen kimenetet egy adott mappába rángassunk, és
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name-2.png}
+\includegraphics[width = \linewidth]{mandatory_chunk_name2.png}
 \centering
 \caption{Plot the second}
 \label{fig:histogram}

@@ -5,7 +5,7 @@
 # #Not strictly necessary, but adding here for standalone executability
 # source(here::here("inst","functions","load_stuff.r")) 
 
-descriptor <- read_excel(here::here("inst","extdata","description.xlsx"), skip = 0)
+descriptor <- readxl::read_excel(here::here("inst","extdata","description.xlsx"), skip = 0)
 
 # make a list to be used as labels for 'labelled::'
 labs <- 
@@ -19,7 +19,7 @@ labs <-
 
 # Making the actual dataset
 data <- here::here("inst","extdata","Iris.xls") %>%
-                read_excel( ., skip = 0) %>%
+  readxl::read_excel( ., skip = 0) %>%
                   mutate( across( .cols = which( descriptor$trf == "factor"),
                           .fns = as.factor
                           ),
@@ -31,7 +31,7 @@ data <- here::here("inst","extdata","Iris.xls") %>%
                           )
                   ) %>%
   `colnames<-`( descriptor$name_new) %>%
-  `var_label<-`(   labs  ) %>%
+  labelled::`var_label<-`(   labs  ) %>%
   mutate( 
     # making up a new variable as an example
     newvar = petal_width + sepal_width

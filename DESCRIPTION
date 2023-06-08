@@ -1,6 +1,6 @@
 Package: MartysCookbook
 Title: My book of tips & tricks for nice reports
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person("Márton", "Kiss", email = "mrkmarton@gmail.com", role = c("aut", "cre"))
 Description: My book of tricks & tricks for nice reports.
@@ -19,7 +19,11 @@ Depends:
     dplyr,
     knitr,
     huxtable,
-    kableExtra
+    kableExtra,
+    report,
+    readxl,
+    formatR,
+    labelled
 Suggests: 
     testthat (>= 3.0.0),
     rmarkdown

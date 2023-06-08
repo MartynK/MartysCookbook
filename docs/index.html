@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">MartysCookbook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -96,11 +96,11 @@
 <p>Ran <em>devtools::document()</em> to make the NAMESPACE document.</p>
 <p>Use <em>devtools::test()</em> to run the unit test(s).</p>
 <p>Website made by <em>pkgdown::build_site()</em>.</p>
-<p>Use <em>devtools::check(document = FALSE)</em> to check the panckage’s integrity.</p>
+<p>Use <em>devtools::check(document = FALSE, vignettes = FALSE)</em> to check the panckage’s integrity.</p>
 <p>Use <em>devtools::install()</em> to compile the package.</p>
 <p>This is <em>the</em> goldmine for setting up your pkgdown site: <a href="https://pkgdown.r-lib.org/articles/customise.html" class="external-link uri">https://pkgdown.r-lib.org/articles/customise.html</a></p>
 <p>This is how we should approach long reports &amp; vignette formats: <a href="https://ropensci.org/blog/2019/12/08/precompute-vignettes/" class="external-link uri">https://ropensci.org/blog/2019/12/08/precompute-vignettes/</a></p>
-<p>So do something like: knitr::knit(“man/cookbook.Rmd.orig”, output = “vignettes/Cookbook.Rmd”)</p>
+<p>Using ‘renv’ for package for version control. Need to specify <em>Sys.setenv(RENV_DOWNLOAD_METHOD = “libcurl”)</em> in order to work.</p>
 </div>
 
   </div>
