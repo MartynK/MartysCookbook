@@ -1,4 +1,7 @@
+
+library(roxygen2)
 # Defining custom functions
+
 
 #####
 # Defining my favorite ggplot theme with 'correct' caption placement
@@ -9,19 +12,44 @@ theme_default_ggplot <- theme_bw() +
                                       margin = margin( t = 15)),
          text = element_text( family = "serif"))
 
-#####
-# Defining my favorite format for tables
+
 #####
 # Defining my favorite format for tables
 
+#' Apply style to a given table
+#'
+#' This function applies a particular style to a table. The table can be a data frame,
+#' a gtsummary table, or a knitr kable. Different processing steps are applied based 
+#' on the class of the input table. 
+#'
+#' @param tabl The table to which the style should be applied.
+#' @param alig. The alignment to be applied to the table. Default is "c" for center.
+#' @param caption. The caption of the table. Default is the result of generate_tab_title().
+#' @param scale_down. Logical, if TRUE, scales down the table if it is wider than the text width. Default is FALSE.
+#' @param fontsize. The font size to be applied to the table. Default is 7.
+#' @param landscape. Logical, if TRUE, the table will be displayed in landscape format. Default is TRUE.
+#'
+#' @return A table with the specified style applied.
+#' 
+#' @examples
+#' \dontrun{
+#' data(mtcars)
+#' martys_table_style(mtcars)
+#' }
+#' @export
 martys_table_style <- function( tabl, 
                                 alig. = c("c"),
-                                caption. = generate_tab_title(),
+                                caption. = "",#generate_tab_title(),
                                 scale_down. = FALSE,
                                 fontsize. = 7,
                                 landscape. = TRUE) {
   # Trying to handle both dataframes & gtsummaries (? tbl_summary type?)
   # Basically a wrapper functon 
+  
+  require(huxtable)
+  require(gtsummary)
+  require(dplyr)
+  require(kableExtra)
   
   if ("data.frame" %in% class(tabl)) {
     # it is a 'simple' data.frame  
@@ -48,17 +76,15 @@ martys_table_style <- function( tabl,
     # NO BACK CONVERSION ALLOWED
     # Using a kableExtra call instead
     
-    tabl_kext <- tabl
-    
-    tabl_kext %>%
-      kable_styling( position = "center",
-                     latex_options = c("striped","repeat_header"
-                                       ,"hold_position"
-                     ),
-                     stripe_color = "gray!10",
-                     font_size = fontsize.
-      ) %>%
-      row_spec(0, bold = T, align = 'l')
+    tabl_out <- tabl %>%
+        kable_styling( position = "center",
+                       latex_options = c("striped","repeat_header"
+                                         ,"hold_position"
+                       ),
+                       stripe_color = "gray!10",
+                       font_size = fontsize.
+        ) %>%
+        row_spec(0, bold = T, align = 'l')
     
     if (landscape. == TRUE) {
       # table should be rotated 90 deg
@@ -69,7 +95,7 @@ martys_table_style <- function( tabl,
       tabl_out <- tabl_out %>%
         kable_styling( latex_options = "scale_down")
     }
-    return(table_out)
+    return(tabl_out)
   }
   
   tabl_out <- tabl_kext %>%

@@ -3,8 +3,8 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   cookbook: cookbook.html
-last_built: 2023-05-31T09:59Z
+last_built: 2023-06-08T11:34Z
 urls:
-  reference: http://yourname.github.io/yourpackage/reference
-  article: http://yourname.github.io/yourpackage/articles
+  reference: http://MartynK.github.io/MartysCookbook/reference
+  article: http://MartynK.github.io/MartysCookbook/articles
 

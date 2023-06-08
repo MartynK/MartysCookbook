@@ -9,5 +9,4 @@
 library(testthat)
 library(MartysCookbook)
 
-##TODO: Remove; no tests, throws up an error
-#test_check("MartysCookbook")
+test_check("MartysCookbook")

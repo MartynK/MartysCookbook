@@ -1,11 +1,45 @@
-url: http://yourname.github.io/yourpackage
-navbar:
-  type: default
-  right:
-    - text: "GitHub"
-      href: https://github.com/MartynK/MartysCookbook/
-news:
-  title: News
-  description: >
-    Updates about the yourpackage package.
+url: http://MartynK.github.io/MartysCookbook
 
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [github]
+  components:
+   github:
+    text: "GitHub"
+    href: https://github.com/MartynK/MartysCookbook/
+   articles:
+    text: Articles
+    menu:
+    - text: Main Stuff
+    - text: Main Vignette
+      href: articles/cookbook.html
+    - text: "PDF version"
+      href: articles/cookbook.pdf
+    - text: -------
+    - text: Other Section
+  
+    
+home:
+  sidebar:
+    structure: [license, citation, authors, custom, dev]
+    components:
+      # Motherf only 'allows' for one component...?
+      custom:
+        title: Funding
+        text: We are *grateful* for funding!
+
+
+description: 
+  Updates about the yourpackage package.
+  
+footer:
+  structure: 
+    left: [authors]
+    right: [contact]
+  components:
+    authors: Márton Kiss MD, applied biostatistician
+    contact: Questions, comments, opportunities welcome at inquiries.mkmarton@gmail.com.
+
+    
+    

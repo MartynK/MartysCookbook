@@ -1,7 +1,7 @@
 # script for fooing around with chatGPT
 # NOTE: I have my secret API key in there
 
-Sys.setenv(OPENAI_API_KEY = "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")
+Sys.setenv(OPENAI_API_KEY = "xxxxxxxxxxxxxxxxx")
 
 
 martyfun <- function( inp = 4) {
