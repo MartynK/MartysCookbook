@@ -1,12 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.16)  7 JUN 2023 12:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.16)  8 JUN 2023 16:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/Marty/AppData/Local/Temp/RtmpK4Etvz/preview-41c444dc6a41.dir/cookboo
-k.tex
-
-(C:/Users/Marty/AppData/Local/Temp/RtmpK4Etvz/preview-41c444dc6a41.dir/cookbook
-.tex
+**./cookbook.tex
+(cookbook.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2022-12-17> (C:\Users\Marty\AppData\Local\Programs\MiKTeX
 \tex/latex/base\article.cls
@@ -363,6 +360,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box100
 \@float@everytoks=\toks28
 \@floatcapt=\box101
+) (C:\Users\Marty\AppData\Local\Programs\MiKTeX\tex/latex/placeins\placeins.sty
+Package: placeins 2005/04/18  v 2.2
 ) (C:\Users\Marty\AppData\Local\Programs\MiKTeX\tex/latex/tools\afterpage.sty
 Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
 \AP@output=\toks29
@@ -780,8 +779,14 @@ tex.def
 File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count347
 \l__pdf_internal_box=\box130
+) (cookbook.aux
+
+LaTeX Warning: Label `fig:plotmeans' multiply defined.
+
+
+LaTeX Warning: Label `fig:histogram' multiply defined.
+
 )
-No file cookbook.aux.
 \openout1 = `cookbook.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
@@ -923,17 +928,17 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 152
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (C:\Users\Marty\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) (cookbook.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 2.
 )
-No file cookbook.toc.
 \tf@toc=\write4
 \openout4 = `cookbook.toc'.
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 157.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 157.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 157.
 
 Underfull \hbox (badness 10000) in paragraph at lines 157--170
 
@@ -997,46 +1002,417 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--170
 
 [1
 
-{C:/Users/Marty/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-No file cookbook.lof.
+{C:/Users/Marty/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] (cookboo
+k.lof)
 \tf@lof=\write5
 \openout5 = `cookbook.lof'.
 
-No file cookbook.lot.
+(cookbook.lot)
 \tf@lot=\write6
 \openout6 = `cookbook.lot'.
 
-[2]
-<C:/Users/Marty/AppData/Local/Temp/RtmpK4Etvz/preview-41c444dc6a41.dir/cookbook
-_files/figure-latex/chunk-a-1.png, id=21, 469.755pt x 352.1958pt>
-File: C:/Users/Marty/AppData/Local/Temp/RtmpK4Etvz/preview-41c444dc6a41.dir/coo
-kbook_files/figure-latex/chunk-a-1.png Graphic file (type png)
-<use C:/Users/Marty/AppData/Local/Temp/RtmpK4Etvz/preview-41c444dc6a41.dir/cook
-book_files/figure-latex/chunk-a-1.png>
-Package pdftex.def Info: C:/Users/Marty/AppData/Local/Temp/RtmpK4Etvz/preview-4
-1c444dc6a41.dir/cookbook_files/figure-latex/chunk-a-1.png  used on input line 2
-07.
+[3]
+<cookbook_files/figure-latex/chunk-a-1.png, id=107, 469.755pt x 352.1958pt>
+File: cookbook_files/figure-latex/chunk-a-1.png Graphic file (type png)
+<use cookbook_files/figure-latex/chunk-a-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/chunk-a-1.png  used on inp
+ut line 207.
+(pdftex.def)             Requested size: 422.7756pt x 316.9733pt.
+<../inst/cookbook_files/figure-latex//mandatory_chunk_name-1.png, id=108, 469.7
+55pt x 352.1958pt>
+File: ../inst/cookbook_files/figure-latex//mandatory_chunk_name-1.png Graphic f
+ile (type png)
+<use ../inst/cookbook_files/figure-latex//mandatory_chunk_name-1.png>
+Package pdftex.def Info: ../inst/cookbook_files/figure-latex//mandatory_chunk_n
+ame-1.png  used on input line 217.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+<../inst/cookbook_files/figure-latex//mandatory_chunk_name-2.png, id=109, 469.7
+55pt x 352.1958pt>
+File: ../inst/cookbook_files/figure-latex//mandatory_chunk_name-2.png Graphic f
+ile (type png)
+<use ../inst/cookbook_files/figure-latex//mandatory_chunk_name-2.png>
+Package pdftex.def Info: ../inst/cookbook_files/figure-latex//mandatory_chunk_n
+ame-2.png  used on input line 225.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+[4 <./cookbook_files/figure-latex/chunk-a-1.png>] [5 <../inst/cookbook_files/fi
+gure-latex//mandatory_chunk_name-1.png> <../inst/cookbook_files/figure-latex//m
+andatory_chunk_name-2.png>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+38.
+(C:\Users\Marty\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 323--324
+
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 3
+43.
+(C:\Users\Marty\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 343--345
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--347
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 347--349
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--351
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
+
+ []
+
+[7]
+<cookbook_files/figure-latex/two_log_norm_plot-1.png, id=149, 469.755pt x 352.1
+958pt>
+File: cookbook_files/figure-latex/two_log_norm_plot-1.png Graphic file (type pn
+g)
+<use cookbook_files/figure-latex/two_log_norm_plot-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/two_log_norm_plot-1.png  u
+sed on input line 453.
+(pdftex.def)             Requested size: 422.7756pt x 316.9733pt.
+[8] [9 <./cookbook_files/figure-latex/two_log_norm_plot-1.png>]
+File: ../inst/cookbook_files/figure-latex//mandatory_chunk_name-1.png Graphic f
+ile (type png)
+<use ../inst/cookbook_files/figure-latex//mandatory_chunk_name-1.png>
+Package pdftex.def Info: ../inst/cookbook_files/figure-latex//mandatory_chunk_n
+ame-1.png  used on input line 469.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+File: ../inst/cookbook_files/figure-latex//mandatory_chunk_name-2.png Graphic f
+ile (type png)
+<use ../inst/cookbook_files/figure-latex//mandatory_chunk_name-2.png>
+Package pdftex.def Info: ../inst/cookbook_files/figure-latex//mandatory_chunk_n
+ame-2.png  used on input line 477.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+[10]
+Overfull \hbox (3.7561pt too wide) in paragraph at lines 653--653
+ [][]\T1/lmr/bx/n/7 (-20) Verginica, 
+ []
+
+
+Overfull \hbox (6.13177pt too wide) in paragraph at lines 653--653
+ [][]\T1/lmr/bx/n/7 (-20) Versicolor, 
+ []
+
+
+Overfull \hbox (2.14728pt too wide) in paragraph at lines 653--653
+[][]\T1/lmr/bx/n/7 (-20) mock_ID[]  
+ []
+
+
+Overfull \hbox (4.01433pt too wide) in alignment at lines 653--653
+[][][][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 59.97003pt on input line 656.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 659--660
+
+ []
+
+
+Overfull \hbox (9.60715pt too wide) in alignment at lines 791--791
+[][][][][][][][][][][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 835--836
+
+ []
+
+<cookbook_files/figure-latex/raincloud_call-1.png, id=171, 469.755pt x 352.1958
+pt>
+File: cookbook_files/figure-latex/raincloud_call-1.png Graphic file (type png)
+<use cookbook_files/figure-latex/raincloud_call-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/raincloud_call-1.png  used
+ on input line 839.
 (pdftex.def)             Requested size: 422.7756pt x 316.9733pt.
 
-LaTeX Warning: File `mandatory_chunk_name-1.png' not found on input line 217.
+Underfull \hbox (badness 10000) in paragraph at lines 846--847
+
+ []
+
+[12 <./cookbook_files/figure-latex/raincloud_call-1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 852--853
+
+ []
+
+<figures/webshot.png, id=178, 401.5pt x 401.5pt>
+File: figures/webshot.png Graphic file (type png)
+<use figures/webshot.png>
+Package pdftex.def Info: figures/webshot.png  used on input line 890.
+(pdftex.def)             Requested size: 300.0215pt x 300.0215pt.
+[13]
+<cookbook_files/figure-latex/lmer_predictions-1.png, id=186, 469.755pt x 352.19
+58pt>
+File: cookbook_files/figure-latex/lmer_predictions-1.png Graphic file (type png
+)
+<use cookbook_files/figure-latex/lmer_predictions-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/lmer_predictions-1.png  us
+ed on input line 902.
+(pdftex.def)             Requested size: 422.7756pt x 316.9733pt.
+[14 <./figures/webshot.png>]
+<cookbook_files/figure-latex/ggpairs_plot-1.png, id=192, 469.755pt x 352.1958pt
+>
+File: cookbook_files/figure-latex/ggpairs_plot-1.png Graphic file (type png)
+<use cookbook_files/figure-latex/ggpairs_plot-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/ggpairs_plot-1.png  used o
+n input line 911.
+(pdftex.def)             Requested size: 422.7756pt x 316.9733pt.
+[15 <./cookbook_files/figure-latex/lmer_predictions-1.png>] [16 <./cookbook_fil
+es/figure-latex/ggpairs_plot-1.png (PNG copy)>] [17] [18]
+Overfull \hbox (2.40717pt too wide) in alignment at lines 982--982
+[][] 
+ []
+
+<cookbook_files/figure-latex/cyl-fig1-1.png, id=215, 469.755pt x 352.1958pt>
+File: cookbook_files/figure-latex/cyl-fig1-1.png Graphic file (type png)
+<use cookbook_files/figure-latex/cyl-fig1-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/cyl-fig1-1.png  used on in
+put line 994.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+<cookbook_files/figure-latex/cyl-fig1-2.png, id=216, 469.755pt x 352.1958pt>
+File: cookbook_files/figure-latex/cyl-fig1-2.png Graphic file (type png)
+<use cookbook_files/figure-latex/cyl-fig1-2.png>
+Package pdftex.def Info: cookbook_files/figure-latex/cyl-fig1-2.png  used on in
+put line 1002.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+
+LaTeX Warning: Reference `fig:param_plot12' on page 19 undefined on input line 
+1010.
 
 
-! Package pdftex.def Error: File `mandatory_chunk_name-1.png' not found: using 
-draft setting.
+Overfull \hbox (2.40717pt too wide) in alignment at lines 1073--1073
+[][] 
+ []
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.217 ...= \linewidth]{mandatory_chunk_name-1.png}
-                                                   
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<cookbook_files/figure-latex/gear-fig1-1.png, id=217, 469.755pt x 352.1958pt>
+File: cookbook_files/figure-latex/gear-fig1-1.png Graphic file (type png)
+<use cookbook_files/figure-latex/gear-fig1-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/gear-fig1-1.png  used on i
+nput line 1085.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+<cookbook_files/figure-latex/gear-fig1-2.png, id=218, 469.755pt x 352.1958pt>
+File: cookbook_files/figure-latex/gear-fig1-2.png Graphic file (type png)
+<use cookbook_files/figure-latex/gear-fig1-2.png>
+Package pdftex.def Info: cookbook_files/figure-latex/gear-fig1-2.png  used on i
+nput line 1093.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `fig:param_plot14' on page 19 undefined on input line 
+1101.
+
+
+Overfull \hbox (2.40717pt too wide) in alignment at lines 1185--1185
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<cookbook_files/figure-latex/carb-fig1-1.png, id=219, 469.755pt x 352.1958pt>
+File: cookbook_files/figure-latex/carb-fig1-1.png Graphic file (type png)
+<use cookbook_files/figure-latex/carb-fig1-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/carb-fig1-1.png  used on i
+nput line 1197.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+<cookbook_files/figure-latex/carb-fig1-2.png, id=220, 469.755pt x 352.1958pt>
+File: cookbook_files/figure-latex/carb-fig1-2.png Graphic file (type png)
+<use cookbook_files/figure-latex/carb-fig1-2.png>
+Package pdftex.def Info: cookbook_files/figure-latex/carb-fig1-2.png  used on i
+nput line 1205.
+(pdftex.def)             Requested size: 229.87375pt x 172.34636pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `fig:param_plot16' on page 19 undefined on input line 
+1213.
+
+<cookbook_files/figure-latex/referenced_chunk-1.png, id=221, 469.755pt x 352.19
+58pt>
+File: cookbook_files/figure-latex/referenced_chunk-1.png Graphic file (type png
+)
+<use cookbook_files/figure-latex/referenced_chunk-1.png>
+Package pdftex.def Info: cookbook_files/figure-latex/referenced_chunk-1.png  us
+ed on input line 1217.
+(pdftex.def)             Requested size: 422.7756pt x 316.9733pt.
+[19
+
+ <./cookbook_files/figure-latex/cyl-fig1-1.png> <./cookbook_files/figure-latex/
+cyl-fig1-2.png>]
+Overfull \vbox (55.18967pt too high) has occurred while \output is active []
+
+[20 <./cookbook_files/figure-latex/gear-fig1-1.png> <./cookbook_files/figure-la
+tex/gear-fig1-2.png> <./cookbook_files/figure-latex/referenced_chunk-1.png>]
+Overfull \hbox (102.49332pt too wide) in paragraph at lines 1232--1232
+[]\T1/lmtt/m/n/10 ## C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - Genera
+l/Stats_R/R/MartysCookbook/inst/extdata/Iris.xls[] 
+ []
+
+
+Overfull \hbox (102.49332pt too wide) in paragraph at lines 1232--1232
+[]\T1/lmtt/m/n/10 ##                                                           
+              "1ed4b9d5418675e017479de339aff352"[] 
+ []
+
+[21 <./cookbook_files/figure-latex/carb-fig1-1.png> <./cookbook_files/figure-la
+tex/carb-fig1-2.png>]
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1354.
+
+LaTeX Font Warning: Font shape `T1/lmtt/bx/it' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 1354.
+
+
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+1357.
+(C:\Users\Marty\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmtt.fd
+File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [22]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[23]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[24]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[25]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[26]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[27]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[28]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[29]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[30]
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1867
+ []
+
+[31] [32] (cookbook.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 22644 strings out of 476406
- 424927 string characters out of 2789567
- 1853787 words of memory out of 3000000
- 42550 multiletter control sequences out of 15000+600000
- 557158 words of font info for 99 fonts, out of 8000000 for 9000
+ 23194 strings out of 476406
+ 436803 string characters out of 2789567
+ 1918787 words of memory out of 3000000
+ 42886 multiletter control sequences out of 15000+600000
+ 580592 words of font info for 147 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,7n,77p,1075b,909s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 71i,17n,77p,1007b,987s stack positions out of 10000i,1000n,20000p,200000b,80000s
+{C:/Users/Marty/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C
+:/Users/Marty/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/U
+sers/Marty/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/U
+sers/Marty/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users
+/Marty/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Users
+/Marty/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users
+/Marty/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users
+/Marty/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/
+Marty/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/
+Marty/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/M
+arty/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Ma
+rty/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Mar
+ty/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Mart
+y/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Marty/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Marty/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri7.pfb><C:/Users/Marty/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Marty/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/Marty/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtko10.pfb><C:/Users/Marty/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Marty/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
+Output written on cookbook.pdf (32 pages, 965681 bytes).
+PDF statistics:
+ 499 PDF objects out of 1000 (max. 8388607)
+ 119 named destinations out of 1000 (max. 500000)
+ 37092 words of extra memory for PDF output out of 42996 (max. 10000000)
 
-!  ==> Fatal error occurred, no output PDF file produced!

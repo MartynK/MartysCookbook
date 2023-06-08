@@ -13,7 +13,7 @@ navbar:
     menu:
     - text: Main Stuff
     - text: Main Vignette
-      href: articles/cookbook.html
+      href: articles/simple_cookbook.html
     - text: "PDF version"
       href: articles/cookbook.pdf
     - text: -------

@@ -18,6 +18,7 @@ output:
 header-includes:
   \usepackage{multicol}
   \usepackage{float}
+  \usepackage{placeins}
   \usepackage{afterpage}
   \usepackage{inputenc}
   \DeclareUnicodeCharacter{0081}{ }
@@ -27,10 +28,12 @@ header-includes:
 lang: en-US
 ---
 
-```{r, echo=FALSE, warning = FALSE, message = FALSE}
+```{r setup_chap1, echo=FALSE, warning = FALSE, message = FALSE}
 
-source(here::here("R","load_stuff.r"))
+source(here::here("inst","functions","load_stuff.r"))
 load( file = here::here("inst","states", "before_chap1.Rdata"))
+
+graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 ```
 
@@ -43,7 +46,7 @@ _Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non 
 
 Sorry, the below is a dull example of releveling:
 
-```{r, echo = TRUE, tidy=TRUE}
+```{r, echo = TRUE, tidy = TRUE}
 # This is an example of factor releveling snatched from
 # https://www.tutorialspoint.com/r/r_factors.htm
 
@@ -161,7 +164,7 @@ hist(data_local$x)
 \begin{figure}[h]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name1.png}
+\includegraphics[width = \linewidth]{mandatory_chunk_name-1.png}
 \caption{Plot the first}
 \label{fig:plotmeans}
 \end{figure}
@@ -169,7 +172,7 @@ hist(data_local$x)
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name2.png}
+\includegraphics[width = \linewidth]{mandatory_chunk_name-2.png}
 \centering
 \caption{Plot the second}
 \label{fig:histogram}
@@ -355,7 +358,7 @@ The below html -> png -> include stuff doesn't work in case of html output (for 
 --->
 
 \begin{figure}[H]
-\includegraphics[width = 30em]{webshot.png}
+\includegraphics[width = 30em]{figures/webshot.png}
 \centering
 \caption{Ezt nem az R készítette}
 \label{fig:webshot_sjPlot}
@@ -485,30 +488,35 @@ mert HTML Widgetet csinál :()
 \newpage
 
 ```{r prob}
+#| ref.label=c('setup_chap1')
 
-# TODO: kableExtra just wont knit!! NO idea why.
+## Magic mode of failure.... 
+# source(here::here("inst","functions","load_stuff.r"))
+# a <- search() %>% data.frame(loaded_packages = .) 
+# save(a, file = "omgomgomgomg2.rdata")
 
-require(kableExtra)
+## MOTHERf... auto-prioritized this chunk and libraries were not loaded. 
+## Setting up ref. fixed the issue.
 
 fortunes::read.fortunes() %>% 
   .[1:50,c(2,1)] %>%
   # Sometimes you have to specify everything if you want to deviate
   # from the standard look (here: do a longtable)
-  kable(#format = "latex", # Pivoting to 'html'
+  kable(format = "latex", 
                     longtable = TRUE, # Doesn't work with scale_down
                     booktabs = TRUE,
                     linesep = "",
                     caption = "Wise R sayings",
-                    align = "c") #%>%
-  #row_spec(0, bold = T) #%>%
-  #kable_styling( position = "center",
-  #                latex_options = c("striped","repeat_header"
-  #                                  #,"scale_down"
-  #                                  ),
-  #                stripe_color = "gray!05") %>%
-  #landscape() %>%
-  #column_spec(column = 2, width = "50em") %>%
-  # kable_styling(font_size = 7)
+                    align = "c") %>%
+  row_spec(0, bold = T) %>%
+  kable_styling( position = "center",
+                 latex_options = c("striped","repeat_header"
+                                   #,"scale_down"
+                                   ),
+                 stripe_color = "gray!05") %>%
+  landscape() %>%
+  column_spec(column = 2, width = "50em") %>%
+  kable_styling(font_size = 7)
 
 
 ```

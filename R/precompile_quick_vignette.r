@@ -30,7 +30,7 @@ precompile_quick_vignette <- function(file_name) {
   # Define the paths
   file_path   <- paste0(project_dir, "/inst/", file_name)
   orig_file_path   <- paste0(project_dir, "/inst/", file_name, ".orig")
-  output_file_path <- paste0(project_dir, "/vignettes/", file_name)
+  output_file_path <- paste0(project_dir, "/vignettes/simple_", file_name)
   
   # Check if file exists
   if ( !file.exists(file_path)) {
@@ -52,12 +52,18 @@ precompile_quick_vignette <- function(file_name) {
   # The figures will be put in the project dir, have to clean it up
   plain_file_name <- substr(file_name,1,(nchar(file_name)-4))
   common_dir_name <- paste0(plain_file_name,"_files")
-  old_dir_name    <- paste0(project_dir,"/",common_dir_name#,"/figure-latex"
-                            ) 
-  new_dir_name    <- paste0(project_dir,"/vignettes")
+  old_dir_name    <- paste0(project_dir,"/",common_dir_name,"/figure-latex") 
+  new_dir_name    <- paste0(project_dir,"/docs/articles/figure")
   
-  move_recent_files(project_dir,"cookbook_files/figure-latex")
-  move_recent_files(project_dir,"figure")
+  # # DEBUG output
+  # print( c( old_dir_name, 
+  #           new_dir_name
+  #           ))
+  
+  move_recent_files(old_dir_name, new_dir_name)
+  
+  old_dir_name2    <- paste0(project_dir,"/figure") 
+  move_recent_files(old_dir_name2, new_dir_name)
   
   
   # If the .pdf available, grab that too
