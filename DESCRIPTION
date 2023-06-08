@@ -1,6 +1,6 @@
 Package: MartysCookbook
 Title: My book of tips & tricks for nice reports
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person("Márton", "Kiss", email = "mrkmarton@gmail.com", role = c("aut", "cre"))
 Description: My book of tricks & tricks for nice reports.
@@ -10,10 +10,21 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 LazyData: true
 RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
 Depends:
-    R (>= 3.5.0)
+    R (>= 3.5.0),
+    ggplot2,
+    lubridate,
+    gtsummary,
+    dplyr,
+    knitr,
+    huxtable,
+    kableExtra,
+    report,
+    readxl,
+    formatR,
+    labelled
 Suggests: 
     testthat (>= 3.0.0),
-    knitr,
     rmarkdown
 Config/testthat/edition: 3

@@ -38,7 +38,7 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 # Defining stuff, including the renaming scheme, and the structure of the output
 
 
-source(here::here("inst","functions","load_stuff.r")) # for independent compilation
+source(here::here("R","load_stuff.r")) # for independent compilation
 load( file = here::here("inst","states", "before_chap2.Rdata"))
 
 if(!exists("child_counter")) {

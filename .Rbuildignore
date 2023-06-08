@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^\.Rproj\.user$
 ^\.Rproj\.user$
 ^\vignettes\01_chap1.rmd$

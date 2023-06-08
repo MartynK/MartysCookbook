@@ -1,0 +1,520 @@
+---
+always_allow_html: yes
+output:
+  html_document:
+    df_print: paged
+    fig_caption: yes
+    toc: yes
+    number_sections: yes
+  pdf_document: 
+    fig_caption: yes
+    keep_tex: yes
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
+  word_document: 
+    fig_caption: yes
+    toc: yes
+header-includes:
+  \usepackage{multicol}
+  \usepackage{float}
+  \usepackage{afterpage}
+  \usepackage{inputenc}
+  \DeclareUnicodeCharacter{0081}{ }
+  \DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+  \DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+  \DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+lang: en-US
+---
+
+```{r, echo=FALSE, warning = FALSE, message = FALSE}
+
+source(here::here("R","load_stuff.r"))
+load( file = here::here("inst","states", "before_chap1.Rdata"))
+
+```
+
+
+## Chapter title 
+
+### Relevelling 
+
+_Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie._
+
+Sorry, the below is a dull example of releveling:
+
+```{r, echo = TRUE, tidy=TRUE}
+# This is an example of factor releveling snatched from
+# https://www.tutorialspoint.com/r/r_factors.htm
+
+data_f <- c("East","West","East","North","North","East","West",
+   "West","West","East","North")
+# Create the factors
+factor_data <- factor(data_f)
+print(factor_data)
+
+# Apply the factor function with required order of the level.
+new_order_data <- factor(factor_data,levels = c("East","West","North"))
+print(new_order_data)
+
+```
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+
+### Side-by-side log graphs
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+
+```{r two_log_norm_plot, fig.cap = "Title of the plot above"}
+
+
+# First subplot
+fig_1a <- 
+data %>%
+  ggplot( aes( x = species_no,
+               y = petal_width)) +
+  # Theme
+  theme_default_ggplot +
+  # Layers
+  geom_point() +
+  # axis wrangling
+  scale_y_continuous( 
+    # setting up a custom log transform ( the pre-defined results in error somehow...)
+    trans = scales::trans_new("expmar", exp,
+            function(x){
+                #print(paste("isq",x))  #debug statement
+                x <-ifelse(x<0, 0, x)
+                log(x)
+              })
+  ) +
+  # description(s)
+  labs( x = "Species on this axis wahaha",
+        y = "log transformed variable")
+
+
+# Second subplot
+fig_1b <- 
+data %>%
+  ggplot( aes( x = species_no,
+               y = petal_width)) +
+  # Theme
+  theme_default_ggplot +
+  theme( legend.position="bottom") + # custom legend position if needed
+  # Layers
+  geom_point() +
+  # axis wrangling
+  scale_y_continuous( 
+    limits = c( 0,3.3),
+    breaks = c( 0, .6, 1, 1.8, 2.6)
+  ) +
+  # description(s)
+  labs( x = "Species on the other copy of the axis wahaha",
+        y = "variable on original scale")
+
+# Demonstrating arranging plots
+fig_1comp <- 
+  ggpubr::ggarrange(fig_1a, fig_1b, 
+          #labels = c("", ""), # if you'd like to omit the labels
+          labels = "AUTO",
+          ncol = 2, nrow = 1)
+
+# calling the plot
+(fig_1comp)
+
+
+```
+
+\newpage
+
+### Side by side different graphs, different fig. title
+
+<!---
+Pay special attention to the *commas* after opts. in the header and later on below.
+If commas are missing, option will simply not be evaluated
+--->
+
+```{r}
+#| mandatory_chunk_name,
+#| fig.show='hide', 
+#| fig.path=paste0(graphics_output_path),
+#| results='hide', 
+#| collapse=T
+
+data_local <- data.frame( x = rnorm(100)) %>%
+                mutate(y = x * 0.5 + rnorm(100))
+
+data_local %>%
+  ggplot( aes(x=x,y=y)) +
+    theme_default_ggplot +
+    geom_point()
+
+hist(data_local$x)
+
+```
+
+\begin{figure}[h]
+\begin{multicols}{2}
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{mandatory_chunk_name1.png}
+\caption{Plot the first}
+\label{fig:plotmeans}
+\end{figure}
+
+\columnbreak
+
+\begin{figure}[H]
+\includegraphics[width = \linewidth]{mandatory_chunk_name2.png}
+\centering
+\caption{Plot the second}
+\label{fig:histogram}
+\end{figure}
+\end{multicols}
+\end{figure}
+
+
+\newpage
+
+### A tbl_summary example
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+
+
+```{r, results='asis'}
+
+
+tbl_summary( data, by = species_char) %>% 
+  martys_table_style(caption. = 
+                       "Plot without much thought or meaning") %>% 
+  # You can 'overwrite' setting which don't conflict your defaults
+  set_font_size(7) %>%
+  ###### row_spec(0, bold = T, font_size = 7)# %>% # Dis crashes the whole thing
+   set_width(.4)
+
+```
+
+
+
+$~$\
+
+
+
+```{r, results='asis'}
+
+head(mtcars) %>%
+  martys_table_style(caption. = "Dis be the second table")
+
+```
+
+
+
+\newpage
+
+### A raincloud plot
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+<!--- 
+'Developing' the plot, *not calling, hiding it* so it wouldnt be printed two times (I know...)
+--->
+
+```{r raincloud_make, results='hide'}
+
+
+# Calling the plot
+plot. <- 
+  data %>%
+    ggplot( aes(x = species_char, y = sepal_width, 
+                color = species_char, fill = species_char)) + 
+    theme_default_ggplot +
+    # half smoothed density
+    ggdist::stat_halfeye(
+      ## bandwidth
+      adjust = 0.6,
+      justification = -.2,
+      .width = 0,
+      width = .25
+    ) + 
+    # Boxplot
+    geom_boxplot( width = .08,
+                  # remove outliers from boxplot
+                  outlier.color = NA,
+                  alpha = .5) +
+    # Dotplot
+    ggdist::stat_dots(
+      side = "left", 
+      dotsize = .1, 
+      justification = 1.12, 
+      binwidth = .125
+    ) +
+    labs( 
+      # coord_flip doesn't affect this ;)
+      x = "Species",
+      y = "Width of sepals (mm)",
+      # Including latex, see https://cran.r-project.org/web/packages/latex2exp/vignettes/using-latex2exp.html
+      caption = latex2exp::TeX(r"($   \alpha^{5-i_j}\ is\ a\ nifty\ string   $)"),
+      title = "Its not better to set titles in ggplot2..."
+      ) +
+    scale_y_continuous( 
+      breaks = c(0,1,2,3,4,5), 
+      limits = c(0,5)) +
+    coord_flip()
+
+```
+
+
+$~$\
+
+<!--- 
+*NOW* calling it
+--->
+
+```{r raincloud_call, fig.cap = "Raincloud plot(!)"}
+
+(plot.)
+
+```
+
+$~$\
+
+### Mixed model specification
+
+$~$\
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+
+```{r, results='hide'}
+
+library(lme4)
+
+mod <- lmer(
+  petal_width ~
+    petal_length +
+    sepal_width +
+    (1 | mock_ID),
+  data
+)
+
+
+#Output is in html...
+sjPlot::tab_model(mod,
+    # transform = "exp", # makes stuff multiplicative
+    digits.re = 3,
+    show.reflvl = TRUE,
+    pred.labels = list(
+      `(Intercept)` = "Interceeeeept",
+      petal_length  = "Length of petal",
+      sepal_width   = "Width of sepal"
+    ),
+    dv.labels = "Width of petal (mm)",
+    df.method = "kr", # makes it somewhat more conservative I guess
+    title = "Specification of an lmer model"
+    , show.p = FALSE # if you're also skeptical of p-values
+    , bootstrap = TRUE
+    , iterations = 100 # actually works for lmer(!)
+    , file = here::here("inst","stuff","temp.html") # have to export temporarily
+  )
+
+
+  # The "webshot2" stuff needs to be done 'invisibly' or else it 
+  # spawns a copy of the previous image  
+invisible({
+  #taking a 'snapshot' of the html and converting it to .png
+  webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
+                    cliprect = c(0,0,400,400),
+                    file = here::here("inst","figures","webshot.png"))
+})
+
+
+
+```
+
+These are some texts.
+
+<!---
+The below html -> png -> include stuff doesn't work in case of html output (for some reason)
+--->
+
+\begin{figure}[H]
+\includegraphics[width = 30em]{webshot.png}
+\centering
+\caption{Ezt nem az R készítette}
+\label{fig:webshot_sjPlot}
+\end{figure}
+
+Cashycashing....
+
+```{r long_cached_chunk, cache = TRUE}
+# How to predict an lmer model's main effects based on bootstrap
+# slow as it gets if you like it pretty, introducing cache
+
+CRANK <- 30
+
+pred <- expand.grid(
+  petal_length = seq(1, 5, length.out = 10),
+  sepal_width  = seq(1, 5, length.out = 3)
+)
+
+pred_out <- ciTools::add_ci(pred, mod,
+  includeRanef = FALSE, type = "boot",
+  nSims = CRANK # crank up in production
+)
+```
+
+plottyplotting...
+
+```{r lmer_predictions, fig.cap="lmer predictions with bootstrap and labelled facets"}
+
+# fig.show='hide'
+
+plot_lmeoutpred <- 
+  pred_out %>%
+    mutate( 
+      # Recoding into factor the facetting value, labels will be based on the labels...
+      sepal_width2 = factor( sepal_width, labels = c("Very small", 
+                                                     "Medium", 
+                                                     "Really large"))) %>%
+    ggplot( aes(x = petal_length, y = pred, 
+                group = sepal_width2, color = sepal_width2
+                , fill = sepal_width)) +
+    theme_default_ggplot +
+    geom_line() +
+    geom_ribbon(mapping = aes( ymin = LCB0.025, 
+                               ymax = UCB0.975), 
+                alpha = .25, 
+                colour = NA) +
+    facet_grid( facets = c("sepal_width2"), labeller = label_value) +
+    labs( x = "Length of Petal",
+          y = "Predicted sepal_width)",
+          caption = "Confidence bands are conditional on the random effects(?)")
+
+plot_lmeoutpred
+
+```
+
+
+<!---
+
+trying to actually do the plot
+
+
+```{r, }
+#|fig.cap="lmer predictions with bootstrap and labelled facets", 
+#|fig.keep ='all'
+#|
+
+(plot_lmeoutpred)
+
+```
+
+--->
+
+
+```{r, fig.show='hide'}
+
+# The below is an analogue of pairs()
+
+plot_ggpairs <- 
+  data %>%
+    select(c(
+      "petal_width",  "petal_length", "sepal_width", "newvar", "species_char"
+    )) %>%
+    GGally::ggpairs( .,  
+             aes(color = species_char, alpha = 0.5),
+             columns = 1:4,
+             upper = list(continuous = GGally::wrap("cor", size = 3)),
+             diag =  list(continuous = "blankDiag"),
+             lower = list(continuous = GGally::wrap( "smooth", 
+                                                     se = FALSE, 
+                                                     method = "lm")),
+             progress = FALSE) +
+      theme_default_ggplot
+
+```
+
+
+```{r ggpairs_plot, fig.cap="Especially Cool 'pairs' plot"}
+
+(plot_ggpairs)
+
+```
+
+
+<!--- 
+
+Ez egy komment. A lenti 'leaflet fdolog nem működik .pdf-ben, 
+mert HTML Widgetet csinál :()
+
+```{r leaflet, fig.cap = "Leaflet with maps... I just know I'll be using this someday"}
+
+# ## Doesn't work in pdf output(?)
+# 
+# library(leaflet)
+# 
+# leaflet(width = "100%") %>%
+#   addProviderTiles("CartoDB.Positron") %>%
+#   setView(lat = -27.45, lng = 153.075, 10) %>%
+#   addMarkers(lat = -27.45321, lng = 153.0919745, label = "ACC") %>%
+#   addMarkers(lat = -27.452607, lng = 153.029548, label = "MLA") %>%
+#   addMarkers(lat = -27.589169, lng = 153.107316, label = "Teys")
+
+```
+
+--->
+
+\FloatBarrier
+\newpage
+
+```{r prob}
+
+# TODO: kableExtra just wont knit!! NO idea why.
+
+require(kableExtra)
+
+fortunes::read.fortunes() %>% 
+  .[1:50,c(2,1)] %>%
+  # Sometimes you have to specify everything if you want to deviate
+  # from the standard look (here: do a longtable)
+  kable(#format = "latex", # Pivoting to 'html'
+                    longtable = TRUE, # Doesn't work with scale_down
+                    booktabs = TRUE,
+                    linesep = "",
+                    caption = "Wise R sayings",
+                    align = "c") #%>%
+  #row_spec(0, bold = T) #%>%
+  #kable_styling( position = "center",
+  #                latex_options = c("striped","repeat_header"
+  #                                  #,"scale_down"
+  #                                  ),
+  #                stripe_color = "gray!05") %>%
+  #landscape() %>%
+  #column_spec(column = 2, width = "50em") %>%
+  # kable_styling(font_size = 7)
+
+
+```
+
+
+
+
+
+
