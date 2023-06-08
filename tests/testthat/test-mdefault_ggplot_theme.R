@@ -1,5 +1,5 @@
 library(testthat)
-context("Test theme_default_ggplot")
+#context("Test theme_default_ggplot")
 
 test_that("theme_default_ggplot properties are correct", {
   theme <- theme_default_ggplot

@@ -1,5 +1,5 @@
 library(testthat)
-context("Test inported data")
+#context("Test inported data")
 
 test_that("Data frame has dimensions which make sense", {
   expect_equal(is.numeric(nrow(data)), TRUE)

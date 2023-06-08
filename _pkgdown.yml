@@ -36,10 +36,10 @@ description:
 footer:
   structure: 
     left: [authors]
-    right: [legal]
+    right: [contact]
   components:
     authors: Márton Kiss MD, applied biostatistician
-    legal: Please forward large gold bars to xxx@y.com.
+    contact: Questions, comments, opportunities welcome at inquiries.mkmarton@gmail.com.
 
     
     

@@ -1,5 +1,5 @@
 library(testthat)
-context("Test martys_table_style")
+#context("Test martys_table_style")
 
 test_that("martys_table_style works with data.frame", {
   # generate a simple data frame
