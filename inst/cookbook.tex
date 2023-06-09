@@ -1,39 +1,58 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-%
-\documentclass[
-]{article}
-\usepackage{amsmath,amssymb}
+\documentclass[]{elsarticle} %review=doublespace preprint=single 5p=2 column
+%%% Begin My package additions %%%%%%%%%%%%%%%%%%%
+
+\usepackage[hyphens]{url}
+
+
+\usepackage{graphicx}
+%%%%%%%%%%%%%%%% end my additions to header
+
+\usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
-  \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{amssymb,amsmath}
+% TODO: Currently lineno needs to be loaded after amsmath because of conflict
+% https://github.com/latex-lineno/lineno/issues/5
+\usepackage{lineno} % add
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\usepackage[margin=1in]{geometry}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{fontspec}
+  \ifxetex
+    \usepackage{xltxtra,xunicode}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Márton Kiss},
+            pdftitle={Cookbook},
+            colorlinks=false,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+
+\setcounter{secnumdepth}{0}
+% Pandoc toggle for numbering sections (defaults to be off)
+\setcounter{secnumdepth}{0}
+
+% Pandoc syntax highlighting
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -74,32 +93,14 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{graphicx}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+% tightlist command for lists without linebreak
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-\ifLuaTeX
-\usepackage[bidi=basic]{babel}
-\else
-\usepackage[bidi=default]{babel}
-\fi
-\babelprovide[main,import]{american}
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
+
+
+
+
 \usepackage{multicol} \usepackage{float} \usepackage{placeins} \usepackage{afterpage} \usepackage{inputenc} \DeclareUnicodeCharacter{0081}{ } \DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}} \DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}} \DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}} \DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -123,37 +124,27 @@
 \usepackage{tabularx}
 \usepackage{adjustbox}
 \usepackage{hyperref}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
-\hypersetup{
-  pdftitle={Cookbook},
-  pdfauthor={Márton Kiss},
-  pdflang={en-US},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
-\title{Cookbook}
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{My Subtitle}
-\author{Márton Kiss}
-\date{4242 november 20.}
+
 
 \begin{document}
-\maketitle
 
-{
-\setcounter{tocdepth}{3}
-\tableofcontents
-}
+
+\begin{frontmatter}
+
+  \title{Cookbook}
+    \author[]{%
+  %
+  }
+  
+      \cortext[cor1]{Corresponding author}
+  
+  \begin{abstract}
+  
+  \end{abstract}
+  
+ \end{frontmatter}
+
 \(~\)\\
 \(~\)\\
 \(~\)\\
@@ -185,7 +176,7 @@ v.1.0 -- Initial version
 
 \renewcommand\floatpagefraction{0.8}
 
-\graphicspath{ {../figures} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
+\graphicspath{ {../figure} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
 
 \hypertarget{executive-summary}{%
 \subsection{Executive summary}\label{executive-summary}}
@@ -643,9 +634,9 @@ amet efficitur.
 \arrayrulecolor{black}
 
 \multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.1\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{{\fontsize{7pt}{8.4pt}\selectfont mock\_ID}}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.1\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering {\fontsize{7pt}{8.4pt}\selectfont 9.0 (5.0, 11.0)}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.1\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering {\fontsize{7pt}{8.4pt}\selectfont 11.0 (7.3, 15.0)}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.1\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering {\fontsize{7pt}{8.4pt}\selectfont 9.5 (5.3, 14.0)}\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{m{0.1\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering {\fontsize{7pt}{8.4pt}\selectfont 8.5 (5.0, 14.0)}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.1\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering {\fontsize{7pt}{8.4pt}\selectfont 9.0 (6.0, 13.0)}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.1\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.1\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering {\fontsize{7pt}{8.4pt}\selectfont 10.0 (7.0, 15.8)}\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
@@ -887,7 +878,7 @@ amet efficitur.
 These are some texts.
 
 \begin{figure}[H]
-\includegraphics[width = 30em]{figures/webshot.png}
+\includegraphics[width = 30em]{figure/webshot.png}
 \centering
 \caption{Ezt nem az R készítette}
 \label{fig:webshot_sjPlot}
@@ -1325,7 +1316,7 @@ readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version
 This document was compiled at:
 
 \begin{verbatim}
-[1] "2023-06-08 16:40:28 CEST"
+[1] "2023-06-09 13:55:45 CEST"
 \end{verbatim}
 
 \hypertarget{appendix}{%
@@ -1366,7 +1357,7 @@ This is how put all your code into an appendix.
 \NormalTok{  )}
 
 
-\NormalTok{graphics\_path }\OtherTok{\textless{}{-}} \StringTok{"../inst/figures/"}            \CommentTok{\# a máshonnan származó ábrák elérési útja}
+\NormalTok{graphics\_path }\OtherTok{\textless{}{-}} \StringTok{"../inst/figure/"}            \CommentTok{\# a máshonnan származó ábrák elérési útja}
 \NormalTok{graphics\_output\_path }\OtherTok{\textless{}{-}} \StringTok{"cookbook\_files/figure{-}latex/"} \CommentTok{\# az itt generált ábrák elérési útja}
 
 \FunctionTok{options}\NormalTok{(}\AttributeTok{scipen =} \DecValTok{1}\NormalTok{) }\CommentTok{\# Require 5 instead of 4 for scientific notation (eg. for p{-}values)}
@@ -1587,7 +1578,7 @@ This is how put all your code into an appendix.
   \CommentTok{\#taking a \textquotesingle{}snapshot\textquotesingle{} of the html and converting it to .png}
 \NormalTok{  webshot2}\SpecialCharTok{::}\FunctionTok{webshot}\NormalTok{(}\AttributeTok{url=}\NormalTok{here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"inst"}\NormalTok{,}\StringTok{"stuff"}\NormalTok{,}\StringTok{"temp.html"}\NormalTok{), }
                     \AttributeTok{cliprect =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{400}\NormalTok{,}\DecValTok{400}\NormalTok{),}
-                    \AttributeTok{file =}\NormalTok{ here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"inst"}\NormalTok{,}\StringTok{"figures"}\NormalTok{,}\StringTok{"webshot.png"}\NormalTok{))}
+                    \AttributeTok{file =}\NormalTok{ here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"inst"}\NormalTok{,}\StringTok{"figure"}\NormalTok{,}\StringTok{"webshot.png"}\NormalTok{))}
 \NormalTok{\})}
 
 
@@ -1865,6 +1856,7 @@ This is how put all your code into an appendix.
 \NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{fig.process =} \ConstantTok{NULL}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
 
 
 \end{document}

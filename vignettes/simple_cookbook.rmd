@@ -80,7 +80,7 @@ Ez segít abban, hogy nagyobb magsságú képek se kerüljenek túl messze a chu
 A következő parancs állítja be, hogy milyen könyvtárban keresse a képeket, amiket nem saját maga állít elő. A belső kapcsos zárójelpárból több is lehet, akkor több könyvtárat is néz. 
 --->
 
-\graphicspath{ {../figures} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
+\graphicspath{ {../figure} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
 
 <!---
 
@@ -351,7 +351,7 @@ Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed
 
 
 
-<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 40%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-17">
+<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 40%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
 <caption style="caption-side: top; text-align: center;">Plot without much thought or meaning</caption><col><col><col><col><tr>
 <th style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"></th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"><p><strong>Setosa</strong>, N = 50</p>
 </th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"><p><strong>Verginica</strong>, N = 50</p>
@@ -378,7 +378,7 @@ Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed
 <tr>
 <td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: bold; font-size: 7pt;">This is my new example variable, adding up the lengths</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">3.70 (3.40, 3.90)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.95 (4.63, 5.38)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.20 (3.73, 4.40)</td></tr>
 <tr>
-<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">10.0 (5.3, 16.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (7.0, 17.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">10.5 (8.0, 15.8)</td></tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (5.3, 16.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">10.0 (5.0, 14.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">12.5 (6.3, 15.8)</td></tr>
 </table>
 <!--/html_preserve-->
 
@@ -388,7 +388,7 @@ $~$\
 
 
 
-<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 95%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
+<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 95%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
 <caption style="caption-side: top; text-align: center;">Dis be the second table</caption><col><col><col><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">mpg</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">cyl</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">disp</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">hp</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">drat</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">wt</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">qsec</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">vs</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">am</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">gear</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">carb</th></tr>
 <tr>
@@ -458,7 +458,7 @@ The below html -> png -> include stuff doesn't work in case of html output (for 
 --->
 
 \begin{figure}[H]
-\includegraphics[width = 30em]{figures/webshot.png}
+\includegraphics[width = 30em]{figure/webshot.png}
 \centering
 \caption{Ezt nem az R készítette}
 \label{fig:webshot_sjPlot}
@@ -482,8 +482,8 @@ trying to actually do the plot
 
 
 <div class="figure" style="text-align: center">
-<img src="figure/unnamed-chunk-20-1.png" alt="plot of chunk unnamed-chunk-20" width="90%" />
-<p class="caption">plot of chunk unnamed-chunk-20</p>
+<img src="figure/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11" width="90%" />
+<p class="caption">plot of chunk unnamed-chunk-11</p>
 </div>
 
 --->
@@ -583,7 +583,7 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
 \caption{Frequency of cyl categories}
- \label{tab:unnamed-chunk-23}
+ \label{tab:unnamed-chunk-14}
 \setlength{\tabcolsep}{0pt}
 \begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
 
@@ -717,7 +717,7 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
 \caption{Frequency of gear categories}
- \label{tab:unnamed-chunk-27}
+ \label{tab:unnamed-chunk-18}
 \setlength{\tabcolsep}{0pt}
 \begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
 
@@ -851,7 +851,7 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
 \caption{Frequency of carb categories}
- \label{tab:unnamed-chunk-31}
+ \label{tab:unnamed-chunk-22}
 \setlength{\tabcolsep}{0pt}
 \begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
 
@@ -1000,7 +1000,7 @@ This document was compiled at:
 
 
 ```
-[1] "2023-06-08 16:43:35 CEST"
+[1] "2023-06-08 16:52:40 CEST"
 ```
 
 
@@ -1041,7 +1041,7 @@ knitr::opts_chunk$set(
   )
 
 
-graphics_path <- "../inst/figures/"            # a máshonnan származó ábrák elérési útja
+graphics_path <- "../inst/figure/"            # a máshonnan származó ábrák elérési útja
 graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 options(scipen = 1) # Require 5 instead of 4 for scientific notation (eg. for p-values)
@@ -1262,7 +1262,7 @@ invisible({
   #taking a 'snapshot' of the html and converting it to .png
   webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
                     cliprect = c(0,0,400,400),
-                    file = here::here("inst","figures","webshot.png"))
+                    file = here::here("inst","figure","webshot.png"))
 })
 
 

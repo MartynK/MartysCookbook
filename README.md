@@ -26,4 +26,10 @@ https://ropensci.org/blog/2019/12/08/precompute-vignettes/
 Using 'renv' for package for version control.
 Need to specify *Sys.setenv(RENV_DOWNLOAD_METHOD = "libcurl")* in order to work.
 
+For pdf outputs, use the *ELSEVIER* *rticles* template (new *R markdown* and *from template*). Its awesome. Most other formats have some shtick which didn't appeal to me.
+
+
+
+
+
 

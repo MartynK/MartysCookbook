@@ -49,3 +49,6 @@ move_recent_files <- function(old_dir_name, new_dir_name, delay_hs = 1) {
   # Delete the source directory
   unlink(from_dir, recursive = TRUE)
 }
+
+
+#move_recent_files(here::here("figures"),here::here("vignettes"))

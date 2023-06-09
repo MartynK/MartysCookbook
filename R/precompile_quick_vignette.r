@@ -80,4 +80,4 @@ precompile_quick_vignette <- function(file_name) {
 
 
 #precompile_quick_vignette("cookbook.rmd")
-#move_recent_files(project_dir,c("cookbook"))
+

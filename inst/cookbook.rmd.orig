@@ -101,7 +101,7 @@ knitr::opts_chunk$set(
   )
 
 
-graphics_path <- "../inst/figures/"            # a máshonnan származó ábrák elérési útja
+graphics_path <- "../inst/figure/"            # a máshonnan származó ábrák elérési útja
 graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 options(scipen = 1) # Require 5 instead of 4 for scientific notation (eg. for p-values)
@@ -120,7 +120,7 @@ Ez segít abban, hogy nagyobb magsságú képek se kerüljenek túl messze a chu
 A következő parancs állítja be, hogy milyen könyvtárban keresse a képeket, amiket nem saját maga állít elő. A belső kapcsos zárójelpárból több is lehet, akkor több könyvtárat is néz. 
 --->
 
-\graphicspath{ {../figures} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
+\graphicspath{ {../figure} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
 
 <!---
 

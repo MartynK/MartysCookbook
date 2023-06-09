@@ -344,7 +344,7 @@ invisible({
   #taking a 'snapshot' of the html and converting it to .png
   webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
                     cliprect = c(0,0,400,400),
-                    file = here::here("inst","figures","webshot.png"))
+                    file = here::here("inst","figure","webshot.png"))
 })
 
 
@@ -358,7 +358,7 @@ The below html -> png -> include stuff doesn't work in case of html output (for 
 --->
 
 \begin{figure}[H]
-\includegraphics[width = 30em]{figures/webshot.png}
+\includegraphics[width = 30em]{figure/webshot.png}
 \centering
 \caption{Ezt nem az R készítette}
 \label{fig:webshot_sjPlot}
