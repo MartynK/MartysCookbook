@@ -4,13 +4,13 @@
 \alias{move_recent_files}
 \title{Move Recent Files from One Directory to Another}
 \usage{
-move_recent_files(project_dir, folder, delay_hs = 1)
+move_recent_files(old_dir_name, new_dir_name, delay_hs = 1)
 }
 \arguments{
-\item{project_dir}{A character string specifying the root directory of the project.}
+\item{old_dir_name}{A character string specifying the root directory of the project.}
 
-\item{folder}{A character string specifying the name of the source directory (without path), from which files are to be moved.
-For example: "\if{html}{\out{<folder>}}_files/figure-latex".}
+\item{new_dir_name}{A character string specifying the name of the source directory (without path), from which files are to be moved.
+For example: "<new_dir_name>_files/figure-latex".}
 
 \item{delay_hs}{Amount of time in which the files are considered 'recent' in hours. Defaults to '1'.}
 }
