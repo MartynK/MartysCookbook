@@ -43,7 +43,6 @@ compile_rmd_multiple_outputs <- function( input_file, max_wait = 10) {
   
 
   # Generate a PDF output using pagedown 
-  
   tryCatch({
     # This also leaves the pdflike .html 
     pagedown::chrome_print(input_file, output = output_file_pdf)
@@ -77,7 +76,10 @@ compile_rmd_multiple_outputs <- function( input_file, max_wait = 10) {
     }
   },
   error = function(e) {
-    render(input_file, "pagedown::thesis_paged", output_file = output_file_pdf_like)
+      if(!file.exists(output_file_pdf)) {
+      print("There was an error!")
+      render(input_file, "pagedown::thesis_paged", output_file = output_file_pdf_like)
+      }
   }
 )
   

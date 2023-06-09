@@ -4,19 +4,31 @@ subtitle: "My Subtitle"
 author: "Márton Kiss"
 date: "4242 november 20."
 always_allow_html: yes
-output:
-  pdf_document: 
-    fig_caption: yes
-    keep_tex: yes
+output: 
+  pagedown::thesis_paged: 
+    toc: true
     number_sections: yes
-    toc: yes
-    toc_depth: 3
+    pandoc_args: --mathjax
+    self_contained: yes
   html_document:
     df_print: paged
     keep_tex: yes
     fig_caption: yes
     toc: yes
     number_sections: yes
+    css: styles.css
+  # rticles::elsevier_article: 
+  #   # nice but margins are all over the place
+  #   keep_tex: true
+  #   #citation_package: natbib
+  #distill::distill_article: # Tables "look" latex-y
+  #pagedown::html_paged: # also nice but no experience in behaviour
+  pdf_document: 
+    fig_caption: yes
+    keep_tex: yes
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
   word_document: 
     fig_caption: yes
     toc: yes
@@ -35,7 +47,7 @@ header-includes:
   \DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
   \DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
   \DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
-lang: en-US
+#lang: en-US
 ---
   
 

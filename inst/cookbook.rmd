@@ -17,9 +17,10 @@ output:
     toc: yes
     number_sections: yes
     css: styles.css
-  rticles::elsevier_article:
-    keep_tex: true
-    #citation_package: natbib
+  # rticles::elsevier_article: 
+  #   # nice but margins are all over the place
+  #   keep_tex: true
+  #   #citation_package: natbib
   #distill::distill_article: # Tables "look" latex-y
   #pagedown::html_paged: # also nice but no experience in behaviour
   pdf_document: 

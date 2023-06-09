@@ -7,7 +7,7 @@
 #' move any figures generated in the project directory to the "vignettes/" directory.
 #' If a PDF of the report is available, it will also be copied to the "docs/articles/" directory.
 #'
-#' @param file_name The name of the .Rmd file to be precompiled (must include the ".rmd" extension)
+#' @param input_file The name of the .Rmd file to be precompiled (must include the ".rmd" extension)
 #'
 #' @return Invisible NULL
 #' 
@@ -18,42 +18,43 @@
 #' \dontrun{
 #' precompile_quick_vignette("example_report.rmd")
 #' }
-precompile_quick_vignette <- function(file_name) {
+precompile_quick_vignette <- function(input_file) {
 
-  project_dir <- here::here()
+  bname <- basename(input_file)
+  file_name <- substr(bname, 1, nchar(bname)-4)
+  directory_name <- dirname(input_file)
   
-  # Check extension
-  if (!grepl("\\.rmd$", paste0(project_dir,"/inst/",file_name))) {
+  # Check if file exists
+  if ( !file.exists(input_file)) {
+    stop("Error: File does not exist")
+  } else  if (!(substr(bname, nchar(bname)-3, nchar(bname)) %in% 
+                c(".rmd",".Rmd"))) {
+    # Check extension
     stop("Error: 'file_name' should end with .rmd")
   }
   
-  # Define the paths
-  file_path   <- paste0(project_dir, "/inst/", file_name)
-  orig_file_path   <- paste0(project_dir, "/inst/", file_name, ".orig")
-  output_file_path <- paste0(project_dir, "/vignettes/simple_", file_name)
   
-  # Check if file exists
-  if ( !file.exists(file_path)) {
-    stop("Error: File does not exist")
-  }
+  # Define the filenames
+  orig_file_name   <- paste0(directory_name, "/", bname, ".orig")
+  output_file_name <- paste0(directory_name, "/", file_name, "_simple.rmd")
   
   # Copy and rename
-  file.copy(file_path, orig_file_path, overwrite = TRUE)
+  file.copy(input_file, orig_file_name, overwrite = TRUE)
   
-  # knit the original file and send the output to "vignettes/..."
+  # knit the original file to de facto .md format
   message("Attempting to knit the .Rmd file")
   tryCatch({
-    knitr::knit(orig_file_path, output = output_file_path)
+    knitr::knit(orig_file_name, output = output_file_name)
     message("Knitting done without errors!")
   }, error = function(e) {
     stop("The file ran into some problems")
   })
   
   # The figures will be put in the project dir, have to clean it up
-  plain_file_name <- substr(file_name,1,(nchar(file_name)-4))
-  common_dir_name <- paste0(plain_file_name,"_files")
-  old_dir_name    <- paste0(project_dir,"/",common_dir_name,"/figure-latex") 
-  new_dir_name    <- paste0(project_dir,"/docs/articles/figure")
+  project_dir <- here::here()
+  
+  old_dir_name    <- paste0(project_dir,"/",file_name,"_files/figure-latex") 
+  new_dir_name    <- paste0(directory_name,"/figure")
   
   # # DEBUG output
   # print( c( old_dir_name, 
@@ -66,18 +67,8 @@ precompile_quick_vignette <- function(file_name) {
   move_recent_files(old_dir_name2, new_dir_name)
   
   
-  # If the .pdf available, grab that too
-  pdf_name      <- paste0(project_dir,"/inst/",plain_file_name, ".pdf")
-  pdf_dest_name <- paste0(project_dir,"/docs/articles/",plain_file_name, ".pdf")
-  if( file.exists(pdf_name)) {
-    file.copy(pdf_name, 
-              pdf_dest_name,
-              overwrite = TRUE)
-  }
-  
-  
 }
 
-
-#precompile_quick_vignette("cookbook.rmd")
+# input_file <- here::here("inst","cookbook.rmd")
+# precompile_quick_vignette(input_file)
 
