@@ -496,27 +496,27 @@ mert HTML Widgetet csinál :()
 # save(a, file = "omgomgomgomg2.rdata")
 
 ## MOTHERf... auto-prioritized this chunk and libraries were not loaded. 
-## Setting up ref. fixed the issue.
+## Setting up ref. fixed the issue (until it didnt for some reason.
 
-fortunes::read.fortunes() %>% 
-  .[1:50,c(2,1)] %>%
-  # Sometimes you have to specify everything if you want to deviate
-  # from the standard look (here: do a longtable)
-  kable(format = "latex", 
-                    longtable = TRUE, # Doesn't work with scale_down
-                    booktabs = TRUE,
-                    linesep = "",
-                    caption = "Wise R sayings",
-                    align = "c") %>%
-  row_spec(0, bold = T) %>%
-  kable_styling( position = "center",
-                 latex_options = c("striped","repeat_header"
-                                   #,"scale_down"
-                                   ),
-                 stripe_color = "gray!05") %>%
-  landscape() %>%
-  column_spec(column = 2, width = "50em") %>%
-  kable_styling(font_size = 7)
+# fortunes::read.fortunes() %>% 
+#   .[1:50,c(2,1)] %>%
+#   # Sometimes you have to specify everything if you want to deviate
+#   # from the standard look (here: do a longtable)
+#   kable(format = "latex", 
+#                     longtable = TRUE, # Doesn't work with scale_down
+#                     booktabs = TRUE,
+#                     linesep = "",
+#                     caption = "Wise R sayings",
+#                     align = "c") %>%
+#   row_spec(0, bold = T) %>%
+#   kable_styling( position = "center",
+#                  latex_options = c("striped","repeat_header"
+#                                    #,"scale_down"
+#                                    ),
+#                  stripe_color = "gray!05") %>%
+#   landscape() %>%
+#   column_spec(column = 2, width = "50em") %>%
+#   kable_styling(font_size = 7)
 
 
 ```

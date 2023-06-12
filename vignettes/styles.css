@@ -1,0 +1,48 @@
+body {
+  font-family: 'Times New Roman', serif;
+  font-size: 10pt;
+}
+
+h3.subtitle {
+  text-align: center;
+  font-size: 11pt;
+}
+
+h4.author {
+  text-align: center;
+}
+
+h4.date {
+  text-align: center;
+}
+
+h1 {
+  /* Title, # Section */
+  font-family: 'Times New Roman', serif;
+  text-align: center;
+  font-size: 14pt;
+}
+
+h2 {
+  /* ## Section */
+  font-family: 'Times New Roman', serif;
+  font-size: 12pt;
+}
+
+
+
+h3 {
+  /* Subtitle */
+  font-family: 'Times New Roman', serif;
+  font-size: 12pt;
+}
+
+h4 {
+  /* Date, ?? */
+  font-family: 'Times New Roman', serif;
+  font-size: 12pt;
+}
+
+p {
+  font-size: 10pt;
+}

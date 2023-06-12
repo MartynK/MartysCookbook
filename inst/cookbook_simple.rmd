@@ -1,41 +1,25 @@
 ---
-title: "Cookbook"
-subtitle: "My Subtitle"
+title: "**Cookbook**"
+subtitle: |
+  | My Subtitle because subtitles are great and long and great and commonly span multiple lines arent they great? arent yours not? I can't believe how long they can be
+  | <br><br>
 author: "Márton Kiss"
 date: "4242 november 20."
 always_allow_html: yes
 output: 
-  pagedown::thesis_paged: 
+  pagedown::html_paged: 
     toc: true
     number_sections: yes
     pandoc_args: --mathjax
     self_contained: yes
+    css: extra.css
   html_document:
     df_print: paged
     keep_tex: yes
     fig_caption: yes
     toc: yes
     number_sections: yes
-    css: styles.css
-  # rticles::elsevier_article: 
-  #   # nice but margins are all over the place
-  #   keep_tex: true
-  #   #citation_package: natbib
-  #distill::distill_article: # Tables "look" latex-y
-  #pagedown::html_paged: # also nice but no experience in behaviour
-  pdf_document: 
-    fig_caption: yes
-    keep_tex: yes
-    number_sections: yes
-    toc: yes
-    toc_depth: 3
-  word_document: 
-    fig_caption: yes
-    toc: yes
-  vignette: >
-    %\VignetteIndexEntry{Cookbook output}
-    %\VignetteEncoding{UTF-8}
-    %\VignetteEngine{knitr::rmarkdown}
+    css: extra.css
 header-includes:
   \usepackage{multicol}
   \usepackage{float}
@@ -49,16 +33,28 @@ header-includes:
   \DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
 #lang: en-US
 ---
-  
+
+\newpage
 
 $~$\
 $~$\
 $~$\
 $~$\
+
+I affirm that all results presented withtin are current and correct to the best of my knowledge
+
 $~$\
 $~$\
 $~$\
-Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ Signature: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+Author Authorovich MD 
+
+$~$\
+$~$\
+$~$\
+$~$\
+
+Date and Signature: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 $~$\
 $~$\
 $~$\
@@ -286,7 +282,8 @@ print(factor_data)
 ```
 
 ```
-##  [1] East  West  East  North North East  West  West  West  East  North
+##  [1] East  West  East  North North East  West  West  West 
+## [10] East  North
 ## Levels: East North West
 ```
 
@@ -299,7 +296,8 @@ print(new_order_data)
 ```
 
 ```
-##  [1] East  West  East  North North East  West  West  West  East  North
+##  [1] East  West  East  North North East  West  West  West 
+## [10] East  North
 ## Levels: East West North
 ```
 
@@ -390,7 +388,7 @@ Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed
 <tr>
 <td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: bold; font-size: 7pt;">This is my new example variable, adding up the lengths</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">3.70 (3.40, 3.90)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.95 (4.63, 5.38)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.20 (3.73, 4.40)</td></tr>
 <tr>
-<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">9.0 (4.3, 15.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.5 (6.0, 15.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (7.3, 16.0)</td></tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">8.0 (4.0, 11.8)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (7.3, 16.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">13.5 (6.0, 16.8)</td></tr>
 </table>
 <!--/html_preserve-->
 
@@ -594,7 +592,7 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{Frequency of carb categories}
+\caption{Frequency of cyl categories}
  \label{tab:unnamed-chunk-14}
 \setlength{\tabcolsep}{0pt}
 \begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
@@ -612,50 +610,29 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{carb}\huxbpad{6pt}}} &
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{cyl}\huxbpad{6pt}}} &
 \multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{1}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 11 (34\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{2}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{3}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3 (9.4\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 14 (44\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
@@ -673,24 +650,24 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{figure}[h]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/cyl-fig1-1}
 \caption{Bal oldali ábra}
-\label{fig:bar2_a8}
+\label{fig:bar2_a2}
 \end{figure}
 
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/cyl-fig1-2}
 \centering
 \caption{Jobb oldali ábra}
-\label{fig:bar2_b8}
+\label{fig:bar2_b2}
 \end{figure}
 \end{multicols}
 \end{figure}
 
 
-És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot12}. ábrára.
 
 
 
@@ -749,7 +726,7 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{Frequency of carb categories}
+\caption{Frequency of gear categories}
  \label{tab:unnamed-chunk-18}
 \setlength{\tabcolsep}{0pt}
 \begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
@@ -767,50 +744,29 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{carb}\huxbpad{6pt}}} &
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{gear}\huxbpad{6pt}}} &
 \multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{1}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{2}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
 \multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{3}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3 (9.4\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 15 (47\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
 \multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 12 (38\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{5}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 5 (16\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
@@ -828,24 +784,24 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{figure}[h]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/gear-fig1-1}
 \caption{Bal oldali ábra}
-\label{fig:bar2_a8}
+\label{fig:bar2_a4}
 \end{figure}
 
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
+\includegraphics[width = \linewidth]{cookbook_files/figure-latex/gear-fig1-2}
 \centering
 \caption{Jobb oldali ábra}
-\label{fig:bar2_b8}
+\label{fig:bar2_b4}
 \end{figure}
 \end{multicols}
 \end{figure}
 
 
-És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot14}. ábrára.
 
 
 
@@ -985,7 +941,7 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{figure}[H]
 \includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
 \caption{Bal oldali ábra}
-\label{fig:bar2_a8}
+\label{fig:bar2_a6}
 \end{figure}
 
 \columnbreak
@@ -994,13 +950,13 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
 \centering
 \caption{Jobb oldali ábra}
-\label{fig:bar2_b8}
+\label{fig:bar2_b6}
 \end{figure}
 \end{multicols}
 \end{figure}
 
 
-És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot16}. ábrára.
 
 
 
@@ -1027,7 +983,7 @@ Other information regarding the compilation of this document:
 Example of printing chunk stuff without the hideous '##' 
 --->
 
-Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.22; Allaire J et al., 2023), lme4 (version 1.1.33; Bates D et al., 2015), Matrix (version 1.5.4.1; Bates D et al., 2023), effects (version 4.2.2; Fox J, Weisberg S, 2019), carData (version 3.0.5; Fox J et al., 2022), lubridate (version 1.9.2; Grolemund G, Wickham H, 2011), DHARMa (version 0.4.6; Hartig F, 2022), huxtable (version 5.5.2; Hugh-Jones D, 2022), MartysCookbook (version 0.2.0; Kiss M, ????), labelled (version 2.11.0; Larmarange J, 2023), emmeans (version 1.8.6; Lenth R, 2023), report (version 0.5.7; Makowski D et al., 2023), nlme (version 3.1.162; Pinheiro J et al., 2023), gtsummary (version 1.7.1; Sjoberg D et al., 2021), testthat (version 3.1.8; Wickham H, 2011), ggplot2 (version 3.4.2; Wickham H, 2016), readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.2; Wickham H et al., 2023), tidyr (version 1.3.0; Wickham H et al., 2023), formatR (version 1.14; Xie Y, 2023), knitr (version 1.43; Xie Y, 2023), pagedown (version 0.20; Xie Y et al., 2022) and kableExtra (version 1.3.4; Zhu H, 2021).
+Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.22; Allaire J et al., 2023), lme4 (version 1.1.33; Bates D et al., 2015), Matrix (version 1.5.4.1; Bates D et al., 2023), effects (version 4.2.2; Fox J, Weisberg S, 2019), carData (version 3.0.5; Fox J et al., 2022), lubridate (version 1.9.2; Grolemund G, Wickham H, 2011), DHARMa (version 0.4.6; Hartig F, 2022), huxtable (version 5.5.2; Hugh-Jones D, 2022), labelled (version 2.11.0; Larmarange J, 2023), emmeans (version 1.8.6; Lenth R, 2023), nlme (version 3.1.162; Pinheiro J et al., 2023), gtsummary (version 1.7.1; Sjoberg D et al., 2021), ggplot2 (version 3.4.2; Wickham H, 2016), readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.2; Wickham H et al., 2023), knitr (version 1.43; Xie Y, 2023), pagedown (version 0.20; Xie Y et al., 2022) and kableExtra (version 1.3.4; Zhu H, 2021).
 
 References
 ----------
@@ -1039,20 +995,15 @@ References
   - Grolemund G, Wickham H (2011). "Dates and Times Made Easy with lubridate." _Journal of Statistical Software_, *40*(3), 1-25. <https://www.jstatsoft.org/v40/i03/>.
   - Hartig F (2022). _DHARMa: Residual Diagnostics for Hierarchical (Multi-Level / Mixed) Regression Models_. R package version 0.4.6, <https://CRAN.R-project.org/package=DHARMa>.
   - Hugh-Jones D (2022). _huxtable: Easily Create and Style Tables for LaTeX, HTML and Other Formats_. R package version 5.5.2, <https://CRAN.R-project.org/package=huxtable>.
-  - Kiss M (????). _MartysCookbook: My book of tips & tricks for nice reports_. R package version 0.2.0.
   - Larmarange J (2023). _labelled: Manipulating Labelled Data_. R package version 2.11.0, <https://CRAN.R-project.org/package=labelled>.
   - Lenth R (2023). _emmeans: Estimated Marginal Means, aka Least-Squares Means_. R package version 1.8.6, <https://CRAN.R-project.org/package=emmeans>.
-  - Makowski D, Lüdecke D, Patil I, Thériault R, Ben-Shachar M, Wiernik B (2023). "Automated Results Reporting as a Practical Tool to Improve Reproducibility and Methodological Best Practices Adoption." _CRAN_. <https://easystats.github.io/report/>.
   - Pinheiro J, Bates D, R Core Team (2023). _nlme: Linear and Nonlinear Mixed Effects Models_. R package version 3.1-162, <https://CRAN.R-project.org/package=nlme>.
   - R Core Team (2023). _R: A Language and Environment for Statistical Computing_. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
   - Sjoberg D, Whiting K, Curry M, Lavery J, Larmarange J (2021). "Reproducible Summary Tables with the gtsummary Package." _The R Journal_, *13*, 570-580. , <https://doi.org/10.32614/RJ-2021-053>.
-  - Wickham H (2011). "testthat: Get Started with Testing." _The R Journal_, *3*, 5-10. <https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf>.
   - Wickham H (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. ISBN 978-3-319-24277-4, <https://ggplot2.tidyverse.org>.
   - Wickham H, Bryan J (2023). _readxl: Read Excel Files_. R package version 1.4.2, <https://CRAN.R-project.org/package=readxl>.
   - Wickham H, Danenberg P, Csárdi G, Eugster M (2022). _roxygen2: In-Line Documentation for R_. R package version 7.2.3, <https://CRAN.R-project.org/package=roxygen2>.
   - Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.2, <https://CRAN.R-project.org/package=dplyr>.
-  - Wickham H, Vaughan D, Girlich M (2023). _tidyr: Tidy Messy Data_. R package version 1.3.0, <https://CRAN.R-project.org/package=tidyr>.
-  - Xie Y (2023). _formatR: Format R Code Automatically_. R package version 1.14, <https://CRAN.R-project.org/package=formatR>.
   - Xie Y (2023). _knitr: A General-Purpose Package for Dynamic Report Generation in R_. R package version 1.43, <https://yihui.org/knitr/>.
   - Xie Y, Lesur R, Thorne B, Tan X (2022). _pagedown: Paginate the HTML Output of R Markdown with CSS for Print_. R package version 0.20, <https://CRAN.R-project.org/package=pagedown>.
   - Zhu H (2021). _kableExtra: Construct Complex Table with 'kable' and Pipe Syntax_. R package version 1.3.4, <https://CRAN.R-project.org/package=kableExtra>.
@@ -1061,7 +1012,7 @@ This document was compiled at:
 
 
 ```
-[1] "2023-06-09 16:15:21 CEST"
+[1] "2023-06-12 11:49:12 CEST"
 ```
 
 
@@ -1414,27 +1365,27 @@ plot_ggpairs <-
 # save(a, file = "omgomgomgomg2.rdata")
 
 ## MOTHERf... auto-prioritized this chunk and libraries were not loaded. 
-## Setting up ref. fixed the issue.
+## Setting up ref. fixed the issue (until it didnt for some reason.
 
-fortunes::read.fortunes() %>% 
-  .[1:50,c(2,1)] %>%
-  # Sometimes you have to specify everything if you want to deviate
-  # from the standard look (here: do a longtable)
-  kable(format = "latex", 
-                    longtable = TRUE, # Doesn't work with scale_down
-                    booktabs = TRUE,
-                    linesep = "",
-                    caption = "Wise R sayings",
-                    align = "c") %>%
-  row_spec(0, bold = T) %>%
-  kable_styling( position = "center",
-                 latex_options = c("striped","repeat_header"
-                                   #,"scale_down"
-                                   ),
-                 stripe_color = "gray!05") %>%
-  landscape() %>%
-  column_spec(column = 2, width = "50em") %>%
-  kable_styling(font_size = 7)
+# fortunes::read.fortunes() %>% 
+#   .[1:50,c(2,1)] %>%
+#   # Sometimes you have to specify everything if you want to deviate
+#   # from the standard look (here: do a longtable)
+#   kable(format = "latex", 
+#                     longtable = TRUE, # Doesn't work with scale_down
+#                     booktabs = TRUE,
+#                     linesep = "",
+#                     caption = "Wise R sayings",
+#                     align = "c") %>%
+#   row_spec(0, bold = T) %>%
+#   kable_styling( position = "center",
+#                  latex_options = c("striped","repeat_header"
+#                                    #,"scale_down"
+#                                    ),
+#                  stripe_color = "gray!05") %>%
+#   landscape() %>%
+#   column_spec(column = 2, width = "50em") %>%
+#   kable_styling(font_size = 7)
 
 
 

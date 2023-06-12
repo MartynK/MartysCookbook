@@ -1,0 +1,51 @@
+body {
+  font-family: 'Times New Roman', serif;
+  font-size: 12pt;
+}
+
+h1.title {
+  text-align: center;
+}
+
+h3.subtitle {
+  text-align: center;
+}
+
+h4.author {
+  text-align: center;
+}
+
+h4.date {
+  text-align: center;
+}
+
+h1 {
+  /* Title, # Section */
+  font-family: 'Times New Roman', serif;
+  font-size: 20pt;
+}
+
+h2 {
+  /* ## Section */
+  font-family: 'Times New Roman', serif;
+  font-size: 18pt;
+}
+
+
+
+h3 {
+  /* Subtitle */
+  font-family: 'Times New Roman', serif;
+  font-size: 16pt;
+}
+
+h4 {
+  /* Date, ?? */
+  font-family: 'Times New Roman', serif;
+  font-size: 14pt;
+}
+
+p {
+  /* Garden variety text*/
+  font-size: 12pt;
+}

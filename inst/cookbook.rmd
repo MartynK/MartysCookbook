@@ -1,41 +1,25 @@
 ---
-title: "Cookbook"
-subtitle: "My Subtitle"
+title: "**Cookbook**"
+subtitle: |
+  | My Subtitle because subtitles are great and long and great and commonly span multiple lines arent they great? arent yours not? I can't believe how long they can be
+  | <br><br>
 author: "Márton Kiss"
 date: "4242 november 20."
 always_allow_html: yes
 output: 
-  pagedown::thesis_paged: 
+  pagedown::html_paged: 
     toc: true
     number_sections: yes
     pandoc_args: --mathjax
     self_contained: yes
+    template: thesis_M.html
   html_document:
     df_print: paged
     keep_tex: yes
     fig_caption: yes
     toc: yes
     number_sections: yes
-    css: styles.css
-  # rticles::elsevier_article: 
-  #   # nice but margins are all over the place
-  #   keep_tex: true
-  #   #citation_package: natbib
-  #distill::distill_article: # Tables "look" latex-y
-  #pagedown::html_paged: # also nice but no experience in behaviour
-  pdf_document: 
-    fig_caption: yes
-    keep_tex: yes
-    number_sections: yes
-    toc: yes
-    toc_depth: 3
-  word_document: 
-    fig_caption: yes
-    toc: yes
-  vignette: >
-    %\VignetteIndexEntry{Cookbook output}
-    %\VignetteEncoding{UTF-8}
-    %\VignetteEngine{knitr::rmarkdown}
+    css: extra.css
 header-includes:
   \usepackage{multicol}
   \usepackage{float}
@@ -49,16 +33,28 @@ header-includes:
   \DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
 #lang: en-US
 ---
-  
+
+\newpage
 
 $~$\
 $~$\
 $~$\
 $~$\
+
+I affirm that all results presented withtin are current and correct to the best of my knowledge
+
 $~$\
 $~$\
 $~$\
-Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ Signature: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+Author Authorovich MD 
+
+$~$\
+$~$\
+$~$\
+$~$\
+
+Date and Signature: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 $~$\
 $~$\
 $~$\

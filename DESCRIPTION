@@ -23,7 +23,10 @@ Depends:
     report,
     readxl,
     formatR,
-    labelled
+    labelled,
+    here, 
+    pagedown, 
+    rmarkdown
 Suggests: 
     testthat (>= 3.0.0),
     rmarkdown

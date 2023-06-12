@@ -4,10 +4,10 @@
 \alias{precompile_quick_vignette}
 \title{Precompiles a quick vignette from a computationally expensive report}
 \usage{
-precompile_quick_vignette(file_name)
+precompile_quick_vignette(input_file)
 }
 \arguments{
-\item{file_name}{The name of the .Rmd file to be precompiled (must include the ".rmd" extension)}
+\item{input_file}{The name of the .Rmd file to be precompiled (must include the ".rmd" extension)}
 }
 \value{
 Invisible NULL

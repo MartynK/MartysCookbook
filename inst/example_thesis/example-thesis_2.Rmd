@@ -1,0 +1,84 @@
+---
+title: "**Factor relevelling example**"
+subtitle: |
+  | An exploration of the balance between form and function in documentation, with a special focus on factor management in R and stakeholder-friendly data presentation.
+  | <br><br>
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
+date: "4242 november 20."
+number_Sections: yes
+output:
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    sign_page: true
+    lof: true
+    lot: true
+    toc: true
+    toc-title: Contents
+    template:
+      template_pdflike.html
+  html_document:
+    df_print: paged
+    keep_tex: yes
+    fig_caption: yes
+    toc: no
+    css: styles.css
+bibliography: packages.bib # Causes crash??
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.align = 'center')
+```
+
+# Summary {.chapter}
+
+This is a lightweight document for me to kink out the particulars of producing serious-looking but verstile documents. Rendering for 10 minutes would be unpalatable for this document, however I wanted it to serve some useful purpose besides flaunting my template.
+
+
+# Relevelling & *Forcats* {.chapter}
+
+Factors sometimes get on my nerve. Their levels' order keeps changing, you want to switch between human readable (stakeholder readable) and easy-to-type names, etc.
+
+Take a look at the *'iris'* dataset. Species is clearly a factor.
+
+```{r}
+
+unique(iris$Species)
+
+```
+
+Lets rename some species. The below code is a bit bloated but intuitive IMHO.
+
+```{r}
+library(dplyr)
+
+iris_recode <- iris %>%
+  mutate(Species_hr = 
+           forcats::fct_recode( Species, 
+                                 smelly = as.character(unique(iris$Species)[1]),
+                                 fluffy = as.character(unique(iris$Species)[2])
+                                 #Didn't recode 'virginica' asan example
+                                 ))
+```
+
+And to test the results, lets see what a printout would say. Can I reference said table? Lets try (\@ref(tab:atable)):
+
+```{r atable}
+
+set.seed(12345)
+
+iris_recode %>%
+  .[sort(sample(nrow(.),10)),] %>% 
+    knitr::kable()
+
+```
+
