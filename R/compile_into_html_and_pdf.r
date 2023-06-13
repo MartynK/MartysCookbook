@@ -83,9 +83,6 @@ compile_rmd_multiple_outputs <- function( input_file, max_wait = 10) {
   }
 )
   
-  file.rename( output_file_html, output_file_pdf_like)
-
-  
   # Generate an HTML output
   render(input_file, "html_document", output_file = output_file_html)
 

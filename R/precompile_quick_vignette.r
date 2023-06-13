@@ -34,9 +34,15 @@ precompile_quick_vignette <- function(input_file) {
   }
   
   
+  # create a directory for all the output
+  dir_name <- paste0(directory_name, "/", file_name)
+  dir.create( dir_name, showWarnings = FALSE)
+  
   # Define the filenames
-  orig_file_name   <- paste0(directory_name, "/", bname, ".orig")
-  output_file_name <- paste0(directory_name, "/", file_name, "_simple.rmd")
+  orig_file_name   <- paste0(directory_name, "/", 
+                             file_name, "/", file_name, ".rmd")
+  output_file_name <- paste0(directory_name, "/", 
+                             file_name, "/", file_name, "_quick.rmd")
   
   # Copy and rename
   file.copy(input_file, orig_file_name, overwrite = TRUE)
@@ -54,7 +60,7 @@ precompile_quick_vignette <- function(input_file) {
   project_dir <- here::here()
   
   old_dir_name    <- paste0(project_dir,"/",file_name,"_files/figure-latex") 
-  new_dir_name    <- paste0(directory_name,"/figure")
+  new_dir_name    <- paste0(dir_name,"/figure")
   
   # # DEBUG output
   # print( c( old_dir_name, 

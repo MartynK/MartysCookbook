@@ -12,7 +12,6 @@ output:
     number_sections: yes
     pandoc_args: --mathjax
     self_contained: yes
-    template: thesis_M.html
   html_document:
     df_print: paged
     keep_tex: yes

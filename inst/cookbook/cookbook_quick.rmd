@@ -12,7 +12,6 @@ output:
     number_sections: yes
     pandoc_args: --mathjax
     self_contained: yes
-    css: extra.css
   html_document:
     df_print: paged
     keep_tex: yes
@@ -282,8 +281,7 @@ print(factor_data)
 ```
 
 ```
-##  [1] East  West  East  North North East  West  West  West 
-## [10] East  North
+##  [1] East  West  East  North North East  West  West  West  East  North
 ## Levels: East North West
 ```
 
@@ -296,8 +294,7 @@ print(new_order_data)
 ```
 
 ```
-##  [1] East  West  East  North North East  West  West  West 
-## [10] East  North
+##  [1] East  West  East  North North East  West  West  West  East  North
 ## Levels: East West North
 ```
 
@@ -388,7 +385,7 @@ Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed
 <tr>
 <td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: bold; font-size: 7pt;">This is my new example variable, adding up the lengths</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">3.70 (3.40, 3.90)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.95 (4.63, 5.38)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.20 (3.73, 4.40)</td></tr>
 <tr>
-<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">8.0 (4.0, 11.8)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (7.3, 16.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">13.5 (6.0, 16.8)</td></tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">12.0 (4.0, 17.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (6.3, 16.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">9.0 (7.0, 13.0)</td></tr>
 </table>
 <!--/html_preserve-->
 
@@ -1012,7 +1009,7 @@ This document was compiled at:
 
 
 ```
-[1] "2023-06-12 11:49:12 CEST"
+[1] "2023-06-13 18:30:09 CEST"
 ```
 
 

@@ -1,42 +1,46 @@
 ---
 title: "**Factor relevelling example**"
 subtitle: |
-  | An exploration of the balance between form and function in documentation, with a special focus on factor management in R and stakeholder-friendly data presentation.
-  | <br><br>
+  | A Practical Foray into Lengthy Subtitle Management, Iris Dataset Tampering, 
+  | and the Unceasing Pursuit of Stakeholder-Friendly Data Presentation.
+  | From Markdown Mastery to Factor Finagling: 
 author: 
   name: "Márton Kiss MD"
 committee:
   - name: Márton Kiss MD
     position: Applied Biostatistician
-date: "4242 november 20."
+date: today()
 number_Sections: yes
+sign_page: true
 output:
-  pagedown::thesis_paged: 
-    # # DO NOT overwrite the default css-s! Breaks the pagination
-    #  - default-fonts
-    #  - default-page
-    #  - styles.css
-    #css:
-    sign_page: true
-    lof: true
-    lot: true
-    toc: true
-    toc-title: Contents
-    template:
-      template_pdflike.html
   html_document:
     df_print: paged
     keep_tex: yes
     fig_caption: yes
     toc: no
     css: styles.css
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
+    toc: true
+    toc-title: Contents
+    template:
+      template_pdflike.html
 bibliography: packages.bib # Causes crash??
 link-citations: yes
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, warning = FALSE}
+
 knitr::opts_chunk$set(echo = TRUE,
-                      fig.align = 'center')
+                      fig.align = 'center',
+                      warning = FALSE,
+                      message = FALSE)
 ```
 
 # Summary {.chapter}
@@ -46,11 +50,12 @@ This is a lightweight document for me to kink out the particulars of producing s
 
 # Relevelling & *Forcats* {.chapter}
 
-Factors sometimes get on my nerve. Their levels' order keeps changing, you want to switch between human readable (stakeholder readable) and easy-to-type names, etc.
+Factors sometimes get on my nerve. Their levels' order keep changing, you want to switch between human readable (stakeholder readable) and easy-to-type names, etc.
 
 Take a look at the *'iris'* dataset. Species is clearly a factor.
 
-```{r}
+
+```{r, comment='', results='asis'}
 
 unique(iris$Species)
 
@@ -72,13 +77,51 @@ iris_recode <- iris %>%
 
 And to test the results, lets see what a printout would say. Can I reference said table? Lets try (\@ref(tab:atable)):
 
-```{r atable}
+```{r }
 
 set.seed(12345)
 
 iris_recode %>%
   .[sort(sample(nrow(.),10)),] %>% 
-    knitr::kable()
+    knitr::kable(label = "atable",
+                 # NEEDS both label and caption for referencing
+                 caption = "Example cases from the recoded table")
 
 ```
 
+# Notes
+
+Information regarding the compilation of this document:
+
+<!---
+Example of printing chunk stuff without the hideous '##' 
+--->
+
+```{r, comment='', results='asis'}
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>% report::report() %>% cat()
+```
+
+This document was compiled at:
+
+```{r last_chunk}
+
+Sys.time()
+save.image(file = here::here("inst","states","cookbook_out.Rdata"))
+
+```
+
+
+# Appendix
+
+This is how put all your code into an appendix.
+
+```{r}
+#| ref.label=knitr::all_labels(),
+#| echo=TRUE,
+#| eval=FALSE
+
+# This throws a warning everytime so lets forget about it
+#| tidy=TRUE
+
+```

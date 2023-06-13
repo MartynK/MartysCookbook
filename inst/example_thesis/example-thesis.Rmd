@@ -12,7 +12,7 @@ location: St. Catharines, ON
 date: "4242 jan. 1"
 sign_page: true
 dedication: A dedication line or two goes here.
-#abstract: This is the abstract. # Looks ridiculous in html
+abstract: This is the abstract. # Looks ridiculous in html
 preface: A preface to the thesis.
 acknowledge: Put the ackknowledgements here.
 committee:
@@ -38,7 +38,7 @@ output:
     toc: yes
     number_sections: yes
     css: styles.css
-#bibliography: packages.bib # Causes crash??
+bibliography: packages.bib # Causes crash??
 link-citations: yes
 # uncomment this line to produce HTML and PDF in RStudio:
 #knit: pagedown::chrome_print
