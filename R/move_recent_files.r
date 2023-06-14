@@ -36,7 +36,8 @@ move_recent_files <- function(old_dir_name, new_dir_name, delay_hs = 1) {
   
   # Check if there are no files
   if (length(files) == 0) {
-    stop("No files in the source directory.")
+    warning("No files in the source directory.")
+    return(FALSE)
   }
   
   # Check which files are less than an hour old

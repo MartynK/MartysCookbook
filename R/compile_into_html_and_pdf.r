@@ -17,7 +17,7 @@ require(pagedown)
 #' Default = 10
 #'
 #' @return Invisibly returns NULL. The side effect of this function is that 
-#' it writes the compiled documents to disk.
+#' it writes the compiled documents to disk (same folder as source).
 #' 
 #' @importFrom rmarkdown render
 #' @importFrom pagedown chrome_print
@@ -80,10 +80,13 @@ compile_rmd_multiple_outputs <- function( input_file, max_wait = 10) {
       print("There was an error!")
       render(input_file, "pagedown::thesis_paged", output_file = output_file_pdf_like)
       }
-  }
-)
+  })
   
-  # Generate an HTML output
+  # renaming output to denote that its the pdf-like one
+  file.rename( output_file_html, output_file_pdf_like)
+
+  
+  # Generate the 'vanilla' HTML output
   render(input_file, "html_document", output_file = output_file_html)
 
 }

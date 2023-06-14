@@ -1,0 +1,289 @@
+---
+title: "**Factor relevelling example**"
+subtitle: |
+  | A Practical Foray into Lengthy Subtitle Management, Iris Dataset Tampering, 
+  | and the Unceasing Pursuit of Stakeholder-Friendly Data Presentation.
+  | From Markdown Mastery to Factor Finagling: 
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
+date: today()
+number_Sections: yes
+sign_page: true
+output:
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
+    toc: true
+    toc-title: Contents
+    template:
+      template_pdflike.html
+  html_document:
+    df_print: paged
+    keep_tex: yes
+    fig_caption: yes
+    toc: no
+    css: styles.css
+bibliography: packages.bib # Causes crash??
+link-citations: yes
+---
+
+
+
+# Summary {.chapter}
+
+This is a lightweight document for me to kink out the particulars of producing serious-looking but verstile documents. Rendering for 10 minutes would be unpalatable for this document, however I wanted it to serve some useful purpose besides flaunting my template.
+
+
+# Relevelling & *Forcats* {.chapter}
+
+Factors sometimes get on my nerve. Their levels' order keep changing, you want to switch between human readable (stakeholder readable) and easy-to-type names, etc.
+
+Take a look at the *'iris'* dataset. Species is clearly a factor.
+
+
+
+```r
+unique(iris$Species)
+```
+
+[1] setosa     versicolor virginica 
+Levels: setosa versicolor virginica
+
+Lets rename some species. The below code is a bit bloated but intuitive IMHO.
+
+
+```r
+library(dplyr)
+
+iris_recode <- iris %>%
+  mutate(Species_hr = 
+           forcats::fct_recode( Species, 
+                                 smelly = as.character(unique(iris$Species)[1]),
+                                 fluffy = as.character(unique(iris$Species)[2])
+                                 #Didn't recode 'virginica' asan example
+                                 ))
+```
+
+And to test the results, lets see what a printout would say. Can I reference said table? Lets try (\@ref(tab:atable)):
+
+
+```r
+set.seed(12345)
+
+iris_recode %>%
+  .[sort(sample(nrow(.),10)),] %>% 
+    knitr::kable(label = "atable",
+                 # NEEDS both label and caption for referencing
+                 caption = "Example cases from the recoded table")
+```
+
+<table>
+<caption>Example cases from the recoded table</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Sepal.Length </th>
+   <th style="text-align:right;"> Sepal.Width </th>
+   <th style="text-align:right;"> Petal.Length </th>
+   <th style="text-align:right;"> Petal.Width </th>
+   <th style="text-align:left;"> Species </th>
+   <th style="text-align:left;"> Species_hr </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 4.9 </td>
+   <td style="text-align:right;"> 3.0 </td>
+   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:left;"> smelly </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 38 </td>
+   <td style="text-align:right;"> 4.9 </td>
+   <td style="text-align:right;"> 3.6 </td>
+   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:right;"> 0.1 </td>
+   <td style="text-align:left;"> setosa </td>
+   <td style="text-align:left;"> smelly </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 51 </td>
+   <td style="text-align:right;"> 7.0 </td>
+   <td style="text-align:right;"> 3.2 </td>
+   <td style="text-align:right;"> 4.7 </td>
+   <td style="text-align:right;"> 1.4 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:left;"> fluffy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 58 </td>
+   <td style="text-align:right;"> 4.9 </td>
+   <td style="text-align:right;"> 2.4 </td>
+   <td style="text-align:right;"> 3.3 </td>
+   <td style="text-align:right;"> 1.0 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:left;"> fluffy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 75 </td>
+   <td style="text-align:right;"> 6.4 </td>
+   <td style="text-align:right;"> 2.9 </td>
+   <td style="text-align:right;"> 4.3 </td>
+   <td style="text-align:right;"> 1.3 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:left;"> fluffy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 86 </td>
+   <td style="text-align:right;"> 6.0 </td>
+   <td style="text-align:right;"> 3.4 </td>
+   <td style="text-align:right;"> 4.5 </td>
+   <td style="text-align:right;"> 1.6 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:left;"> fluffy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 93 </td>
+   <td style="text-align:right;"> 5.8 </td>
+   <td style="text-align:right;"> 2.6 </td>
+   <td style="text-align:right;"> 4.0 </td>
+   <td style="text-align:right;"> 1.2 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:left;"> fluffy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 96 </td>
+   <td style="text-align:right;"> 5.7 </td>
+   <td style="text-align:right;"> 3.0 </td>
+   <td style="text-align:right;"> 4.2 </td>
+   <td style="text-align:right;"> 1.2 </td>
+   <td style="text-align:left;"> versicolor </td>
+   <td style="text-align:left;"> fluffy </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 142 </td>
+   <td style="text-align:right;"> 6.9 </td>
+   <td style="text-align:right;"> 3.1 </td>
+   <td style="text-align:right;"> 5.1 </td>
+   <td style="text-align:right;"> 2.3 </td>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:left;"> virginica </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 146 </td>
+   <td style="text-align:right;"> 6.7 </td>
+   <td style="text-align:right;"> 3.0 </td>
+   <td style="text-align:right;"> 5.2 </td>
+   <td style="text-align:right;"> 2.3 </td>
+   <td style="text-align:left;"> virginica </td>
+   <td style="text-align:left;"> virginica </td>
+  </tr>
+</tbody>
+</table>
+
+# Notes
+
+Information regarding the compilation of this document:
+
+<!---
+Example of printing chunk stuff without the hideous '##' 
+--->
+
+
+```r
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>% report::report() %>% cat()
+```
+
+Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.22; Allaire J et al., 2023), lme4 (version 1.1.33; Bates D et al., 2015), Matrix (version 1.5.4.1; Bates D et al., 2023), effects (version 4.2.2; Fox J, Weisberg S, 2019), carData (version 3.0.5; Fox J et al., 2022), lubridate (version 1.9.2; Grolemund G, Wickham H, 2011), DHARMa (version 0.4.6; Hartig F, 2022), huxtable (version 5.5.2; Hugh-Jones D, 2022), labelled (version 2.11.0; Larmarange J, 2023), emmeans (version 1.8.6; Lenth R, 2023), nlme (version 3.1.162; Pinheiro J et al., 2023), gtsummary (version 1.7.1; Sjoberg D et al., 2021), ggplot2 (version 3.4.2; Wickham H, 2016), readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.2; Wickham H et al., 2023), knitr (version 1.43; Xie Y, 2023), pagedown (version 0.20; Xie Y et al., 2022) and kableExtra (version 1.3.4; Zhu H, 2021).
+
+References
+----------
+  - Allaire J, Xie Y, Dervieux C, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R (2023). _rmarkdown: Dynamic Documents for R_. R package version 2.22, <https://github.com/rstudio/rmarkdown>.
+  - Bates D, Mächler M, Bolker B, Walker S (2015). "Fitting Linear Mixed-Effects Models Using lme4." _Journal of Statistical Software_, *67*(1), 1-48. .
+  - Bates D, Maechler M, Jagan M (2023). _Matrix: Sparse and Dense Matrix Classes and Methods_. R package version 1.5-4.1, <https://CRAN.R-project.org/package=Matrix>.
+  - Fox J, Weisberg S (2019). _An R Companion to Applied Regression_, 3rd edition. Sage, Thousand Oaks CA. <https://socialsciences.mcmaster.ca/jfox/Books/Companion/index.html>.
+  - Fox J, Weisberg S, Price B (2022). _carData: Companion to Applied Regression Data Sets_. R package version 3.0-5, <https://CRAN.R-project.org/package=carData>.
+  - Grolemund G, Wickham H (2011). "Dates and Times Made Easy with lubridate." _Journal of Statistical Software_, *40*(3), 1-25. <https://www.jstatsoft.org/v40/i03/>.
+  - Hartig F (2022). _DHARMa: Residual Diagnostics for Hierarchical (Multi-Level / Mixed) Regression Models_. R package version 0.4.6, <https://CRAN.R-project.org/package=DHARMa>.
+  - Hugh-Jones D (2022). _huxtable: Easily Create and Style Tables for LaTeX, HTML and Other Formats_. R package version 5.5.2, <https://CRAN.R-project.org/package=huxtable>.
+  - Larmarange J (2023). _labelled: Manipulating Labelled Data_. R package version 2.11.0, <https://CRAN.R-project.org/package=labelled>.
+  - Lenth R (2023). _emmeans: Estimated Marginal Means, aka Least-Squares Means_. R package version 1.8.6, <https://CRAN.R-project.org/package=emmeans>.
+  - Pinheiro J, Bates D, R Core Team (2023). _nlme: Linear and Nonlinear Mixed Effects Models_. R package version 3.1-162, <https://CRAN.R-project.org/package=nlme>.
+  - R Core Team (2023). _R: A Language and Environment for Statistical Computing_. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
+  - Sjoberg D, Whiting K, Curry M, Lavery J, Larmarange J (2021). "Reproducible Summary Tables with the gtsummary Package." _The R Journal_, *13*, 570-580. , <https://doi.org/10.32614/RJ-2021-053>.
+  - Wickham H (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. ISBN 978-3-319-24277-4, <https://ggplot2.tidyverse.org>.
+  - Wickham H, Bryan J (2023). _readxl: Read Excel Files_. R package version 1.4.2, <https://CRAN.R-project.org/package=readxl>.
+  - Wickham H, Danenberg P, Csárdi G, Eugster M (2022). _roxygen2: In-Line Documentation for R_. R package version 7.2.3, <https://CRAN.R-project.org/package=roxygen2>.
+  - Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.2, <https://CRAN.R-project.org/package=dplyr>.
+  - Xie Y (2023). _knitr: A General-Purpose Package for Dynamic Report Generation in R_. R package version 1.43, <https://yihui.org/knitr/>.
+  - Xie Y, Lesur R, Thorne B, Tan X (2022). _pagedown: Paginate the HTML Output of R Markdown with CSS for Print_. R package version 0.20, <https://CRAN.R-project.org/package=pagedown>.
+  - Zhu H (2021). _kableExtra: Construct Complex Table with 'kable' and Pipe Syntax_. R package version 1.3.4, <https://CRAN.R-project.org/package=kableExtra>.
+
+This document was compiled at:
+
+
+```r
+Sys.time()
+```
+
+```
+[1] "2023-06-14 09:52:11 CEST"
+```
+
+```r
+save.image(file = here::here("inst","states","cookbook_out.Rdata"))
+```
+
+
+# Appendix
+
+This is how put all your code into an appendix.
+
+
+```r
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.align = 'center',
+                      warning = FALSE,
+                      message = FALSE)
+
+unique(iris$Species)
+
+library(dplyr)
+
+iris_recode <- iris %>%
+  mutate(Species_hr = 
+           forcats::fct_recode( Species, 
+                                 smelly = as.character(unique(iris$Species)[1]),
+                                 fluffy = as.character(unique(iris$Species)[2])
+                                 #Didn't recode 'virginica' asan example
+                                 ))
+
+set.seed(12345)
+
+iris_recode %>%
+  .[sort(sample(nrow(.),10)),] %>% 
+    knitr::kable(label = "atable",
+                 # NEEDS both label and caption for referencing
+                 caption = "Example cases from the recoded table")
+
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>% report::report() %>% cat()
+
+Sys.time()
+save.image(file = here::here("inst","states","cookbook_out.Rdata"))
+
+# This throws a warning everytime so lets forget about it
+#| tidy=TRUE
+```
