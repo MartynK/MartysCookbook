@@ -143,25 +143,14 @@ $if(shorttitle)$
 $endif$
 <h1 class="title">$title$</h1>
 $if(subtitle)$
-<h1 class="subtitle"><span>$subtitle$</span></h1>
+<h2-title class="subtitle"><span>$subtitle$</span></h2-title>
 $endif$
 $for(author)$
-<br><p class="titlep">by<p><br>
 $if(author.name)$
-<h2 class="author">$author.name$$if(author.edu)$, $author.edu$$endif$</h2>
 $endif$
 $endfor$
 </div>
 <br>
-<p class="department">Department of $department$</p>
-<br>
-<p class="titlep">Submitted in partial fulfillment of <br> the requirements for the degree of</p>
-<br>
-<h2 class="degree">$degree$</h2>
-<br>
-<p class="institute">Faculty of $faculty$, $institute$<br>$location$</p>
-<br>
-<p class="copyright">&#169; $for(date)$$date.year$$endfor$ $for(author)$$author.name$$endfor$</p>
 $endif$
 
 <!--
@@ -171,48 +160,48 @@ should be "sign_page: true" -->
 
 $if(sign_page)$
 <div class="signpage">
-<p class="titlep">This thesis entitled</p>
+<p class="titlep">This work entitled</p>
+<br>
 $if(title)$
 <div id="$idprefix$header" class="title-page">
 $if(shorttitle)$
 <br><br><h1 class="shorttitle1" style="display: none;">$shorttitle$</h1>
 $endif$
 <p></p>
-<h1 class="title">$title$</h1>
+<h1-title class="title">$title$</h1-title>
+$if(subtitle)$
+<h2-title class="subtitle"><span>$subtitle$</span></h2-title>
+$endif$
 $for(author)$
-<br><p class="titlep">by<p><br>
+<br><p class="titlep">was compiled by<p><br>
 $if(author.name)$
-<h2 class="author">$author.name$$if(author.edu)$, $author.edu$$endif$</h2><br>
+<h3 class="author">$author.name$$if(author.edu)$, $author.edu$$endif$</h3><br>
 $endif$
 $endfor$
 </div>
-<p class="titlep">Submitted in partial fulfillment of <br> the requirements for the degree of</p>
-<br>
-<h2 class="degree">$degree$</h2>
-<br>
-<p class="titlep">And has been duly approved by</p>
+<p class="titlep">This document has been meticulously compiled by the author, who assures the application 
+of the finest methodologies and the most comprehensive professional knowledge available at the time of writing. 
+The author guarantees that every effort has been made to ensure the accuracy and reliability of the information contained within, 
+reflecting a rigorous approach to research, analysis, and attention to detail.</p>
 <br><br>
 $for(committee)$
-<div class="signature">$committee.position$, $committee.prefix$. $committee.name$</div>
+<div class="signature"><center>$committee.name$, $committee.position$ $date$</center></div>
 $endfor$
 
-<div class="signature">Date</div>
 $endif$
 </div>
 $endif$
+
+</div>
+
+
+<div class="signpage">
 
 <!-- Pre content section
 -Example, if user want a dedication page then they include "dedication: 'some text' in the YAML"
 -If you want other pages not found in this template simply add it to this section in the same way
 using the "$if(your_new_option)$ <your content> $endif$"
 -->
-$if(dedication)$
-<div class="dedication">
-<h1 class="dedication">$if(dedication-title)$$dedication-title$$else$Dedication$endif$</h1>
-<p class="dedication">$dedication$</p>
-</div>
-$endif$
-
 
 $if(abstract)$
 <div class="abstract">
@@ -221,12 +210,6 @@ $abstract$
 </div>
 $endif$
 
-$if(preface)$
-<div class="preface">
-<h1 class="preface">$if(preface-title)$$preface-title$$else$Preface$endif$</h1>
-$preface$
-</div>
-$endif$
 
 $if(acknowledge)$
 <div class="acknowledge">
@@ -236,6 +219,7 @@ $acknowledge$
 $endif$
 
 </div>
+
 
 <!-- This
 Container for the table of content, table of tables and table of figures etc.

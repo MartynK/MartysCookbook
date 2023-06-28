@@ -3,9 +3,12 @@ body {
   font-size: 10pt;
 }
 
+h1.title {
+  text-align: center;
+}
+
 h3.subtitle {
   text-align: center;
-  font-size: 11pt;
 }
 
 h4.author {
@@ -19,7 +22,6 @@ h4.date {
 h1 {
   /* Title, # Section */
   font-family: 'Times New Roman', serif;
-  text-align: center;
   font-size: 14pt;
 }
 

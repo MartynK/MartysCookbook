@@ -11,11 +11,17 @@ navbar:
    articles_pdflike:
     text: PDF-like articles
     menu:
+    - text: PDF-like documents
     - text: Cookbook
       href: articles/cookbook_simple_pdflike.html
+    - text: Relevel
+      href: articles/example_relevel/relevel_report_quick_pdflike.html
     - text: -------
-    - text: Cookbook - Actual PDF
+    - text: Actual PDFs
+    - text: Cookbook
       href: articles/cookbook_simple.pdf
+    - text: Relevel
+      href: articles/example_relevel/relevel_report_quick.pdf
    articles:
     text: Html-like articles
     menu:
@@ -23,9 +29,9 @@ navbar:
     - text: Cookbook
       href: articles/cookbook_simple.html
     - text: -------
-    - text: Cookbook - Again
-    - text: Actual PDF
-      href: articles/cookbook_simple.html
+    - text: Snippets
+    - text: Relevel
+      href: articles/example_relevel/relevel_report_quick.html
   
     
 home:

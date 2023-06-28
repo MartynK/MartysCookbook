@@ -11,8 +11,7 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="My book of tips &amp; tricks for nice reports">
+<script src="pkgdown.js"></script><meta property="og:title" content="My book of tips &amp; tricks for nice reports">
 <meta property="og:description" content="My book of tricks &amp; tricks for nice reports.
   Also unit tests, packages and such.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -57,9 +56,9 @@
     </li>
     <li class="divider">
     </li>
-<li class="dropdown-header">Cookbook - Again</li>
+<li class="dropdown-header">Snippets</li>
     <li>
-      <a href="articles/cookbook_simple.html">Actual PDF</a>
+      <a href="articles/example_relevel/relevel_report_quick.html">Relevel</a>
     </li>
   </ul>
 </li>
@@ -70,13 +69,21 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li>
+<li class="dropdown-header">PDF-like documents</li>
+    <li>
       <a href="articles/cookbook_simple_pdflike.html">Cookbook</a>
+    </li>
+    <li>
+      <a href="articles/example_relevel/relevel_report_quick_pdflike.html">Relevel</a>
     </li>
     <li class="divider">
     </li>
-<li>
-      <a href="articles/cookbook_simple.pdf">Cookbook - Actual PDF</a>
+<li class="dropdown-header">Actual PDFs</li>
+    <li>
+      <a href="articles/cookbook_simple.pdf">Cookbook</a>
+    </li>
+    <li>
+      <a href="articles/example_relevel/relevel_report_quick.pdf">Relevel</a>
     </li>
   </ul>
 </li>
@@ -123,7 +130,27 @@
 <div class="section level2">
 <h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h2>
-<p>input_file &lt;- here::here(“inst”,“cookbook.rmd”) precompile_quick_vignette(input_file) input_file &lt;- here::here(“inst”,“cookbook_simple.rmd”) compile_rmd_multiple_outputs(input_file)</p>
+<p>Stuff needed in one place (in <strong>vignettes/</strong> directory:</p>
+<ul>
+<li><p>The <strong>.Rmd</strong> file of whatever you’d like to push</p></li>
+<li><p>My <strong>styles.css</strong> for compiling the .html to my liking</p></li>
+<li><p>My <strong>template_pdflike.html</strong> template for compiling a modified ‘thesis’-like document</p></li>
+<li><p>The <strong>packages.bib</strong> file for the file if any.</p></li>
+</ul>
+<pre><code><span></span>
+<span><span class="va">input_file</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"vignettes"</span>,<span class="st">"example_relevel"</span>, <span class="st">"relevel_report.rmd"</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="fu"><a href="reference/precompile_quick_vignette.html">precompile_quick_vignette</a></span><span class="op">(</span><span class="va">input_file</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="va">input_file_q</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"vignettes"</span>,<span class="st">"example_relevel"</span>, <span class="st">"relevel_report_quick.rmd"</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="fu"><a href="reference/compile_rmd_multiple_outputs.html">compile_rmd_multiple_outputs</a></span><span class="op">(</span><span class="va">input_file_q</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="co"># Make sure the whole directory is in **vignettes/** and run</span></span>
+<span><span class="co"># Without extension!</span></span>
+<span><span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/build_articles.html" class="external-link">build_article</a></span><span class="op">(</span><span class="st">"example_relevel/relevel_report_quick"</span><span class="op">)</span></span></code></pre>
+<p>Then manually move the whole folder again to <em>docs/articles/..</em> (<strong>SKIP</strong> the duplicate file name) and update *_pkgdown.yml*.</p>
+<p><em>pkgdown::build_site()</em> will recompile all .Rmd-s including the slow original .Rmd-s if the folder remains in the <em>vignettes/</em> folder.</p>
 </div>
 </div>
 

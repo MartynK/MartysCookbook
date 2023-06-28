@@ -1,6 +1,6 @@
 body {
   font-family: 'Times New Roman', serif;
-  font-size: 12pt;
+  font-size: 10pt;
 }
 
 h1.title {
@@ -22,13 +22,13 @@ h4.date {
 h1 {
   /* Title, # Section */
   font-family: 'Times New Roman', serif;
-  font-size: 20pt;
+  font-size: 14pt;
 }
 
 h2 {
   /* ## Section */
   font-family: 'Times New Roman', serif;
-  font-size: 18pt;
+  font-size: 12pt;
 }
 
 
@@ -36,16 +36,15 @@ h2 {
 h3 {
   /* Subtitle */
   font-family: 'Times New Roman', serif;
-  font-size: 16pt;
+  font-size: 12pt;
 }
 
 h4 {
   /* Date, ?? */
   font-family: 'Times New Roman', serif;
-  font-size: 14pt;
+  font-size: 12pt;
 }
 
 p {
-  /* Garden variety text*/
-  font-size: 12pt;
+  font-size: 10pt;
 }

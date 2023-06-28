@@ -1,0 +1,127 @@
+---
+title: "**Factor relevelling example**"
+subtitle: |
+  | A Practical Foray into Lengthy Subtitle Management, Iris Dataset Tampering, 
+  | and the Unceasing Pursuit of Stakeholder-Friendly Data Presentation.
+  | From Markdown Mastery to Factor Finagling
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
+date: 4242.42.42.
+number_Sections: yes
+sign_page: true
+output:
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
+    toc: true
+    toc-title: Contents
+    template:
+      template_pdflike.html
+  html_document:
+    df_print: paged
+    keep_tex: yes
+    fig_caption: yes
+    toc: no
+    css: styles.css
+bibliography: packages.bib # Causes crash??
+link-citations: yes
+---
+
+```{r setup, include=FALSE, warning = FALSE}
+
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.align = 'center',
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+# Summary {.chapter}
+
+This is a lightweight document for me to kink out the particulars of producing serious-looking but verstile documents. Rendering for 10 minutes would be unpalatable for this document, however I wanted it to serve some useful purpose besides flaunting my template.
+
+
+# Relevelling & *Forcats* {.chapter}
+
+Factors sometimes get on my nerve. Their levels' order keep changing, you want to switch between human readable (stakeholder readable) and easy-to-type names, etc.
+
+Take a look at the *'iris'* dataset. Species is clearly a factor.
+
+
+```{r, comment='', results='asis'}
+
+unique(iris$Species)
+
+```
+
+Lets rename some species. The below code is a bit bloated but intuitive IMHO.
+
+```{r}
+library(dplyr)
+
+iris_recode <- iris %>%
+  mutate(Species_hr = 
+           forcats::fct_recode( Species, 
+                                 smelly = as.character(unique(iris$Species)[1]),
+                                 fluffy = as.character(unique(iris$Species)[2])
+                                 #Didn't recode 'virginica' asan example
+                                 ))
+```
+
+And to test the results, lets see what a printout would say. Can I reference said table? Lets try (\@ref(tab:atable)):
+
+```{r }
+
+set.seed(12345)
+
+iris_recode %>%
+  .[sort(sample(nrow(.),10)),] %>% 
+    knitr::kable(label = "atable",
+                 # NEEDS both label and caption for referencing
+                 caption = "Example cases from the recoded table")
+
+```
+
+# Notes
+
+Information regarding the compilation of this document:
+
+<!---
+Example of printing chunk stuff without the hideous '##' 
+--->
+
+```{r, comment='', results='asis'}
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>% report::report() %>% cat()
+```
+
+This document was compiled at:
+
+```{r last_chunk}
+
+Sys.time()
+save.image(file = here::here("inst","states","cookbook_out.Rdata"))
+
+```
+
+
+# Appendix
+
+This is how put all your code into an appendix.
+
+```{r}
+#| ref.label=knitr::all_labels(),
+#| echo=TRUE,
+#| eval=FALSE
+
+# This throws a warning everytime so lets forget about it
+#| tidy=TRUE
+
+```

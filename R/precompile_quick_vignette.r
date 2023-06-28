@@ -5,6 +5,7 @@
 #' move any figures generated in the project directory to the "/figures" directory.
 #'
 #' @param input_file The name of the .Rmd file to be precompiled (must include the ".rmd" extension)
+#' @param pics_dirs The name of the directory in which relevant pictures are to be found after precompilation
 #'
 #' @return Invisible NULL; the output will be in the same directory as the source named ..._quick.Rmd
 #' 
@@ -15,7 +16,7 @@
 #' \dontrun{
 #' precompile_quick_vignette("example_report.rmd")
 #' }
-precompile_quick_vignette <- function(input_file) {
+precompile_quick_vignette <- function(input_file, pics_dirs = c()) {
 
   bname <- basename(input_file)
   file_name <- substr(bname, 1, nchar(bname)-4)
@@ -47,23 +48,15 @@ precompile_quick_vignette <- function(input_file) {
     stop("The file ran into some problems")
   })
   
-  # The figures will be put in the project dir, have to clean it up
-  project_dir <- here::here()
-  
-  old_dir_name    <- paste0(project_dir,"/",file_name,"_files/figure-latex") 
-  new_dir_name    <- paste0(directory_name,"/figure")
-  
-  # # DEBUG output
-  # print( c( old_dir_name, 
-  #           new_dir_name
-  #           ))
-  
-  move_recent_files(old_dir_name, new_dir_name)
-  
-  old_dir_name2    <- paste0(project_dir,"/figure") 
-  move_recent_files(old_dir_name2, new_dir_name)
-  
-  
+  if (pics_dirs > 0) {
+    for (i in 1:length(pics_dirs)) {
+      old_dir_name    <- pics_dirs[i]
+      new_dir_name    <- paste0(directory_name,"/figure")
+      
+      move_recent_files(old_dir_name, new_dir_name)
+    }
+  }
+
 }
 
 # input_file <- here::here("inst","cookbook.rmd")

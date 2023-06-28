@@ -1,3 +1,21 @@
+# MartysCookbook 0.2.1
+
+## New features
+
+- New easy-to-compile .Rmd *Relevel* added
+
+## Fixes
+
+## Issues
+
+- Compiled vignettes missing some(?) pictures
+- 'Cookbook' uses old workflow, sig.pg. ugly
+- Should figure out figures
+- Should double-check function documentation
+
+## Notes
+
+
 # MartysCookbook 0.2.0
 
 ## New features

@@ -30,10 +30,35 @@ For pdf outputs, use the *pgdown::thesis_paged*. For html outputs, knit them wit
 
 ## Workflow
 
-input_file <- here::here("inst","cookbook.rmd")
-precompile_quick_vignette(input_file)
-input_file <- here::here("inst","cookbook_simple.rmd")
-compile_rmd_multiple_outputs(input_file)
+Stuff needed in one place (in **vignettes/** directory:
 
+ - The **.Rmd** file of whatever you'd like to push  
+ 
+ - My **styles.css** for compiling the .html to my liking  
+ 
+ - My **template_pdflike.html** template for compiling a modified 'thesis'-like document  
+ 
+ - The **packages.bib** file for the file if any.  
+ 
+
+```
+
+input_file <- here::here("vignettes","example_relevel", "relevel_report.rmd")  
+
+precompile_quick_vignette(input_file)  
+
+input_file_q <- here::here("vignettes","example_relevel", "relevel_report_quick.rmd")  
+
+compile_rmd_multiple_outputs(input_file_q)  
+
+# Make sure the whole directory is in **vignettes/** and run
+# Without extension!
+pkgdown::build_article("example_relevel/relevel_report_quick")
+
+```
+
+Then manually move the whole folder again to *docs/articles/..* (**SKIP** the duplicate file name) and update *_pkgdown.yml*.
+
+*pkgdown::build_site()* will recompile all .Rmd-s including the slow original .Rmd-s if the folder remains in the *vignettes/* folder.
 
 
