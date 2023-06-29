@@ -57,7 +57,7 @@ pkgdown::build_article("example_relevel/relevel_report_quick")
 
 ```
 
-Then manually move the whole folder again to *docs/articles/..* (**SKIP** the duplicate file name) and update *_pkgdown.yml*.
+Then manually move the whole folder again to *docs/articles/..* (**SKIP** the duplicate file name) and update *'_pkgdown.yml'*.
 
 *pkgdown::build_site()* will recompile all .Rmd-s including the slow original .Rmd-s if the folder remains in the *vignettes/* folder.
 

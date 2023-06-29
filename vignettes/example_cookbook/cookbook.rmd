@@ -1,0 +1,370 @@
+---
+title: "**Cookbook**"
+subtitle: |
+  | My Subtitle because subtitles are great and long and great and commonly span multiple lines arent they great? arent yours not? I can't believe how long they can be
+  | <br><br>
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
+date: "4242 november 20."
+always_allow_html: yes
+number_Sections: yes
+sign_page: true
+output:
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
+    toc: true
+    toc-title: Contents
+    template:
+      template_pdflike.html
+  html_document:
+    df_print: paged
+    keep_tex: yes
+    fig_caption: yes
+    toc: no
+    css: styles.css
+bibliography: packages.bib # Causes crash??
+link-citations: yes
+header-includes:
+  \usepackage{multicol}
+  \usepackage{float}
+  \usepackage{placeins}
+  \usepackage{afterpage}
+  \usepackage{inputenc}
+  \DeclareUnicodeCharacter{0081}{ }
+  \DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+  \DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
+  \DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+  \DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+#lang: en-US
+---
+
+
+
+# Results
+
+```{r setup, warning=FALSE, echo = FALSE, message = FALSE}
+
+# https://dotcms.com/docs/latest/markdown-syntax  
+# https://yihui.org/knitr/options/ 
+# https://zbib.org/
+# https://www.r-bloggers.com/2019/09/first-world-problems-very-long-rmarkdown-documents/ 
+
+
+# # For citations insert this into the yaml header (without spaces)
+# # And make a book.bib file to the location of the mother .rmd
+# bibliography: book.bib
+# biblio-style: apalike
+# link-citations: yes
+
+
+source(here::here("inst","functions","load_stuff.r"))
+
+relpath <- "inst/example_cookbook" %>%
+             file.path(here::here(),.)
+
+fig_directory     <- paste0(relpath, "/figures/")
+fig_directory_ext <- paste0(relpath, "/figures_ext/")
+
+
+knitr::opts_chunk$set(
+    echo = FALSE,                           # Ne mutassa a kódokat
+    cached = FALSE,                 ###!!!  # Ne cache-eljen
+    warning = FALSE,                        # Ne írja ki a warningokat
+    message = FALSE, 
+    fig.align = 'center',                   # Ábra középre rendezése
+    out.width = '90%',                      # Ábra szélessége, alter.: #fig.fullwidth = TRUE,
+    fig.asp = .75,                          # Ábra Hossz/szélesség
+    tidy.opts = list(width.cutoff = 60),    # legyenek 60 karakter szélességűre tördelve
+    tidy = TRUE,#"styler",                        # legyenek clean codingra megformázva
+    dev = 'png',#'tiff',                            # PNG legyen az alapértelmezett képformátum
+    compression = 'lzw',
+    dpi = 300,                              # a PNG képek elég jó minőségűek legyenek
+    fig.pos = 'H',                          # nem próbálja az ábrákat az oldal tetejére tenni
+    fig.path = fig_directory                # Ábra kimenet helye
+  )
+
+
+options(scipen = 1) # Require 5 instead of 4 for scientific notation (eg. for p-values)
+options(digits = 3) # default no. of digits (!) 
+options(encoding = "UTF-8") 
+
+```
+
+<!---
+Ez segít abban, hogy nagyobb magsságú képek se kerüljenek túl messze a chunktól, amiben előállítottuk őket. A \renewcommand megváltoztatja egy változó jelenlegi értékét. A \floatpagefraction alapértéke 0.5, azt mondja meg, hogy a szöveg magasságának hányadrásze az a kép, amit már feltétlenül külön oldalra kell tenni.
+--->
+
+\renewcommand\floatpagefraction{0.8}
+
+<!--- 
+A következő parancs állítja be, hogy milyen könyvtárban keresse a képeket, amiket nem saját maga állít elő. A belső kapcsos zárójelpárból több is lehet, akkor több könyvtárat is néz. 
+--->
+
+<!-- \graphicspath{ {`r fig_directory_ext`} } -->
+
+<!---
+
+Some people prefer to have an 'executive summary' up front, but what to do when the stuff you did ain't done yet?
+
+--->
+
+## Executive summary
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+```{r chunk-a}
+#| ref.label=c('referenced_chunk'),
+#| fig.cap = "Executive graph for executive thoughts"
+
+plot(x,y)
+
+```
+
+<!---
+Itt egy fortély side-by-side ábrák ábrázolásához.
+This sets up a borderless table with two figures in it.
+Workes with pagedown
+---->
+
+
+
+
+```{r}
+
+plot_a_path <- paste0( fig_directory_ext, 
+          "mandatory_chunk_name-1.png")
+
+plot_b_path <- paste0( fig_directory_ext,
+          "/mandatory_chunk_name-2.jpg")
+
+```
+
+
+
+<table style="border: none">
+<tr>
+<td>
+![Caption for image 1](`r plot_a_path`)
+</td>
+<td>
+![Caption for image 2](`r plot_b_path`)
+</td>
+</tr>
+</table>
+
+
+
+
+
+\newpage
+
+## Introduction
+
+
+```
+This is a text box if you like textboxes
+
+```
+
+Links can be given in this format (for html versions): [link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6852019/)  
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+$~$\
+
+## Deviations from the Protocol
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie.
+
+Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
+
+## Planned investigations
+
+If you're feeling cocky, spruce up your report with model descriptions in Latex, eg.:
+
+
+<!--- 
+
+Két megoldás egyenletekre... a '$$' 'rósz szokás' a latex xpertek szerint, 
+eetleg az 'amsmath' latex package segíthet, hogy 'alapból' elfogadja a \\
+parancsot sortördelésnek, mert egyébként nem akarja, láttam még jobbra zárt
+sorokat a kalandjaim során.
+
+--->
+
+\begin{align}
+\begin{aligned}
+FPR = \frac{FP}{N} = \dfrac{FP}{FP+TN}\\
+TPR = \frac{TP}{P} = \dfrac{FP}{FP+FN}
+\end{aligned}
+\end{align}
+
+$~$\
+
+\[
+  log(Cool\ variable_{i,j}) = \alpha_0 + 
+  \alpha_1\times Independent\ variable_1 +
+\]
+\[
+  \alpha_2\times Independent\ variable_{2,i,j} +
+  \alpha_3\times Sex_i + \\
+\]
+\[
+  \alpha_2\times Independent\ variable_{3,i,j} *
+  \alpha_{3,k} \times Treatment + \\ 
+\]
+\[
+  \delta_{0,i}+\delta_{1i}\times j+\epsilon_{i,j}
+\]
+
+
+
+where,
+
+  - **i** is the subject number,  
+  - **j** is the time point,  
+  - **k** is the treatment,   
+  - $\epsilon$ is the residual error, and  
+  - $\delta$ represents the random effects.
+  
+  
+$~$\
+
+
+```{r}
+save.image( file = here::here("inst","states", "before_chap1.Rdata"))
+```
+
+
+<!--- 
+
+Amikor 'vignette'-et akarsz csinálni a cild Rmd-k filenevei kezdődjenek '_'-el.
+És sajnos ne használj here::here()-t az elérésükhöz mert besz*r a pkgdown::build_site()
+
+Ez rósz: ```{r child = here::here("_01_chap1.rmd")}
+Ez jó:   ```{r child = "_01_chap1.rmd"}
+
+A kódból hivatkozott fileok meg - nahát - child Rmd-k normálisan működnek 
+
+--->
+
+# Cyclic child Rmd call
+  
+
+```{r child = here::here("inst", "example_cookbook", "_01_chap1.rmd")}
+
+```
+
+
+`r save.image( file = here::here("inst","states", "before_chap2.Rdata"))`
+
+```{r child-cycle}
+valtozok <- c("cyl", "gear", "carb")
+
+# Get the current value
+current_fig_path <- knitr::opts_chunk$get('fig.path')
+
+out <- NULL
+for (i in 1:length(valtozok)) {
+  out <- c(out, paste0("\n### ", valtozok[i], "\n")) # Defining "title"
+  
+  # Set the fig.path for each iteration
+  fig_path <- knitr::current_input() %>% 
+                dirname() %>%
+                paste0("/figure_cycl/")
+  
+  params <- list(x              = valtozok[i],
+                 top_level      = 4,
+                 figname_prefix = valtozok[i])
+  out <- c(out,
+           knitr::knit_child(here::here("inst","example_cookbook",'cyclic_chap2.Rmd'),
+                             quiet = T,
+                             options = opts_chunk$get() 
+           #envir = globalenv()
+                             ))
+}
+out <- paste(out, collapse = "\n")
+
+# Reset fig.path to its default value
+knitr::opts_chunk$set(fig.path = current_fig_path)
+
+```
+
+<!---
+Inserting the de-facto-honest-to-god output of the cyclic child .rmd call.
+'Out' is the tex(?) output of the child .rmd file
+--->
+`r out`
+
+
+# Plot compilation to be referenced
+
+```{r referenced_chunk}
+#| fig.cap = "Executive graph for executive thoughts"
+
+set.seed(12345)
+
+x <- rnorm(100)
+y <- 0.5 * x + rnorm(100)
+
+plot(x,y, main = "Important plot to reference before its compiled")
+
+```
+
+
+# Notes
+
+The MD5 checksum of the database used: 
+
+```{r}
+tools::md5sum(here::here("inst","extdata","Iris.xls"))
+```
+
+Other information regarding the compilation of this document:
+
+<!---
+Example of printing chunk stuff without the hideous '##' 
+--->
+
+```{r, comment='', results='asis'}
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>% report::report() %>% cat()
+```
+
+This document was compiled at:
+
+```{r last_chunk}
+
+Sys.time()
+save.image(file = here::here("inst","states","cookbook_out.Rdata"))
+
+```
+
+
+# Appendix
+
+This is how put all your code into an appendix.
+
+```{r}
+#| ref.label=knitr::all_labels(),
+#| echo=TRUE,
+#| eval=FALSE
+
+
+```
+

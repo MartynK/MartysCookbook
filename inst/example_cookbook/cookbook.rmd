@@ -3,22 +3,36 @@ title: "**Cookbook**"
 subtitle: |
   | My Subtitle because subtitles are great and long and great and commonly span multiple lines arent they great? arent yours not? I can't believe how long they can be
   | <br><br>
-author: "Márton Kiss"
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
 date: "4242 november 20."
 always_allow_html: yes
-output: 
-  pagedown::html_paged: 
+number_Sections: yes
+sign_page: true
+output:
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
     toc: true
-    number_sections: yes
-    pandoc_args: --mathjax
-    self_contained: yes
+    toc-title: Contents
+    template:
+      template_pdflike.html
   html_document:
     df_print: paged
     keep_tex: yes
     fig_caption: yes
-    toc: yes
-    number_sections: yes
-    css: extra.css
+    toc: no
+    css: styles.css
+bibliography: packages.bib # Causes crash??
+link-citations: yes
 header-includes:
   \usepackage{multicol}
   \usepackage{float}
@@ -33,45 +47,7 @@ header-includes:
 #lang: en-US
 ---
 
-\newpage
 
-$~$\
-$~$\
-$~$\
-$~$\
-
-I affirm that all results presented withtin are current and correct to the best of my knowledge
-
-$~$\
-$~$\
-$~$\
-
-Author Authorovich MD 
-
-$~$\
-$~$\
-$~$\
-$~$\
-
-Date and Signature: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-$~$\
-$~$\
-$~$\
-$~$\
-
-## Version control {.unnumbered}
-
-v.1.0 -- Initial version 
-
-\newpage
-
-<!---
-Ez itt egy ábrajegyzéket készít, pedig ábráink még nincsenek. De sebaj, később lesznek. Ide ki fogja gyűjteni őket. Feltéve, ha PDF a kimenet, ugyanis Wordben és HTML-ben nincs se ábrajegyzék, se új oldal előtte és utána.
---->
-
-\listoffigures
-\listoftables
-\pagebreak
 
 # Results
 
@@ -89,7 +65,15 @@ Ez itt egy ábrajegyzéket készít, pedig ábráink még nincsenek. De sebaj, k
 # biblio-style: apalike
 # link-citations: yes
 
+
 source(here::here("inst","functions","load_stuff.r"))
+
+relpath <- "inst/example_cookbook" %>%
+             file.path(here::here(),.)
+
+fig_directory     <- paste0(relpath, "/figures/")
+fig_directory_ext <- paste0(relpath, "/figures_ext/")
+
 
 knitr::opts_chunk$set(
     echo = FALSE,                           # Ne mutassa a kódokat
@@ -100,16 +84,14 @@ knitr::opts_chunk$set(
     out.width = '90%',                      # Ábra szélessége, alter.: #fig.fullwidth = TRUE,
     fig.asp = .75,                          # Ábra Hossz/szélesség
     tidy.opts = list(width.cutoff = 60),    # legyenek 60 karakter szélességűre tördelve
-    tidy = "styler",                        # legyenek clean codingra megformázva
+    tidy = TRUE,#"styler",                        # legyenek clean codingra megformázva
     dev = 'png',#'tiff',                            # PNG legyen az alapértelmezett képformátum
     compression = 'lzw',
     dpi = 300,                              # a PNG képek elég jó minőségűek legyenek
-    fig.pos = 'H'                           # nem próbálja az ábrákat az oldal tetejére tenni
+    fig.pos = 'H',                          # nem próbálja az ábrákat az oldal tetejére tenni
+    fig.path = fig_directory                # Ábra kimenet helye
   )
 
-
-graphics_path <- "../inst/figure/"            # a máshonnan származó ábrák elérési útja
-graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 options(scipen = 1) # Require 5 instead of 4 for scientific notation (eg. for p-values)
 options(digits = 3) # default no. of digits (!) 
@@ -127,7 +109,7 @@ Ez segít abban, hogy nagyobb magsságú képek se kerüljenek túl messze a chu
 A következő parancs állítja be, hogy milyen könyvtárban keresse a képeket, amiket nem saját maga állít elő. A belső kapcsos zárójelpárból több is lehet, akkor több könyvtárat is néz. 
 --->
 
-\graphicspath{ {../figure} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
+<!-- \graphicspath{ {`r fig_directory_ext`} } -->
 
 <!---
 
@@ -150,30 +132,40 @@ plot(x,y)
 ```
 
 <!---
-Nagyon érzékeny a filenév a futási helyre meg úgy általában mindenre. Borzasztó, a 
-\graphicspath parancs nem sok mindent csinál (nálam).
-Amondó vagyok, hogy kézzel minen kimenetet egy adott mappába rángassunk, és onnan olvassuk majd be. Kár.
-
+Itt egy fortély side-by-side ábrák ábrázolásához.
+This sets up a borderless table with two figures in it.
+Workes with pagedown
 ---->
 
-\begin{figure}[H]
-\begin{multicols}{2}
-\begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name-1.png}
-\caption{Plot the first}
-\label{fig:plotmeans}
-\end{figure}
 
-\columnbreak
 
-\begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name-2.png}
-\centering
-\caption{Plot the second}
-\label{fig:histogram}
-\end{figure}
-\end{multicols}
-\end{figure}
+
+```{r}
+
+plot_a_path <- paste0( fig_directory_ext, 
+          "mandatory_chunk_name-1.png")
+
+plot_b_path <- paste0( fig_directory_ext,
+          "/mandatory_chunk_name-2.jpg")
+
+```
+
+
+
+<table style="border: none">
+<tr>
+<td>
+![Caption for image 1](`r plot_a_path`)
+</td>
+<td>
+![Caption for image 2](`r plot_b_path`)
+</td>
+</tr>
+</table>
+
+
+
+
 
 \newpage
 
@@ -271,7 +263,10 @@ A kódból hivatkozott fileok meg - nahát - child Rmd-k normálisan működnek
 
 --->
 
-```{r child = here::here("inst", "_01_chap1.rmd")}
+# Cyclic child Rmd call
+  
+
+```{r child = here::here("inst", "example_cookbook", "_01_chap1.rmd")}
 
 ```
 
@@ -280,18 +275,33 @@ A kódból hivatkozott fileok meg - nahát - child Rmd-k normálisan működnek
 
 ```{r child-cycle}
 valtozok <- c("cyl", "gear", "carb")
-out <- NULL
 
+# Get the current value
+current_fig_path <- knitr::opts_chunk$get('fig.path')
+
+out <- NULL
 for (i in 1:length(valtozok)) {
   out <- c(out, paste0("\n### ", valtozok[i], "\n")) # Defining "title"
+  
+  # Set the fig.path for each iteration
+  fig_path <- knitr::current_input() %>% 
+                dirname() %>%
+                paste0("/figure_cycl/")
+  
   params <- list(x              = valtozok[i],
                  top_level      = 4,
                  figname_prefix = valtozok[i])
   out <- c(out,
-           knitr::knit_child(here::here("inst",'cyclic_chap2.Rmd'),
-                             quiet = T))
+           knitr::knit_child(here::here("inst","example_cookbook",'cyclic_chap2.Rmd'),
+                             quiet = T,
+                             options = opts_chunk$get() 
+           #envir = globalenv()
+                             ))
 }
 out <- paste(out, collapse = "\n")
+
+# Reset fig.path to its default value
+knitr::opts_chunk$set(fig.path = current_fig_path)
 
 ```
 
@@ -300,6 +310,9 @@ Inserting the de-facto-honest-to-god output of the cyclic child .rmd call.
 'Out' is the tex(?) output of the child .rmd file
 --->
 `r out`
+
+
+# Plot compilation to be referenced
 
 ```{r referenced_chunk}
 #| fig.cap = "Executive graph for executive thoughts"
@@ -350,8 +363,7 @@ This is how put all your code into an appendix.
 ```{r}
 #| ref.label=knitr::all_labels(),
 #| echo=TRUE,
-#| eval=FALSE,
-#| tidy=TRUE
+#| eval=FALSE
 
 
 ```

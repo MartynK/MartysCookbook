@@ -3,22 +3,36 @@ title: "**Cookbook**"
 subtitle: |
   | My Subtitle because subtitles are great and long and great and commonly span multiple lines arent they great? arent yours not? I can't believe how long they can be
   | <br><br>
-author: "Márton Kiss"
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
 date: "4242 november 20."
 always_allow_html: yes
-output: 
+number_Sections: yes
+sign_page: true
+output:
   pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
     toc: true
-    number_sections: yes
-    pandoc_args: --mathjax
-    self_contained: yes
+    toc-title: Contents
+    template:
+      template_pdflike.html
   html_document:
     df_print: paged
     keep_tex: yes
     fig_caption: yes
-    toc: yes
-    number_sections: yes
-    css: extra.css
+    toc: no
+    css: styles.css
+bibliography: packages.bib # Causes crash??
+link-citations: yes
 header-includes:
   \usepackage{multicol}
   \usepackage{float}
@@ -33,46 +47,7 @@ header-includes:
 #lang: en-US
 ---
 
-\newpage
 
-$~$\
-$~$\
-$~$\
-$~$\
-
-I affirm that all results presented withtin are current and correct to the best of my knowledge
-
-$~$\
-$~$\
-$~$\
-
-Author Authorovich MD 
-
-
-$~$\
-$~$\
-$~$\
-$~$\
-
-Date and Signature: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-$~$\
-$~$\
-$~$\
-$~$\
-
-## Version control {.unnumbered}
-
-v.1.0 -- Initial version 
-
-\newpage
-
-<!---
-Ez itt egy ábrajegyzéket készít, pedig ábráink még nincsenek. De sebaj, később lesznek. Ide ki fogja gyűjteni őket. Feltéve, ha PDF a kimenet, ugyanis Wordben és HTML-ben nincs se ábrajegyzék, se új oldal előtte és utána.
---->
-
-\listoffigures
-\listoftables
-\pagebreak
 
 # Results
 
@@ -88,7 +63,7 @@ Ez segít abban, hogy nagyobb magsságú képek se kerüljenek túl messze a chu
 A következő parancs állítja be, hogy milyen könyvtárban keresse a képeket, amiket nem saját maga állít elő. A belső kapcsos zárójelpárból több is lehet, akkor több könyvtárat is néz. 
 --->
 
-\graphicspath{ {../figure} {../inst/cookbook_files/figure-latex/} {../figure-latex/} {../inst/01_chap1_files/figure-latex/}}
+<!-- \graphicspath{ {C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures_ext/} } -->
 
 <!---
 
@@ -103,35 +78,37 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non e
 Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
 
 <div class="figure" style="text-align: center">
-<img src="figure/chunk-a-1.png" alt="Executive graph for executive thoughts" width="90%" />
+<img src="C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures/chunk-a-1.png" alt="Executive graph for executive thoughts" width="90%" />
 <p class="caption">Executive graph for executive thoughts</p>
 </div>
 
 <!---
-Nagyon érzékeny a filenév a futási helyre meg úgy általában mindenre. Borzasztó, a 
-\graphicspath parancs nem sok mindent csinál (nálam).
-Amondó vagyok, hogy kézzel minen kimenetet egy adott mappába rángassunk, és onnan olvassuk majd be. Kár.
-
+Itt egy fortély side-by-side ábrák ábrázolásához.
+This sets up a borderless table with two figures in it.
+Workes with pagedown
 ---->
 
-\begin{figure}[H]
-\begin{multicols}{2}
-\begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name-1.png}
-\caption{Plot the first}
-\label{fig:plotmeans}
-\end{figure}
 
-\columnbreak
 
-\begin{figure}[H]
-\includegraphics[width = \linewidth]{mandatory_chunk_name-2.png}
-\centering
-\caption{Plot the second}
-\label{fig:histogram}
-\end{figure}
-\end{multicols}
-\end{figure}
+
+
+
+
+
+<table style="border: none">
+<tr>
+<td>
+![Caption for image 1](C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures_ext/mandatory_chunk_name-1.png)
+</td>
+<td>
+![Caption for image 2](C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures_ext//mandatory_chunk_name-2.jpg)
+</td>
+</tr>
+</table>
+
+
+
+
 
 \newpage
 
@@ -227,6 +204,9 @@ A kódból hivatkozott fileok meg - nahát - child Rmd-k normálisan működnek
 
 --->
 
+# Cyclic child Rmd call
+  
+
 
 
 
@@ -263,44 +243,6 @@ A kódból hivatkozott fileok meg - nahát - child Rmd-k normálisan működnek
 
 ## Chapter title 
 
-### Relevelling 
-
-_Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie._
-
-Sorry, the below is a dull example of releveling:
-
-
-```r
-# This is an example of factor releveling snatched from
-# https://www.tutorialspoint.com/r/r_factors.htm
-
-data_f <- c("East", "West", "East", "North", "North", "East",
-    "West", "West", "West", "East", "North")
-# Create the factors
-factor_data <- factor(data_f)
-print(factor_data)
-```
-
-```
-##  [1] East  West  East  North North East  West  West  West  East  North
-## Levels: East North West
-```
-
-```r
-# Apply the factor function with required order of the
-# level.
-new_order_data <- factor(factor_data, levels = c("East", "West",
-    "North"))
-print(new_order_data)
-```
-
-```
-##  [1] East  West  East  North North East  West  West  West  East  North
-## Levels: East West North
-```
-
-Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
-
 
 ### Side-by-side log graphs
 
@@ -312,7 +254,7 @@ Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed
 
 
 <div class="figure" style="text-align: center">
-<img src="figure/two_log_norm_plot-1.png" alt="Title of the plot above" width="90%" />
+<img src="C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures/two_log_norm_plot-1.png" alt="Title of the plot above" width="90%" />
 <p class="caption">Title of the plot above</p>
 </div>
 
@@ -359,7 +301,7 @@ Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed
 
 
 
-<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 40%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
+<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 40%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-17">
 <caption style="caption-side: top; text-align: center;">Plot without much thought or meaning</caption><col><col><col><col><tr>
 <th style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"></th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"><p><strong>Setosa</strong>, N = 50</p>
 </th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold; font-size: 7pt;"><p><strong>Verginica</strong>, N = 50</p>
@@ -386,7 +328,7 @@ Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed
 <tr>
 <td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: bold; font-size: 7pt;">This is my new example variable, adding up the lengths</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">3.70 (3.40, 3.90)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.95 (4.63, 5.38)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(230, 230, 230); font-weight: normal; font-size: 7pt;">4.20 (3.73, 4.40)</td></tr>
 <tr>
-<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">9.5 (5.0, 14.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">13.0 (7.0, 17.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">10.0 (5.3, 16.0)</td></tr>
+<td style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: bold; font-size: 7pt;">mock_ID</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">10.5 (5.3, 16.0)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (7.0, 14.8)</td><td style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal; font-size: 7pt;">11.0 (6.0, 17.0)</td></tr>
 </table>
 <!--/html_preserve-->
 
@@ -396,7 +338,7 @@ $~$\
 
 
 
-<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 95%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
+<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 95%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
 <caption style="caption-side: top; text-align: center;">Dis be the second table</caption><col><col><col><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: middle; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">mpg</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">cyl</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">disp</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">hp</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">drat</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">wt</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">qsec</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">vs</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">am</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">gear</th><th style="vertical-align: middle; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0.8pt 0.8pt 0.8pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(204, 204, 204); font-weight: bold;">carb</th></tr>
 <tr>
@@ -440,7 +382,7 @@ $~$\
 --->
 
 <div class="figure" style="text-align: center">
-<img src="figure/raincloud_call-1.png" alt="Raincloud plot(!)" width="90%" />
+<img src="C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures/raincloud_call-1.png" alt="Raincloud plot(!)" width="90%" />
 <p class="caption">Raincloud plot(!)</p>
 </div>
 
@@ -457,7 +399,58 @@ Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper lib
 Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
 
 
+<table style="border-collapse:collapse; border:none;">
+<caption style="font-weight: bold; text-align:left;">Specification of an lmer model</caption>
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">Width of petal (mm)</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Interceeeeept</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.71</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.97&nbsp;&ndash;&nbsp;-0.37</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Length of petal</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.43</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.41&nbsp;&ndash;&nbsp;0.44</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Width of sepal</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.01&nbsp;&ndash;&nbsp;0.17</td>
+</tr>
+<tr>
+<td colspan="3" style="font-weight:bold; text-align:left; padding-top:.8em;">Random Effects</td>
+</tr>
 
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&sigma;<sup>2</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.041</td>
+</tr>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">&tau;<sub>00</sub> <sub>mock_ID</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.000</td>
+
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">N <sub>mock_ID</sub></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">21</td>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">150</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">0.929 / NA</td>
+</tr>
+
+</table>
 
 These are some texts.
 
@@ -465,12 +458,12 @@ These are some texts.
 The below html -> png -> include stuff doesn't work in case of html output (for some reason)
 --->
 
-\begin{figure}[H]
-\includegraphics[width = 30em]{figure/webshot.png}
-\centering
-\caption{Ezt nem az R készítette}
-\label{fig:webshot_sjPlot}
-\end{figure}
+<!-- \begin{figure}[H] -->
+<!-- \includegraphics[width = 30em]{figure/webshot.png} -->
+<!-- \centering -->
+<!-- \caption{Ezt nem az R készítette} -->
+<!-- \label{fig:webshot_sjPlot} -->
+<!-- \end{figure} -->
 
 Cashycashing....
 
@@ -479,7 +472,7 @@ Cashycashing....
 plottyplotting...
 
 <div class="figure" style="text-align: center">
-<img src="figure/lmer_predictions-1.png" alt="lmer predictions with bootstrap and labelled facets" width="90%" />
+<img src="C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures/lmer_predictions-1.png" alt="lmer predictions with bootstrap and labelled facets" width="90%" />
 <p class="caption">lmer predictions with bootstrap and labelled facets</p>
 </div>
 
@@ -490,8 +483,8 @@ trying to actually do the plot
 
 
 <div class="figure" style="text-align: center">
-<img src="figure/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11" width="90%" />
-<p class="caption">plot of chunk unnamed-chunk-11</p>
+<img src="C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures/unnamed-chunk-20-1.png" alt="plot of chunk unnamed-chunk-20" width="90%" />
+<p class="caption">plot of chunk unnamed-chunk-20</p>
 </div>
 
 --->
@@ -501,7 +494,7 @@ trying to actually do the plot
 
 
 <div class="figure" style="text-align: center">
-<img src="figure/ggpairs_plot-1.png" alt="Especially Cool 'pairs' plot" width="90%" />
+<img src="C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures/ggpairs_plot-1.png" alt="Especially Cool 'pairs' plot" width="90%" />
 <p class="caption">Especially Cool 'pairs' plot</p>
 </div>
 
@@ -520,7 +513,7 @@ mert HTML Widgetet csinál :()
 
 
 
-
+# This is the end of the 1st child document
 
 
 
@@ -590,8 +583,8 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{Frequency of carb categories}
- \label{tab:unnamed-chunk-14}
+\caption{Frequency of cyl categories}
+ \label{tab:unnamed-chunk-23}
 \setlength{\tabcolsep}{0pt}
 \begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
 
@@ -608,50 +601,29 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{carb}\huxbpad{6pt}}} &
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{cyl}\huxbpad{6pt}}} &
 \multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{1}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 11 (34\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{2}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{3}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3 (9.4\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 14 (44\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
@@ -664,29 +636,37 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 
 #### Figures
 
+<div class="figure" style="text-align: center">
+<img src="./figures/cyl-fig1-unnamed-chunk-24-1.png" alt="\label{fig:param_plot12}A negyedik paraméteres kód ábrái" width="45%" />
+<p class="caption">\label{fig:param_plot12}A negyedik paraméteres kód ábrái</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/cyl-fig1-unnamed-chunk-24-2.png" alt="\label{fig:param_plot12}A negyedik paraméteres kód ábrái" width="45%" />
+<p class="caption">\label{fig:param_plot12}A negyedik paraméteres kód ábrái</p>
+</div>
+
 
 
 \begin{figure}[h]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
+\includegraphics[width = \linewidth]{./figures/cyl-fig1-1}
 \caption{Bal oldali ábra}
-\label{fig:bar2_a8}
+\label{fig:bar2_a2}
 \end{figure}
 
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
+\includegraphics[width = \linewidth]{./figures/cyl-fig1-2}
 \centering
 \caption{Jobb oldali ábra}
-\label{fig:bar2_b8}
+\label{fig:bar2_b2}
 \end{figure}
 \end{multicols}
 \end{figure}
 
 
-És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot12}. ábrára.
 
 
 
@@ -745,8 +725,8 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{centerbox}
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
-\caption{Frequency of carb categories}
- \label{tab:unnamed-chunk-18}
+\caption{Frequency of gear categories}
+ \label{tab:unnamed-chunk-27}
 \setlength{\tabcolsep}{0pt}
 \begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
 
@@ -763,50 +743,29 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{carb}\huxbpad{6pt}}} &
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textbf{gear}\huxbpad{6pt}}} &
 \multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering \huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{1}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 7 (22\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{2}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
 \multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{3}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 3 (9.4\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 15 (47\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
 \multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{4}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 10 (31\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 12 (38\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
 \arrayrulecolor{black}
 
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{6}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
-
-
-\hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
-\arrayrulecolor{black}
-
-\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{8}\huxbpad{6pt}}} &
-\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{242, 242, 242}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 1 (3.1\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
+\multicolumn{1}{!{\huxvb{0, 0, 0}{0.8}}m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\raggedright \textit{5}\huxbpad{6pt}}} &
+\multicolumn{1}{m{0.475\textwidth}!{\huxvb{0, 0, 0}{0.8}}}{\cellcolor[RGB]{230, 230, 230}\hspace{6pt}\parbox[c]{0.475\textwidth-6pt-6pt}{\huxtpad{6pt + 1em}\centering 5 (16\%)\huxbpad{6pt}}} \tabularnewline[-0.5pt]
 
 
 \hhline{>{\huxb{0, 0, 0}{0.8}}->{\huxb{0, 0, 0}{0.8}}-}
@@ -819,29 +778,37 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 
 #### Figures
 
+<div class="figure" style="text-align: center">
+<img src="./figures/gear-fig1-unnamed-chunk-28-1.png" alt="\label{fig:param_plot14}A negyedik paraméteres kód ábrái" width="45%" />
+<p class="caption">\label{fig:param_plot14}A negyedik paraméteres kód ábrái</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/gear-fig1-unnamed-chunk-28-2.png" alt="\label{fig:param_plot14}A negyedik paraméteres kód ábrái" width="45%" />
+<p class="caption">\label{fig:param_plot14}A negyedik paraméteres kód ábrái</p>
+</div>
+
 
 
 \begin{figure}[h]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
+\includegraphics[width = \linewidth]{./figures/gear-fig1-1}
 \caption{Bal oldali ábra}
-\label{fig:bar2_a8}
+\label{fig:bar2_a4}
 \end{figure}
 
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
+\includegraphics[width = \linewidth]{./figures/gear-fig1-2}
 \centering
 \caption{Jobb oldali ábra}
-\label{fig:bar2_b8}
+\label{fig:bar2_b4}
 \end{figure}
 \end{multicols}
 \end{figure}
 
 
-És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot14}. ábrára.
 
 
 
@@ -901,7 +868,7 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 \begin{threeparttable}
 \captionsetup{justification=centering,singlelinecheck=off}
 \caption{Frequency of carb categories}
- \label{tab:unnamed-chunk-22}
+ \label{tab:unnamed-chunk-31}
 \setlength{\tabcolsep}{0pt}
 \begin{tabularx}{0.95\textwidth}{p{0.475\textwidth} p{0.475\textwidth}}
 
@@ -974,35 +941,46 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 
 #### Figures
 
+<div class="figure" style="text-align: center">
+<img src="./figures/carb-fig1-unnamed-chunk-32-1.png" alt="\label{fig:param_plot16}A negyedik paraméteres kód ábrái" width="45%" />
+<p class="caption">\label{fig:param_plot16}A negyedik paraméteres kód ábrái</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/carb-fig1-unnamed-chunk-32-2.png" alt="\label{fig:param_plot16}A negyedik paraméteres kód ábrái" width="45%" />
+<p class="caption">\label{fig:param_plot16}A negyedik paraméteres kód ábrái</p>
+</div>
+
 
 
 \begin{figure}[h]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-1}
+\includegraphics[width = \linewidth]{./figures/carb-fig1-1}
 \caption{Bal oldali ábra}
-\label{fig:bar2_a8}
+\label{fig:bar2_a6}
 \end{figure}
 
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{cookbook_files/figure-latex/carb-fig1-2}
+\includegraphics[width = \linewidth]{./figures/carb-fig1-2}
 \centering
 \caption{Jobb oldali ábra}
-\label{fig:bar2_b8}
+\label{fig:bar2_b6}
 \end{figure}
 \end{multicols}
 \end{figure}
 
 
-És még hivatkozni is tudunk a(z) \ref{fig:param_plot18}. ábrára.
+És még hivatkozni is tudunk a(z) \ref{fig:param_plot16}. ábrára.
 
 
 
+
+
+# Plot compilation to be referenced
 
 <div class="figure" style="text-align: center">
-<img src="figure/referenced_chunk-1.png" alt="Executive graph for executive thoughts" width="90%" />
+<img src="C:/OneDrive_DKM/-/Dinamikus Kiválóság Menedzsment - General/Stats_R/R/MartysCookbook/inst/example_cookbook/figures/referenced_chunk-1.png" alt="Executive graph for executive thoughts" width="90%" />
 <p class="caption">Executive graph for executive thoughts</p>
 </div>
 
@@ -1023,7 +1001,7 @@ Other information regarding the compilation of this document:
 Example of printing chunk stuff without the hideous '##' 
 --->
 
-Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.22; Allaire J et al., 2023), lme4 (version 1.1.33; Bates D et al., 2015), Matrix (version 1.5.4.1; Bates D et al., 2023), effects (version 4.2.2; Fox J, Weisberg S, 2019), carData (version 3.0.5; Fox J et al., 2022), lubridate (version 1.9.2; Grolemund G, Wickham H, 2011), DHARMa (version 0.4.6; Hartig F, 2022), huxtable (version 5.5.2; Hugh-Jones D, 2022), MartysCookbook (version 0.2.0; Kiss M, ????), labelled (version 2.11.0; Larmarange J, 2023), emmeans (version 1.8.6; Lenth R, 2023), report (version 0.5.7; Makowski D et al., 2023), nlme (version 3.1.162; Pinheiro J et al., 2023), gtsummary (version 1.7.1; Sjoberg D et al., 2021), testthat (version 3.1.8; Wickham H, 2011), ggplot2 (version 3.4.2; Wickham H, 2016), readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.2; Wickham H et al., 2023), tidyr (version 1.3.0; Wickham H et al., 2023), formatR (version 1.14; Xie Y, 2023), knitr (version 1.43; Xie Y, 2023), pagedown (version 0.20; Xie Y et al., 2022) and kableExtra (version 1.3.4; Zhu H, 2021).
+Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.22; Allaire J et al., 2023), lme4 (version 1.1.33; Bates D et al., 2015), Matrix (version 1.5.4.1; Bates D et al., 2023), effects (version 4.2.2; Fox J, Weisberg S, 2019), carData (version 3.0.5; Fox J et al., 2022), lubridate (version 1.9.2; Grolemund G, Wickham H, 2011), DHARMa (version 0.4.6; Hartig F, 2022), huxtable (version 5.5.2; Hugh-Jones D, 2022), labelled (version 2.11.0; Larmarange J, 2023), emmeans (version 1.8.6; Lenth R, 2023), nlme (version 3.1.162; Pinheiro J et al., 2023), gtsummary (version 1.7.1; Sjoberg D et al., 2021), ggplot2 (version 3.4.2; Wickham H, 2016), readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.2; Wickham H et al., 2023), knitr (version 1.43; Xie Y, 2023), pagedown (version 0.20; Xie Y et al., 2022) and kableExtra (version 1.3.4; Zhu H, 2021).
 
 References
 ----------
@@ -1035,20 +1013,15 @@ References
   - Grolemund G, Wickham H (2011). "Dates and Times Made Easy with lubridate." _Journal of Statistical Software_, *40*(3), 1-25. <https://www.jstatsoft.org/v40/i03/>.
   - Hartig F (2022). _DHARMa: Residual Diagnostics for Hierarchical (Multi-Level / Mixed) Regression Models_. R package version 0.4.6, <https://CRAN.R-project.org/package=DHARMa>.
   - Hugh-Jones D (2022). _huxtable: Easily Create and Style Tables for LaTeX, HTML and Other Formats_. R package version 5.5.2, <https://CRAN.R-project.org/package=huxtable>.
-  - Kiss M (????). _MartysCookbook: My book of tips & tricks for nice reports_. R package version 0.2.0.
   - Larmarange J (2023). _labelled: Manipulating Labelled Data_. R package version 2.11.0, <https://CRAN.R-project.org/package=labelled>.
   - Lenth R (2023). _emmeans: Estimated Marginal Means, aka Least-Squares Means_. R package version 1.8.6, <https://CRAN.R-project.org/package=emmeans>.
-  - Makowski D, Lüdecke D, Patil I, Thériault R, Ben-Shachar M, Wiernik B (2023). "Automated Results Reporting as a Practical Tool to Improve Reproducibility and Methodological Best Practices Adoption." _CRAN_. <https://easystats.github.io/report/>.
   - Pinheiro J, Bates D, R Core Team (2023). _nlme: Linear and Nonlinear Mixed Effects Models_. R package version 3.1-162, <https://CRAN.R-project.org/package=nlme>.
   - R Core Team (2023). _R: A Language and Environment for Statistical Computing_. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
   - Sjoberg D, Whiting K, Curry M, Lavery J, Larmarange J (2021). "Reproducible Summary Tables with the gtsummary Package." _The R Journal_, *13*, 570-580. , <https://doi.org/10.32614/RJ-2021-053>.
-  - Wickham H (2011). "testthat: Get Started with Testing." _The R Journal_, *3*, 5-10. <https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf>.
   - Wickham H (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. ISBN 978-3-319-24277-4, <https://ggplot2.tidyverse.org>.
   - Wickham H, Bryan J (2023). _readxl: Read Excel Files_. R package version 1.4.2, <https://CRAN.R-project.org/package=readxl>.
   - Wickham H, Danenberg P, Csárdi G, Eugster M (2022). _roxygen2: In-Line Documentation for R_. R package version 7.2.3, <https://CRAN.R-project.org/package=roxygen2>.
   - Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.2, <https://CRAN.R-project.org/package=dplyr>.
-  - Wickham H, Vaughan D, Girlich M (2023). _tidyr: Tidy Messy Data_. R package version 1.3.0, <https://CRAN.R-project.org/package=tidyr>.
-  - Xie Y (2023). _formatR: Format R Code Automatically_. R package version 1.14, <https://CRAN.R-project.org/package=formatR>.
   - Xie Y (2023). _knitr: A General-Purpose Package for Dynamic Report Generation in R_. R package version 1.43, <https://yihui.org/knitr/>.
   - Xie Y, Lesur R, Thorne B, Tan X (2022). _pagedown: Paginate the HTML Output of R Markdown with CSS for Print_. R package version 0.20, <https://CRAN.R-project.org/package=pagedown>.
   - Zhu H (2021). _kableExtra: Construct Complex Table with 'kable' and Pipe Syntax_. R package version 1.3.4, <https://CRAN.R-project.org/package=kableExtra>.
@@ -1057,7 +1030,7 @@ This document was compiled at:
 
 
 ```
-[1] "2023-06-09 16:33:11 CEST"
+[1] "2023-06-29 15:17:58 CEST"
 ```
 
 
@@ -1079,7 +1052,15 @@ This is how put all your code into an appendix.
 # biblio-style: apalike
 # link-citations: yes
 
+
 source(here::here("inst","functions","load_stuff.r"))
+
+relpath <- "inst/example_cookbook" %>%
+             file.path(here::here(),.)
+
+fig_directory     <- paste0(relpath, "/figures/")
+fig_directory_ext <- paste0(relpath, "/figures_ext/")
+
 
 knitr::opts_chunk$set(
     echo = FALSE,                           # Ne mutassa a kódokat
@@ -1090,16 +1071,14 @@ knitr::opts_chunk$set(
     out.width = '90%',                      # Ábra szélessége, alter.: #fig.fullwidth = TRUE,
     fig.asp = .75,                          # Ábra Hossz/szélesség
     tidy.opts = list(width.cutoff = 60),    # legyenek 60 karakter szélességűre tördelve
-    tidy = "styler",                        # legyenek clean codingra megformázva
+    tidy = TRUE,#"styler",                        # legyenek clean codingra megformázva
     dev = 'png',#'tiff',                            # PNG legyen az alapértelmezett képformátum
     compression = 'lzw',
     dpi = 300,                              # a PNG képek elég jó minőségűek legyenek
-    fig.pos = 'H'                           # nem próbálja az ábrákat az oldal tetejére tenni
+    fig.pos = 'H',                          # nem próbálja az ábrákat az oldal tetejére tenni
+    fig.path = fig_directory                # Ábra kimenet helye
   )
 
-
-graphics_path <- "../inst/figure/"            # a máshonnan származó ábrák elérési útja
-graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 options(scipen = 1) # Require 5 instead of 4 for scientific notation (eg. for p-values)
 options(digits = 3) # default no. of digits (!) 
@@ -1107,21 +1086,43 @@ options(encoding = "UTF-8")
 
 plot(x,y)
 
+
+plot_a_path <- paste0( fig_directory_ext, 
+          "mandatory_chunk_name-1.png")
+
+plot_b_path <- paste0( fig_directory_ext,
+          "/mandatory_chunk_name-2.jpg")
+
 save.image( file = here::here("inst","states", "before_chap1.Rdata"))
 
 valtozok <- c("cyl", "gear", "carb")
-out <- NULL
 
+# Get the current value
+current_fig_path <- knitr::opts_chunk$get('fig.path')
+
+out <- NULL
 for (i in 1:length(valtozok)) {
   out <- c(out, paste0("\n### ", valtozok[i], "\n")) # Defining "title"
+  
+  # Set the fig.path for each iteration
+  fig_path <- knitr::current_input() %>% 
+                dirname() %>%
+                paste0("/figure_cycl/")
+  
   params <- list(x              = valtozok[i],
                  top_level      = 4,
                  figname_prefix = valtozok[i])
   out <- c(out,
-           knitr::knit_child(here::here("inst",'cyclic_chap2.Rmd'),
-                             quiet = T))
+           knitr::knit_child(here::here("inst","example_cookbook",'cyclic_chap2.Rmd'),
+                             quiet = T,
+                             options = opts_chunk$get() 
+           #envir = globalenv()
+                             ))
 }
 out <- paste(out, collapse = "\n")
+
+# Reset fig.path to its default value
+knitr::opts_chunk$set(fig.path = current_fig_path)
 
 set.seed(12345)
 
@@ -1143,19 +1144,6 @@ source(here::here("inst","functions","load_stuff.r"))
 load( file = here::here("inst","states", "before_chap1.Rdata"))
 
 graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
-
-# This is an example of factor releveling snatched from
-# https://www.tutorialspoint.com/r/r_factors.htm
-
-data_f <- c("East","West","East","North","North","East","West",
-   "West","West","East","North")
-# Create the factors
-factor_data <- factor(data_f)
-print(factor_data)
-
-# Apply the factor function with required order of the level.
-new_order_data <- factor(factor_data,levels = c("East","West","North"))
-print(new_order_data)
 
 
 
@@ -1313,14 +1301,15 @@ sjPlot::tab_model(mod,
   )
 
 
-  # The "webshot2" stuff needs to be done 'invisibly' or else it 
-  # spawns a copy of the previous image  
-invisible({
-  #taking a 'snapshot' of the html and converting it to .png
-  webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
-                    cliprect = c(0,0,400,400),
-                    file = here::here("inst","figure","webshot.png"))
-})
+## Overly complicated shit for getting the output for .PDF without pagedown
+#   # The "webshot2" stuff needs to be done 'invisibly' or else it 
+#   # spawns a copy of the previous image  
+# invisible({
+#   #taking a 'snapshot' of the html and converting it to .png
+#   webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
+#                     cliprect = c(0,0,400,400),
+#                     file = here::here("inst","figure","webshot.png"))
+# })
 
 
 
@@ -1410,27 +1399,27 @@ plot_ggpairs <-
 # save(a, file = "omgomgomgomg2.rdata")
 
 ## MOTHERf... auto-prioritized this chunk and libraries were not loaded. 
-## Setting up ref. fixed the issue.
+## Setting up ref. fixed the issue (until it didnt for some reason.
 
-fortunes::read.fortunes() %>% 
-  .[1:50,c(2,1)] %>%
-  # Sometimes you have to specify everything if you want to deviate
-  # from the standard look (here: do a longtable)
-  kable(format = "latex", 
-                    longtable = TRUE, # Doesn't work with scale_down
-                    booktabs = TRUE,
-                    linesep = "",
-                    caption = "Wise R sayings",
-                    align = "c") %>%
-  row_spec(0, bold = T) %>%
-  kable_styling( position = "center",
-                 latex_options = c("striped","repeat_header"
-                                   #,"scale_down"
-                                   ),
-                 stripe_color = "gray!05") %>%
-  landscape() %>%
-  column_spec(column = 2, width = "50em") %>%
-  kable_styling(font_size = 7)
+# fortunes::read.fortunes() %>% 
+#   .[1:50,c(2,1)] %>%
+#   # Sometimes you have to specify everything if you want to deviate
+#   # from the standard look (here: do a longtable)
+#   kable(format = "latex", 
+#                     longtable = TRUE, # Doesn't work with scale_down
+#                     booktabs = TRUE,
+#                     linesep = "",
+#                     caption = "Wise R sayings",
+#                     align = "c") %>%
+#   row_spec(0, bold = T) %>%
+#   kable_styling( position = "center",
+#                  latex_options = c("striped","repeat_header"
+#                                    #,"scale_down"
+#                                    ),
+#                  stripe_color = "gray!05") %>%
+#   landscape() %>%
+#   column_spec(column = 2, width = "50em") %>%
+#   kable_styling(font_size = 7)
 
 
 
@@ -1440,7 +1429,6 @@ fortunes::read.fortunes() %>%
 source(here::here("inst","functions","load_stuff.r")) # for independent compilation
 load( file = here::here("inst","states", "before_chap2.Rdata"))
 
-graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 if(!exists("child_counter")) {
   child_counter <- 1
@@ -1453,10 +1441,22 @@ if(!exists("params")) {
                    top_level      = 4,
                    figname_prefix = "cyl"
     )
-    }
+}
+
+fig_directory <-  here::here("figures_local")
+try( silent = TRUE, 
+     expr = {
+        fig_directory <- 
+          knitr::current_input() %>% 
+          dirname() %>% 
+          paste0("/figures/")
+      })
 
 knitr::opts_chunk$set(fig.process = function(x) {
-  x2 = sub(paste0(knitr::opts_current$get("label"), '-'), '', x, fixed = T)
+  x2 <- knitr::opts_current$get("label") %>%
+          paste0(., '-') %>%
+            sub(., '', x, fixed = T) %>%
+              paste0(fig_directory,"/",.)
   if (file.rename(x, x2)) x2 else x
 })
 
@@ -1486,7 +1486,13 @@ mtcars %>%
 
 rm(my)
 
-knitr::opts_chunk$set(fig.process = NULL)
+# resetting stuff
+knitr::opts_chunk$set(
+  fig.process = NULL # Critical, leads to nasty complications if removed
+                      # This auto-renames output figs and is called afterwards if not reset
+
+  )
+
 
 # Defining stuff, including the renaming scheme, and the structure of the output
 
@@ -1494,7 +1500,6 @@ knitr::opts_chunk$set(fig.process = NULL)
 source(here::here("inst","functions","load_stuff.r")) # for independent compilation
 load( file = here::here("inst","states", "before_chap2.Rdata"))
 
-graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 if(!exists("child_counter")) {
   child_counter <- 1
@@ -1507,10 +1512,22 @@ if(!exists("params")) {
                    top_level      = 4,
                    figname_prefix = "cyl"
     )
-    }
+}
+
+fig_directory <-  here::here("figures_local")
+try( silent = TRUE, 
+     expr = {
+        fig_directory <- 
+          knitr::current_input() %>% 
+          dirname() %>% 
+          paste0("/figures/")
+      })
 
 knitr::opts_chunk$set(fig.process = function(x) {
-  x2 = sub(paste0(knitr::opts_current$get("label"), '-'), '', x, fixed = T)
+  x2 <- knitr::opts_current$get("label") %>%
+          paste0(., '-') %>%
+            sub(., '', x, fixed = T) %>%
+              paste0(fig_directory,"/",.)
   if (file.rename(x, x2)) x2 else x
 })
 
@@ -1540,7 +1557,13 @@ mtcars %>%
 
 rm(my)
 
-knitr::opts_chunk$set(fig.process = NULL)
+# resetting stuff
+knitr::opts_chunk$set(
+  fig.process = NULL # Critical, leads to nasty complications if removed
+                      # This auto-renames output figs and is called afterwards if not reset
+
+  )
+
 
 # Defining stuff, including the renaming scheme, and the structure of the output
 
@@ -1548,7 +1571,6 @@ knitr::opts_chunk$set(fig.process = NULL)
 source(here::here("inst","functions","load_stuff.r")) # for independent compilation
 load( file = here::here("inst","states", "before_chap2.Rdata"))
 
-graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 if(!exists("child_counter")) {
   child_counter <- 1
@@ -1561,10 +1583,22 @@ if(!exists("params")) {
                    top_level      = 4,
                    figname_prefix = "cyl"
     )
-    }
+}
+
+fig_directory <-  here::here("figures_local")
+try( silent = TRUE, 
+     expr = {
+        fig_directory <- 
+          knitr::current_input() %>% 
+          dirname() %>% 
+          paste0("/figures/")
+      })
 
 knitr::opts_chunk$set(fig.process = function(x) {
-  x2 = sub(paste0(knitr::opts_current$get("label"), '-'), '', x, fixed = T)
+  x2 <- knitr::opts_current$get("label") %>%
+          paste0(., '-') %>%
+            sub(., '', x, fixed = T) %>%
+              paste0(fig_directory,"/",.)
   if (file.rename(x, x2)) x2 else x
 })
 
@@ -1594,6 +1628,11 @@ mtcars %>%
 
 rm(my)
 
-knitr::opts_chunk$set(fig.process = NULL)
+# resetting stuff
+knitr::opts_chunk$set(
+  fig.process = NULL # Critical, leads to nasty complications if removed
+                      # This auto-renames output figs and is called afterwards if not reset
+
+  )
 ```
 

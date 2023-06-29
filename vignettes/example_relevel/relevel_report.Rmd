@@ -77,7 +77,7 @@ iris_recode <- iris %>%
 
 And to test the results, lets see what a printout would say. Can I reference said table? Lets try (\@ref(tab:atable)):
 
-```{r }
+```{r atable}
 
 set.seed(12345)
 
@@ -88,6 +88,8 @@ iris_recode %>%
                  caption = "Example cases from the recoded table")
 
 ```
+
+
 
 # Notes
 

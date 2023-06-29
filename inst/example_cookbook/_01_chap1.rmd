@@ -40,30 +40,6 @@ graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrá
 
 ## Chapter title 
 
-### Relevelling 
-
-_Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et justo non erat lobortis tincidunt. In et nunc sollicitudin, pellentesque neque sit amet, blandit mauris. Praesent nunc urna, mattis non risus eu, egestas bibendum nunc. Mauris et hendrerit purus. Morbi posuere nibh erat, vel dignissim nisl fermentum sed. Vivamus nisi tellus, placerat vitae accumsan nec, tincidunt ac leo. Phasellus sed dolor et massa placerat sodales. Nulla facilisi. Sed sed justo nec lacus egestas malesuada hendrerit quis ligula. Vestibulum in purus mattis, elementum quam sit amet, eleifend lorem. Nunc dictum ligula ante, sit amet auctor nisi aliquet non. Donec ullamcorper ultrices molestie._
-
-Sorry, the below is a dull example of releveling:
-
-```{r, echo = TRUE, tidy = TRUE}
-# This is an example of factor releveling snatched from
-# https://www.tutorialspoint.com/r/r_factors.htm
-
-data_f <- c("East","West","East","North","North","East","West",
-   "West","West","East","North")
-# Create the factors
-factor_data <- factor(data_f)
-print(factor_data)
-
-# Apply the factor function with required order of the level.
-new_order_data <- factor(factor_data,levels = c("East","West","North"))
-print(new_order_data)
-
-```
-
-Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper libero tortor accumsan magna. Proin non tortor quis erat tempor fermentum et ut tortor. Praesent elementum tristique sapien a interdum. Aenean sit amet mi a sapien semper ullamcorper. Phasellus quis enim tempor, porttitor odio eu, faucibus libero. Nullam eu eros vitae eros dictum luctus. Mauris congue ante vel laoreet eleifend.
-
 
 ### Side-by-side log graphs
 
@@ -145,7 +121,7 @@ If commas are missing, option will simply not be evaluated
 ```{r}
 #| mandatory_chunk_name,
 #| fig.show='hide', 
-#| fig.path=paste0(graphics_output_path),
+#| fig.path=paste0(fig_directory),
 #| results='hide', 
 #| collapse=T
 
@@ -305,7 +281,7 @@ Nunc sodales, massa ut vehicula auctor, augue felis faucibus urna, et semper lib
 Nunc lobortis sapien ac eros venenatis commodo. Vestibulum a venenatis enim. Sed sit amet lectus gravida quam mollis porttitor eu ut elit. Etiam dolor massa, dignissim et facilisis vitae, congue ac sem. Proin sed sem condimentum, tincidunt sapien eget, accumsan dolor. Aenean varius mi ligula, nec scelerisque ligula dignissim ac. Cras ex magna, feugiat sed libero sed, vestibulum condimentum risus. Sed pretium maximus est, quis imperdiet purus consectetur vestibulum. Phasellus mattis sapien ante, convallis facilisis mi posuere quis. Maecenas id magna scelerisque, ultrices sem viverra, ornare lectus. Ut consectetur eleifend tortor sagittis venenatis. Cras quis lorem et odio tristique gravida. Sed sapien justo, euismod id ligula quis, fringilla egestas nulla. Aenean molestie felis ut aliquam scelerisque. Maecenas id ligula ultricies, tristique sem eu, eleifend est. Cras tempor feugiat nibh sit amet efficitur.
 
 
-```{r, results='hide'}
+```{r}
 
 library(lme4)
 
@@ -338,14 +314,15 @@ sjPlot::tab_model(mod,
   )
 
 
-  # The "webshot2" stuff needs to be done 'invisibly' or else it 
-  # spawns a copy of the previous image  
-invisible({
-  #taking a 'snapshot' of the html and converting it to .png
-  webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
-                    cliprect = c(0,0,400,400),
-                    file = here::here("inst","figure","webshot.png"))
-})
+## Overly complicated shit for getting the output for .PDF without pagedown
+#   # The "webshot2" stuff needs to be done 'invisibly' or else it 
+#   # spawns a copy of the previous image  
+# invisible({
+#   #taking a 'snapshot' of the html and converting it to .png
+#   webshot2::webshot(url=here::here("inst","stuff","temp.html"), 
+#                     cliprect = c(0,0,400,400),
+#                     file = here::here("inst","figure","webshot.png"))
+# })
 
 
 
@@ -357,12 +334,12 @@ These are some texts.
 The below html -> png -> include stuff doesn't work in case of html output (for some reason)
 --->
 
-\begin{figure}[H]
-\includegraphics[width = 30em]{figure/webshot.png}
-\centering
-\caption{Ezt nem az R készítette}
-\label{fig:webshot_sjPlot}
-\end{figure}
+<!-- \begin{figure}[H] -->
+<!-- \includegraphics[width = 30em]{figure/webshot.png} -->
+<!-- \centering -->
+<!-- \caption{Ezt nem az R készítette} -->
+<!-- \label{fig:webshot_sjPlot} -->
+<!-- \end{figure} -->
 
 Cashycashing....
 
@@ -521,7 +498,7 @@ mert HTML Widgetet csinál :()
 
 ```
 
-
+# This is the end of the 1st child document
 
 
 

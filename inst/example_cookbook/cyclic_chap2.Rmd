@@ -43,7 +43,6 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 source(here::here("inst","functions","load_stuff.r")) # for independent compilation
 load( file = here::here("inst","states", "before_chap2.Rdata"))
 
-graphics_output_path <- "cookbook_files/figure-latex/" # az itt generált ábrák elérési útja
 
 if(!exists("child_counter")) {
   child_counter <- 1
@@ -56,10 +55,22 @@ if(!exists("params")) {
                    top_level      = 4,
                    figname_prefix = "cyl"
     )
-    }
+}
+
+fig_directory <-  here::here("figures_local")
+try( silent = TRUE, 
+     expr = {
+        fig_directory <- 
+          knitr::current_input() %>% 
+          dirname() %>% 
+          paste0("/figures/")
+      })
 
 knitr::opts_chunk$set(fig.process = function(x) {
-  x2 = sub(paste0(knitr::opts_current$get("label"), '-'), '', x, fixed = T)
+  x2 <- knitr::opts_current$get("label") %>%
+          paste0(., '-') %>%
+            sub(., '', x, fixed = T) %>%
+              paste0(fig_directory,"/",.)
   if (file.rename(x, x2)) x2 else x
 })
 
@@ -86,9 +97,9 @@ mtcars[[params$x]] %>%
 ```{r,}
 #| fig.cap=paste0('\\label{fig:param_plot1', 
 #| child_counter, '}A negyedik paraméteres kód ábrái'),
-#| out.width='45%', fig.show='hide', 
+#| out.width='45%',
 #| fig.align='center', tidy=F, results='hide', collapse=T,
-#| fig.path=paste0(graphics_output_path, params$figname_prefix, '-fig1-')
+#| fig.path=paste0(fig_directory, params$figname_prefix, '-fig1-')
 
 child_counter <- child_counter + 1
 
@@ -106,10 +117,12 @@ mtcars %>%
 
 ```
 
+
+
 \begin{figure}[h]
 \begin{multicols}{2}
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{`r paste0(graphics_output_path, params$figname_prefix, '-fig1-1')`}
+\includegraphics[width = \linewidth]{`r paste0(fig_directory, params$figname_prefix, '-fig1-1')`}
 \caption{Bal oldali ábra}
 \label{fig:bar2_a`r child_counter`}
 \end{figure}
@@ -117,7 +130,7 @@ mtcars %>%
 \columnbreak
 
 \begin{figure}[H]
-\includegraphics[width = \linewidth]{`r paste0(graphics_output_path, params$figname_prefix, '-fig1-2')`}
+\includegraphics[width = \linewidth]{`r paste0(fig_directory, params$figname_prefix, '-fig1-2')`}
 \centering
 \caption{Jobb oldali ábra}
 \label{fig:bar2_b`r child_counter`}
@@ -131,6 +144,12 @@ mtcars %>%
 ```{r}
 rm(my)
 
-knitr::opts_chunk$set(fig.process = NULL)
+# resetting stuff
+knitr::opts_chunk$set(
+  fig.process = NULL # Critical, leads to nasty complications if removed
+                      # This auto-renames output figs and is called afterwards if not reset
+
+  )
+
 ```
 
