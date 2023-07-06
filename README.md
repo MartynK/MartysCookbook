@@ -43,15 +43,16 @@ Stuff needed in one place (in **vignettes/** directory:
 
 ```
 
-input_file <- here::here("vignettes","example_relevel", "relevel_report.rmd")  
+input_file <- here::here("vignettes","example_relevel", "_relevel_report.rmd")  
 
 precompile_quick_vignette(input_file)  
 
-input_file_q <- here::here("vignettes","example_relevel", "relevel_report_quick.rmd")  
+input_file_q <- here::here("vignettes","example_relevel", "_relevel_report_quick.rmd")  
 
 compile_rmd_multiple_outputs(input_file_q)  
 
-# Make sure the whole directory is in **vignettes/** and run
+# Make sure the whole directory is in **vignettes/** 
+# Make sure the end file doesn't have '_' at the beginning and run
 # Without extension!
 pkgdown::build_article("example_relevel/relevel_report_quick")
 

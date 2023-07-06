@@ -1,0 +1,168 @@
+---
+title: "**Data import example**"
+subtitle: Example of how I import excel data
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
+date: 4242.10.10
+number_Sections: yes
+sign_page: true
+output:
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
+    toc: true
+    toc-title: Contents
+    template:
+      template_pdflike.html
+bibliography: packages.bib # Causes crash??
+link-citations: yes
+header-includes:
+  \DeclareUnicodeCharacter{0081}{ }
+  \DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+  \DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
+  \DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+  \DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+#lang: en-US
+---
+
+```{r setup, include=FALSE, warning = FALSE}
+
+source(here::here("inst","functions","load_stuff.r"))
+
+# gets 'relpath' 
+source(here::here("inst","example_data_import","functions","location_global.r"))
+
+
+functions_directory <- paste0(relpath, "/functions")
+data_directory      <- paste0(relpath, "/data_ext")
+fig_directory       <- paste0(relpath, "/figures")
+
+knitr::opts_chunk$set(
+    echo = TRUE,                           # Ne mutassa a kódokat
+    cached = FALSE,                 ###!!!  # Ne cache-eljen
+    warning = FALSE,                        # Ne írja ki a warningokat
+    message = FALSE, 
+    fig.align = 'center',                   # Ábra középre rendezése
+    out.width = '90%',                      # Ábra szélessége, alter.: #fig.fullwidth = TRUE,
+    fig.asp = .75,                          # Ábra Hossz/szélesség
+    tidy.opts = list(width.cutoff = 60),    # legyenek 60 karakter szélességűre tördelve
+    tidy = TRUE,#"styler",                        # legyenek clean codingra megformázva
+    dev = 'png',#'tiff',                            # PNG legyen az alapértelmezett képformátum
+    compression = 'lzw',
+    dpi = 300,                              # a PNG képek elég jó minőségűek legyenek
+    fig.pos = 'H',                          # nem próbálja az ábrákat az oldal tetejére tenni
+    fig.path = fig_directory                # Ábra kimenet helye
+  )
+
+```
+
+# Summary {.chapter}
+
+When handling the good ol' source data if given in excel I like to import it as detailed here. With a second excel sheet with labels/colnames to my liking. I find this useful in the long run if the data has more than 3-5 columns as this lets me quickly adapt to new iterations by the client (eg. 'I just inserted a column...'). Enjoy.
+
+
+# Data import {.chapter}
+
+When the document is long, I like to put this section in a separate *.r* file and *source()* it in the main document. It basically:  
+
+ - Reads the 'labels' as I typed them in the descriprion excel sheet and attaches them to the dataset
+ - transforms the columns flagged in the description as appropriate
+
+
+```{r}
+
+descriptor <- 
+  file.path(data_directory,"description.xlsx") %>% 
+    readxl::read_excel(skip = 0)
+
+# make a list to be used as labels for 'labelled::'
+labs <- 
+  # take a 1xN matrix
+  matrix( descriptor$description,
+         ncol = length(descriptor$description)
+       ) %>% 
+ as.list() %>%
+ # add column names as 'names'
+ `names<-`(descriptor$name_new)
+
+# Making the actual dataset
+data <- file.path(data_directory,"Iris.xls") %>%
+  readxl::read_excel( ., skip = 0) %>%
+                  mutate( across( .cols = which( descriptor$trf == "factor"),
+                          .fns = as.factor
+                          ),
+                   across( .cols = which( descriptor$trf == "numeric"),
+                          .fns = as.numeric # removing potential '?', 'NA', '.' etc.
+                          ),
+                   across( .cols = which( descriptor$trf == "date"),
+                          .fns = as_date # works only if excel recognizes the date..(?)
+                          )
+                  ) %>%
+  `colnames<-`( descriptor$name_new) %>%
+  labelled::`var_label<-`(   labs  ) %>%
+  mutate( 
+    # making up a new variable as an example
+    newvar = petal_width + sepal_width
+    ) %>%
+  # This is how to set up the labels for new variables
+  `var_label<-`( list(newvar = "This is my new example variable, adding up petal and sepal width")) %>%
+  # One of these days I'm gonna learn when to use this
+  rowwise() %>%
+  mutate(
+    mock_ID = runif(1, .1, 20) %>% round %>% as.integer
+  ) %>%
+  set_variable_labels( mock_ID = "Mock ID")
+
+```
+
+\newpage
+
+The data should be read properly, doing nothing fancy just reporting the first 20 lines after switching the labels back (maybe there is another better way...?)  
+
+
+```{r, echo = FALSE}
+
+source(here::here("R","theme_marty_flextable.r"))
+
+data %>%
+  .[1:20,] %>%
+  `colnames<-`(as.character(var_label(data))) %>%
+  flextable::flextable() %>%
+  theme_marty() %>%
+  flextable::fontsize(i=1,j=1,size=8, part="header") %>% # Wide colname
+  flextable::width(j=1,width=.1) %>% # not overwriting minimum width needed
+  flextable::align(j=1,align = "center",part = "all") # Has to be done manually I guess because of ghosts or something
+  
+```
+
+
+
+# Notes
+
+Information regarding the compilation of this document:
+
+<!---
+Example of printing chunk stuff without the hideous '##' 
+--->
+
+```{r, comment='', results='asis'}
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>% report::report() %>% cat()
+```
+
+This document was compiled at:
+
+```{r last_chunk}
+
+Sys.time()
+save.image(file = here::here("inst","states","dat_import_out.Rdata"))
+
+```

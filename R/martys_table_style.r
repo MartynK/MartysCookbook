@@ -40,7 +40,7 @@ martys_table_style <- function( tabl,
     # it is a 'simple' data.frame  
     tabl_kext <-
       tabl %>%
-      as_hux()
+      flextable::flextable()
     
     
   } else if ("gtsummary" %in% class(tabl)) {
@@ -55,7 +55,7 @@ martys_table_style <- function( tabl,
       bold_labels()  %>%
       # sub-levels are in italic (may be a bit much)
       italicize_levels() %>%
-      as_hux_table()
+      gtsummary::as_flex_table()
     
   } else if ("knitr_kable" %in% class(tabl)) {
     # NO BACK CONVERSION ALLOWED
@@ -86,6 +86,7 @@ martys_table_style <- function( tabl,
   tabl_out <- tabl_kext %>%
     #theme_article() %>%
     theme_grey() %>%       # a more 'corporate' look :(
+    set_font_size(fontsize.) %>%
     set_width(., .95) %>%
     set_number_format(NA) %>%
     set_valign(value="middle") %>%

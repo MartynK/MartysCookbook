@@ -18,7 +18,7 @@
 <meta name="description" content="Factor relevelling example">
 
 <script id="pandoc-meta" type="application/json">
-{"author":{"name":"Márton Kiss MD"},"bibliography":"packages.bib","committee":[{"name":"Márton Kiss MD","position":"Applied Biostatistician"}],"date":"today()","link-citations":true,"newpage_html_class":"page-break-after","number_Sections":true,"output":{"html_document":{"css":"styles.css","df_print":"paged","fig_caption":true,"keep_tex":true,"toc":false},"pagedown::thesis_paged":{"lof":true,"lot":true,"template":"template_pdflike.html","toc":true,"toc-title":"Contents"}},"sign_page":true,"subtitle":"<div class=\"line-block\">A Practical Foray into Lengthy Subtitle Management, Iris Dataset Tampering,<br />\nand the Unceasing Pursuit of Stakeholder-Friendly Data Presentation.<br />\nFrom Markdown Mastery to Factor Finagling:</div>","title":"<strong>Factor relevelling example</strong>"}
+{"author":{"name":"Márton Kiss MD"},"bibliography":"packages.bib","committee":[{"name":"Márton Kiss MD","position":"Applied Biostatistician"}],"date":"4242.10.11","link-citations":true,"newpage_html_class":"page-break-after","number_Sections":true,"output":{"html_document":{"css":"styles.css","df_print":"paged","fig_caption":true,"keep_tex":true,"toc":false},"pagedown::thesis_paged":{"lof":true,"lot":true,"template":"template_pdflike.html","toc":true,"toc-title":"Contents"}},"sign_page":true,"subtitle":"<div class=\"line-block\">A Practical Foray into Lengthy Subtitle Management, Iris Dataset Tampering,<br />\nand the Unceasing Pursuit of Stakeholder-Friendly Data Presentation.<br />\nFrom Markdown Mastery to Factor Finagling:</div>","title":"<strong>Factor relevelling example</strong>"}
 </script>
 
 <title>Factor relevelling example</title>
@@ -32522,7 +32522,7 @@ of the finest methodologies and the most comprehensive professional knowledge av
 The author guarantees that every effort has been made to ensure the accuracy and reliability of the information contained within, 
 reflecting a rigorous approach to research, analysis, and attention to detail.</p>
 <br><br>
-<div class="signature"><center>Márton Kiss MD, Applied Biostatistician today()</center></div>
+<div class="signature"><center>Márton Kiss MD, Applied Biostatistician 4242.10.11</center></div>
 
 </div>
 
@@ -32583,131 +32583,418 @@ Levels: setosa versicolor virginica</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>           forcats<span class="sc">::</span><span class="fu">fct_recode</span>( Species, </span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>                                 <span class="at">smelly =</span> <span class="fu">as.character</span>(<span class="fu">unique</span>(iris<span class="sc">$</span>Species)[<span class="dv">1</span>]),</span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>                                 <span class="at">fluffy =</span> <span class="fu">as.character</span>(<span class="fu">unique</span>(iris<span class="sc">$</span>Species)[<span class="dv">2</span>])</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                                 <span class="co">#Didn&#39;t recode &#39;virginica&#39; asan example</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>                                 <span class="co">#Didn&#39;t recode &#39;virginica&#39; as an example</span></span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>                                 ))</span></code></pre></div>
 <p>And to test the results, lets see what a printout would say. Can I reference said table? Lets try (<a href="#tab:atable"><strong>??</strong></a>):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;R&quot;</span>,<span class="st">&quot;theme_marty_flextable.r&quot;</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>iris_recode <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  .[<span class="fu">sort</span>(<span class="fu">sample</span>(<span class="fu">nrow</span>(.),<span class="dv">10</span>)),] <span class="sc">%&gt;%</span> </span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">label =</span> <span class="st">&quot;atable&quot;</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                 <span class="co"># NEEDS both label and caption for referencing</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>                 <span class="at">caption =</span> <span class="st">&quot;Example cases from the recoded table&quot;</span>)</span></code></pre></div>
-<table>
-<caption>Example cases from the recoded table</caption>
-<colgroup>
-<col width="5%" />
-<col width="17%" />
-<col width="15%" />
-<col width="17%" />
-<col width="15%" />
-<col width="14%" />
-<col width="14%" />
-</colgroup>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>iris_recode <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  .[<span class="fu">sort</span>(<span class="fu">sample</span>(<span class="fu">nrow</span>(.),<span class="dv">10</span>)),] <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  flextable<span class="sc">::</span><span class="fu">flextable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="fu">theme_marty</span>() </span></code></pre></div>
+<div class="tabwid">
+<style>.cl-17a7b418{}.cl-179b9804{font-family:'Times New Roman';font-size:9pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-179b980e{font-family:'Times New Roman';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-17a01820{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-17a0182a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-17a03224{width:0.75in;background-color:rgba(204, 204, 204, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-17a0322e{width:0.75in;background-color:rgba(204, 204, 204, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-17a03238{width:0.75in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-17a03242{width:0.75in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-17a0324c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-17a0324d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-17a03256{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-17a03260{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.tabwid {
+font-size: initial;
+padding-bottom: 1em;
+}
+.tabwid table{
+border-spacing:0px !important;
+border-collapse:collapse;
+line-height:1;
+margin-left:auto;
+margin-right:auto;
+border-width: 0;
+border-color: transparent;
+caption-side: top;
+}
+.tabwid-caption-bottom table{
+caption-side: bottom;
+}
+.tabwid_left table{
+margin-left:0;
+}
+.tabwid_right table{
+margin-right:0;
+}
+.tabwid td, .tabwid th {
+padding: 0;
+}
+.tabwid a {
+text-decoration: none;
+}
+.tabwid thead {
+background-color: transparent;
+}
+.tabwid tfoot {
+background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+margin: 0 0 !important;
+}</style>
+<table data-quarto-disable-processing="true" class="cl-17a7b418">
 <thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">Sepal.Length</th>
-<th align="right">Sepal.Width</th>
-<th align="right">Petal.Length</th>
-<th align="right">Petal.Width</th>
-<th align="left">Species</th>
-<th align="left">Species_hr</th>
+<tr style="overflow-wrap:break-word;">
+<th class="cl-17a03224">
+<p class="cl-17a01820">
+<span class="cl-179b9804">Sepal.Length</span>
+</p>
+</th>
+<th class="cl-17a03224">
+<p class="cl-17a01820">
+<span class="cl-179b9804">Sepal.Width</span>
+</p>
+</th>
+<th class="cl-17a03224">
+<p class="cl-17a01820">
+<span class="cl-179b9804">Petal.Length</span>
+</p>
+</th>
+<th class="cl-17a03224">
+<p class="cl-17a01820">
+<span class="cl-179b9804">Petal.Width</span>
+</p>
+</th>
+<th class="cl-17a0322e">
+<p class="cl-17a0182a">
+<span class="cl-179b9804">Species</span>
+</p>
+</th>
+<th class="cl-17a0322e">
+<p class="cl-17a0182a">
+<span class="cl-179b9804">Species_hr</span>
+</p>
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">2</td>
-<td align="right">4.9</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-<td align="left">smelly</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">4.90</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">3.00</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">1.40</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">0.20</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">setosa</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">smelly</span>
+</p>
+</td>
 </tr>
-<tr class="even">
-<td align="left">38</td>
-<td align="right">4.9</td>
-<td align="right">3.6</td>
-<td align="right">1.4</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-<td align="left">smelly</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">4.90</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">3.60</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">1.40</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">0.10</span>
+</p>
+</td>
+<td class="cl-17a0324d">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">setosa</span>
+</p>
+</td>
+<td class="cl-17a0324d">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">smelly</span>
+</p>
+</td>
 </tr>
-<tr class="odd">
-<td align="left">51</td>
-<td align="right">7.0</td>
-<td align="right">3.2</td>
-<td align="right">4.7</td>
-<td align="right">1.4</td>
-<td align="left">versicolor</td>
-<td align="left">fluffy</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">7.00</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">3.20</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">4.70</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">1.40</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">versicolor</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">fluffy</span>
+</p>
+</td>
 </tr>
-<tr class="even">
-<td align="left">58</td>
-<td align="right">4.9</td>
-<td align="right">2.4</td>
-<td align="right">3.3</td>
-<td align="right">1.0</td>
-<td align="left">versicolor</td>
-<td align="left">fluffy</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">4.90</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">2.40</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">3.30</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">1.00</span>
+</p>
+</td>
+<td class="cl-17a0324d">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">versicolor</span>
+</p>
+</td>
+<td class="cl-17a0324d">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">fluffy</span>
+</p>
+</td>
 </tr>
-<tr class="odd">
-<td align="left">75</td>
-<td align="right">6.4</td>
-<td align="right">2.9</td>
-<td align="right">4.3</td>
-<td align="right">1.3</td>
-<td align="left">versicolor</td>
-<td align="left">fluffy</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">6.40</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">2.90</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">4.30</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">1.30</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">versicolor</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">fluffy</span>
+</p>
+</td>
 </tr>
-<tr class="even">
-<td align="left">86</td>
-<td align="right">6.0</td>
-<td align="right">3.4</td>
-<td align="right">4.5</td>
-<td align="right">1.6</td>
-<td align="left">versicolor</td>
-<td align="left">fluffy</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">6.00</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">3.40</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">4.50</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">1.60</span>
+</p>
+</td>
+<td class="cl-17a0324d">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">versicolor</span>
+</p>
+</td>
+<td class="cl-17a0324d">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">fluffy</span>
+</p>
+</td>
 </tr>
-<tr class="odd">
-<td align="left">93</td>
-<td align="right">5.8</td>
-<td align="right">2.6</td>
-<td align="right">4.0</td>
-<td align="right">1.2</td>
-<td align="left">versicolor</td>
-<td align="left">fluffy</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">5.80</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">2.60</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">4.00</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">1.20</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">versicolor</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">fluffy</span>
+</p>
+</td>
 </tr>
-<tr class="even">
-<td align="left">96</td>
-<td align="right">5.7</td>
-<td align="right">3.0</td>
-<td align="right">4.2</td>
-<td align="right">1.2</td>
-<td align="left">versicolor</td>
-<td align="left">fluffy</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">5.70</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">3.00</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">4.20</span>
+</p>
+</td>
+<td class="cl-17a0324c">
+<p class="cl-17a01820">
+<span class="cl-179b980e">1.20</span>
+</p>
+</td>
+<td class="cl-17a0324d">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">versicolor</span>
+</p>
+</td>
+<td class="cl-17a0324d">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">fluffy</span>
+</p>
+</td>
 </tr>
-<tr class="odd">
-<td align="left">142</td>
-<td align="right">6.9</td>
-<td align="right">3.1</td>
-<td align="right">5.1</td>
-<td align="right">2.3</td>
-<td align="left">virginica</td>
-<td align="left">virginica</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">6.90</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">3.10</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">5.10</span>
+</p>
+</td>
+<td class="cl-17a03238">
+<p class="cl-17a01820">
+<span class="cl-179b980e">2.30</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">virginica</span>
+</p>
+</td>
+<td class="cl-17a03242">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">virginica</span>
+</p>
+</td>
 </tr>
-<tr class="even">
-<td align="left">146</td>
-<td align="right">6.7</td>
-<td align="right">3.0</td>
-<td align="right">5.2</td>
-<td align="right">2.3</td>
-<td align="left">virginica</td>
-<td align="left">virginica</td>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-17a03256">
+<p class="cl-17a01820">
+<span class="cl-179b980e">6.70</span>
+</p>
+</td>
+<td class="cl-17a03256">
+<p class="cl-17a01820">
+<span class="cl-179b980e">3.00</span>
+</p>
+</td>
+<td class="cl-17a03256">
+<p class="cl-17a01820">
+<span class="cl-179b980e">5.20</span>
+</p>
+</td>
+<td class="cl-17a03256">
+<p class="cl-17a01820">
+<span class="cl-179b980e">2.30</span>
+</p>
+</td>
+<td class="cl-17a03260">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">virginica</span>
+</p>
+</td>
+<td class="cl-17a03260">
+<p class="cl-17a0182a">
+<span class="cl-179b980e">virginica</span>
+</p>
+</td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div id="notes" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Notes</h1>
@@ -32717,18 +33004,33 @@ Example of printing chunk stuff without the hideous '##'
 --->
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">comment =</span> <span class="cn">NA</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sessionInfo</span>() <span class="sc">%&gt;%</span> report<span class="sc">::</span><span class="fu">report</span>() <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span></code></pre></div>
-<p>Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.22; Allaire J et al., 2023), dplyr (version 1.1.2; Wickham H et al., 2023) and pagedown (version 0.20; Xie Y et al., 2022).</p>
+<p>Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.23; Allaire J et al., 2023), effects (version 4.2.2; Fox J, Weisberg S, 2019), carData (version 3.0.5; Fox J et al., 2022), flextable (version 0.9.2; Gohel D, Skintzos P, 2023), lubridate (version 1.9.2; Grolemund G, Wickham H, 2011), DHARMa (version 0.4.6; Hartig F, 2022), huxtable (version 5.5.2; Hugh-Jones D, 2022), labelled (version 2.12.0; Larmarange J, 2023), emmeans (version 1.8.7; Lenth R, 2023), nlme (version 3.1.162; Pinheiro J et al., 2023), gtsummary (version 1.7.1; Sjoberg D et al., 2021), ggplot2 (version 3.4.2; Wickham H, 2016), readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.2; Wickham H et al., 2023), knitr (version 1.43; Xie Y, 2023), pagedown (version 0.20; Xie Y et al., 2022) and kableExtra (version 1.3.4.9000; Zhu H, 2023).</p>
 <div id="references" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> References</h2>
 <ul>
-<li>Allaire J, Xie Y, Dervieux C, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R (2023). <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.22, <a href="https://github.com/rstudio/rmarkdown" class="uri">https://github.com/rstudio/rmarkdown</a>. Xie Y, Allaire J, Grolemund G (2018). <em>R Markdown: The Definitive Guide</em>. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9781138359338, <a href="https://bookdown.org/yihui/rmarkdown" class="uri">https://bookdown.org/yihui/rmarkdown</a>. Xie Y, Dervieux C, Riederer E (2020). <em>R Markdown Cookbook</em>. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9780367563837, <a href="https://bookdown.org/yihui/rmarkdown-cookbook" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook</a>.</li>
+<li>Allaire J, Xie Y, Dervieux C, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R (2023). <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.23, <a href="https://github.com/rstudio/rmarkdown" class="uri">https://github.com/rstudio/rmarkdown</a>. Xie Y, Allaire J, Grolemund G (2018). <em>R Markdown: The Definitive Guide</em>. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9781138359338, <a href="https://bookdown.org/yihui/rmarkdown" class="uri">https://bookdown.org/yihui/rmarkdown</a>. Xie Y, Dervieux C, Riederer E (2020). <em>R Markdown Cookbook</em>. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9780367563837, <a href="https://bookdown.org/yihui/rmarkdown-cookbook" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook</a>.</li>
+<li>Fox J, Weisberg S (2019). <em>An R Companion to Applied Regression</em>, 3rd edition. Sage, Thousand Oaks CA. <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/index.html" class="uri">https://socialsciences.mcmaster.ca/jfox/Books/Companion/index.html</a>. Fox J, Weisberg S (2018). “Visualizing Fit and Lack of Fit in Complex Regression Models with Predictor Effect Plots and Partial Residuals.” <em>Journal of Statistical Software</em>, <em>87</em>(9), 1-27. <a href="doi:10.18637/jss.v087.i09" class="uri">doi:10.18637/jss.v087.i09</a> <a href="https://doi.org/10.18637/jss.v087.i09" class="uri">https://doi.org/10.18637/jss.v087.i09</a>. Fox J (2003). “Effect Displays in R for Generalised Linear Models.” <em>Journal of Statistical Software</em>, <em>8</em>(15), 1-27. <a href="doi:10.18637/jss.v008.i15" class="uri">doi:10.18637/jss.v008.i15</a> <a href="https://doi.org/10.18637/jss.v008.i15" class="uri">https://doi.org/10.18637/jss.v008.i15</a>. Fox J, Hong J (2009). “Effect Displays in R for Multinomial and Proportional-Odds Logit Models: Extensions to the effects Package.” <em>Journal of Statistical Software</em>, <em>32</em>(1), 1-24. <a href="doi:10.18637/jss.v032.i01" class="uri">doi:10.18637/jss.v032.i01</a> <a href="https://doi.org/10.18637/jss.v032.i01" class="uri">https://doi.org/10.18637/jss.v032.i01</a>.</li>
+<li>Fox J, Weisberg S, Price B (2022). <em>carData: Companion to Applied Regression Data Sets</em>. R package version 3.0-5, <a href="https://CRAN.R-project.org/package=carData" class="uri">https://CRAN.R-project.org/package=carData</a>.</li>
+<li>Gohel D, Skintzos P (2023). <em>flextable: Functions for Tabular Reporting</em>. R package version 0.9.2, <a href="https://CRAN.R-project.org/package=flextable" class="uri">https://CRAN.R-project.org/package=flextable</a>.</li>
+<li>Grolemund G, Wickham H (2011). “Dates and Times Made Easy with lubridate.” <em>Journal of Statistical Software</em>, <em>40</em>(3), 1-25. <a href="https://www.jstatsoft.org/v40/i03/" class="uri">https://www.jstatsoft.org/v40/i03/</a>.</li>
+<li>Hartig F (2022). <em>DHARMa: Residual Diagnostics for Hierarchical (Multi-Level / Mixed) Regression Models</em>. R package version 0.4.6, <a href="https://CRAN.R-project.org/package=DHARMa" class="uri">https://CRAN.R-project.org/package=DHARMa</a>.</li>
+<li>Hugh-Jones D (2022). <em>huxtable: Easily Create and Style Tables for LaTeX, HTML and Other Formats</em>. R package version 5.5.2, <a href="https://CRAN.R-project.org/package=huxtable" class="uri">https://CRAN.R-project.org/package=huxtable</a>.</li>
+<li>Larmarange J (2023). <em>labelled: Manipulating Labelled Data</em>. R package version 2.12.0, <a href="https://CRAN.R-project.org/package=labelled" class="uri">https://CRAN.R-project.org/package=labelled</a>.</li>
+<li>Lenth R (2023). <em>emmeans: Estimated Marginal Means, aka Least-Squares Means</em>. R package version 1.8.7, <a href="https://CRAN.R-project.org/package=emmeans" class="uri">https://CRAN.R-project.org/package=emmeans</a>.</li>
+<li>Pinheiro J, Bates D, R Core Team (2023). <em>nlme: Linear and Nonlinear Mixed Effects Models</em>. R package version 3.1-162, <a href="https://CRAN.R-project.org/package=nlme" class="uri">https://CRAN.R-project.org/package=nlme</a>. Pinheiro JC, Bates DM (2000). <em>Mixed-Effects Models in S and S-PLUS</em>. Springer, New York. <a href="doi:10.1007/b98882" class="uri">doi:10.1007/b98882</a> <a href="https://doi.org/10.1007/b98882" class="uri">https://doi.org/10.1007/b98882</a>.</li>
 <li>R Core Team (2023). <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing, Vienna, Austria. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</li>
+<li>Sjoberg D, Whiting K, Curry M, Lavery J, Larmarange J (2021). “Reproducible Summary Tables with the gtsummary Package.” <em>The R Journal</em>, <em>13</em>, 570-580. <a href="doi:10.32614/RJ-2021-053" class="uri">doi:10.32614/RJ-2021-053</a> <a href="https://doi.org/10.32614/RJ-2021-053" class="uri">https://doi.org/10.32614/RJ-2021-053</a>, <a href="https://doi.org/10.32614/RJ-2021-053" class="uri">https://doi.org/10.32614/RJ-2021-053</a>.</li>
+<li>Wickham H (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. ISBN 978-3-319-24277-4, <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>.</li>
+<li>Wickham H, Bryan J (2023). <em>readxl: Read Excel Files</em>. R package version 1.4.2, <a href="https://CRAN.R-project.org/package=readxl" class="uri">https://CRAN.R-project.org/package=readxl</a>.</li>
+<li>Wickham H, Danenberg P, Csárdi G, Eugster M (2022). <em>roxygen2: In-Line Documentation for R</em>. R package version 7.2.3, <a href="https://CRAN.R-project.org/package=roxygen2" class="uri">https://CRAN.R-project.org/package=roxygen2</a>.</li>
 <li>Wickham H, François R, Henry L, Müller K, Vaughan D (2023). <em>dplyr: A Grammar of Data Manipulation</em>. R package version 1.1.2, <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</li>
+<li>Xie Y (2023). <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. R package version 1.43, <a href="https://yihui.org/knitr/" class="uri">https://yihui.org/knitr/</a>. Xie Y (2015). <em>Dynamic Documents with R and knitr</em>, 2nd edition. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 978-1498716963, <a href="https://yihui.org/knitr/" class="uri">https://yihui.org/knitr/</a>. Xie Y (2014). “knitr: A Comprehensive Tool for Reproducible Research in R.” In Stodden V, Leisch F, Peng RD (eds.), <em>Implementing Reproducible Computational Research</em>. Chapman and Hall/CRC. ISBN 978-1466561595.</li>
 <li>Xie Y, Lesur R, Thorne B, Tan X (2022). <em>pagedown: Paginate the HTML Output of R Markdown with CSS for Print</em>. R package version 0.20, <a href="https://CRAN.R-project.org/package=pagedown" class="uri">https://CRAN.R-project.org/package=pagedown</a>.</li>
+<li>Zhu H (2023). <em>kableExtra: Construct Complex Table with ‘kable’ and Pipe Syntax</em>. <a href="http://haozhu233.github.io/kableExtra/" class="uri">http://haozhu233.github.io/kableExtra/</a>, <a href="https://github.com/haozhu233/kableExtra" class="uri">https://github.com/haozhu233/kableExtra</a>.</li>
 </ul>
 <p>This document was compiled at:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code></pre></div>
-<pre><code>[1] &quot;2023-06-28 16:03:16 CEST&quot;</code></pre>
+<pre><code>[1] &quot;2023-07-06 17:38:02 CEST&quot;</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;inst&quot;</span>,<span class="st">&quot;states&quot;</span>,<span class="st">&quot;cookbook_out.Rdata&quot;</span>))</span></code></pre></div>
 </div>
 </div>
@@ -32749,25 +33051,27 @@ Example of printing chunk stuff without the hideous '##'
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>           forcats<span class="sc">::</span><span class="fu">fct_recode</span>( Species, </span>
 <span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>                                 <span class="at">smelly =</span> <span class="fu">as.character</span>(<span class="fu">unique</span>(iris<span class="sc">$</span>Species)[<span class="dv">1</span>]),</span>
 <span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>                                 <span class="at">fluffy =</span> <span class="fu">as.character</span>(<span class="fu">unique</span>(iris<span class="sc">$</span>Species)[<span class="dv">2</span>])</span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>                                 <span class="co">#Didn&#39;t recode &#39;virginica&#39; asan example</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>                                 <span class="co">#Didn&#39;t recode &#39;virginica&#39; as an example</span></span>
 <span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>                                 ))</span>
 <span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;R&quot;</span>,<span class="st">&quot;theme_marty_flextable.r&quot;</span>))</span>
 <span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>iris_recode <span class="sc">%&gt;%</span></span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>  .[<span class="fu">sort</span>(<span class="fu">sample</span>(<span class="fu">nrow</span>(.),<span class="dv">10</span>)),] <span class="sc">%&gt;%</span> </span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">label =</span> <span class="st">&quot;atable&quot;</span>,</span>
-<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a>                 <span class="co"># NEEDS both label and caption for referencing</span></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a>                 <span class="at">caption =</span> <span class="st">&quot;Example cases from the recoded table&quot;</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">comment =</span> <span class="cn">NA</span>)</span>
-<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="fu">sessionInfo</span>() <span class="sc">%&gt;%</span> report<span class="sc">::</span><span class="fu">report</span>() <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span>
-<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a></span>
-<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="fu">Sys.time</span>()</span>
-<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;inst&quot;</span>,<span class="st">&quot;states&quot;</span>,<span class="st">&quot;cookbook_out.Rdata&quot;</span>))</span>
-<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a></span>
-<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co"># This throws a warning everytime so lets forget about it</span></span>
-<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co">#| tidy=TRUE</span></span></code></pre></div>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>iris_recode <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a>  .[<span class="fu">sort</span>(<span class="fu">sample</span>(<span class="fu">nrow</span>(.),<span class="dv">10</span>)),] <span class="sc">%&gt;%</span> </span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a>  flextable<span class="sc">::</span><span class="fu">flextable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a>  <span class="fu">theme_marty</span>() </span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">comment =</span> <span class="cn">NA</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="fu">sessionInfo</span>() <span class="sc">%&gt;%</span> report<span class="sc">::</span><span class="fu">report</span>() <span class="sc">%&gt;%</span> <span class="fu">cat</span>()</span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="fu">Sys.time</span>()</span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;inst&quot;</span>,<span class="st">&quot;states&quot;</span>,<span class="st">&quot;cookbook_out.Rdata&quot;</span>))</span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="co"># This throws a warning everytime so lets forget about it</span></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="co">#| tidy=TRUE</span></span></code></pre></div>
 </div>
 
 
