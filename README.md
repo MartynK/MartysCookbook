@@ -1,7 +1,6 @@
-# MartysCookbook
-Examples n' things for my R work
+# H-34 PASS
 
-The output is under the 'articles' menu [here](https://martynk.github.io/MartysCookbook/).
+Ez a project a Fluart H-34-es kódszámú PASS vizsgálatához készül.
 
 # Notes
 
