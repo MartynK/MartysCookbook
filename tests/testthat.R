@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(MartysCookbook)
+# library("H34")
 
-test_check("MartysCookbook")
+test_check("H34")

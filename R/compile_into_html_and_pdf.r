@@ -22,7 +22,6 @@ require(pagedown)
 #' @importFrom rmarkdown render
 #' @importFrom pagedown chrome_print
 #' @importFrom here here
-#' @importFrom base tryCatch
 #'
 #' @examples
 #' \dontrun{

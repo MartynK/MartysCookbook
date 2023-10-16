@@ -24,7 +24,7 @@ test_that("move_recent_files correctly moves recent files", {
   Sys.setFileTime(new_file, Sys.time() - lubridate::minutes(5))
   
   # Test the function
-  move_recent_files(temp_dir, "old_files", 1)
+  move_recent_files(old_dir, new_dir, 1)
   
   # Check that the new file has been moved
   expect_true(file.exists(file.path(new_dir, "new.txt")))

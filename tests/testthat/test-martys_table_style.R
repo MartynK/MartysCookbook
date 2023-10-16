@@ -21,7 +21,7 @@ test_that("martys_table_style works with gtsummary", {
   data(mtcars)
   
   # Creating a simple gtsummary table
-  gt_tbl <- tbl_summary(mtcars)
+  gt_tbl <- gtsummary::tbl_summary(mtcars)
   
   # Apply function
   result <- martys_table_style(gt_tbl)

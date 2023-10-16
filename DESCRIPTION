@@ -26,7 +26,10 @@ Depends:
     labelled,
     here, 
     pagedown, 
-    rmarkdown
+    rmarkdown,
+    rstudioapi,
+    tibble,
+    tidyr
 Suggests: 
     testthat (>= 3.0.0),
 Config/testthat/edition: 3

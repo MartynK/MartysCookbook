@@ -14,7 +14,7 @@ Default = 10}
 }
 \value{
 Invisibly returns NULL. The side effect of this function is that
-it writes the compiled documents to disk.
+it writes the compiled documents to disk (same folder as source).
 }
 \description{
 This function takes an R Markdown file as input and generates three outputs:

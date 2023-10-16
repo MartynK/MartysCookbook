@@ -31,16 +31,16 @@ martys_table_style <- function( tabl,
   # Trying to handle both dataframes & gtsummaries (? tbl_summary type?)
   # Basically a wrapper functon 
   
-  # require(huxtable)
-  # require(gtsummary)
-  # require(dplyr)
-  # require(kableExtra)
+  require(huxtable)
+  require(gtsummary)
+  require(dplyr)
+  require(kableExtra)
   
   if ("data.frame" %in% class(tabl)) {
     # it is a 'simple' data.frame  
     tabl_kext <-
       tabl %>%
-      flextable::flextable()
+      huxtable::huxtable()
     
     
   } else if ("gtsummary" %in% class(tabl)) {
@@ -55,7 +55,7 @@ martys_table_style <- function( tabl,
       bold_labels()  %>%
       # sub-levels are in italic (may be a bit much)
       italicize_levels() %>%
-      gtsummary::as_flex_table()
+      gtsummary::as_hux_table()
     
   } else if ("knitr_kable" %in% class(tabl)) {
     # NO BACK CONVERSION ALLOWED
@@ -102,3 +102,23 @@ martys_table_style <- function( tabl,
   
   return( tabl_out)
 }
+
+
+
+# # generate a simple data frame
+# df <- data.frame(
+#   A = 1:5,
+#   B = letters[1:5]
+# )
+# # apply function
+# result <- martys_table_style(df)
+
+# # assuming that you have gtsummary installed and tbl_summary function is available
+# library(gtsummary)
+# data(mtcars)
+# 
+# # Creating a simple gtsummary table
+# gt_tbl <- gtsummary::tbl_summary(mtcars)
+# 
+# # apply function
+# result <- martys_table_style(gt_tbl)
