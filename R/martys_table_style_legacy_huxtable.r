@@ -19,7 +19,7 @@
 #' @examples
 #' \dontrun{
 #' data(mtcars)
-#' martys_table_style(mtcars)
+#' martys_table_style_legacy_huxtable(mtcars)
 #' }
 #' @export
 martys_table_style_legacy_huxtable <- 
@@ -112,7 +112,7 @@ martys_table_style_legacy_huxtable <-
 #   B = letters[1:5]
 # )
 # # apply function
-# result <- martys_table_style(df)
+# result <- martys_table_style_legacy_huxtable(df)
 
 # # assuming that you have gtsummary installed and tbl_summary function is available
 # library(gtsummary)
@@ -122,4 +122,4 @@ martys_table_style_legacy_huxtable <-
 # gt_tbl <- gtsummary::tbl_summary(mtcars)
 # 
 # # apply function
-# result <- martys_table_style(gt_tbl)
+# result <- martys_table_style_legacy_huxtable(gt_tbl)
