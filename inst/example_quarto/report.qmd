@@ -5,8 +5,10 @@ format:
   docx:
     fig-width: 6
     fig-height: 4
+    reference-doc: custom_ref_doc.docx
   html: default
 editor: visual
+prefer-html: true
 toc: true
 toc-depth: 2
 execute:
@@ -43,7 +45,7 @@ load_all_Rdata(directory=here::here("inst","example_quarto","backend")) # Load s
 ### MD5 checksum of the database used
 
 ```{r, comment='', results='asis'}
-tools::md5sum(fil)
+tools::md5sum(fil) # %>% as.character # Uncomment reporting path is not desirable
 ```
 
 ### Other information regarding the document's compilation
@@ -55,7 +57,6 @@ sessionInfo() %>% report::report() %>% cat()
 ### Time of compilation
 
 ```{r last_chunk, results='asis'}
-Sys.time()
+Sys.time() %>% as.character %>% cat
 save.image(file = here::here("inst","example_quarto","end_state.rdata"))
-
 ```

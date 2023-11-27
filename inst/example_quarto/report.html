@@ -35,6 +35,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="report_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+<script src="report_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="report_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="report_files/libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="report_files/libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
 
 </head>
 
@@ -46,15 +51,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-  <li><a href="#actual-talk" id="toc-actual-talk" class="nav-link active" data-scroll-target="#actual-talk">Actual talk</a></li>
-  <li><a href="#title-page" id="toc-title-page" class="nav-link" data-scroll-target="#title-page">Title page</a></li>
+  <li><a href="#title-page" id="toc-title-page" class="nav-link active" data-scroll-target="#title-page">Title page</a></li>
+  <li><a href="#authors-declaration" id="toc-authors-declaration" class="nav-link" data-scroll-target="#authors-declaration">Author’s declaration</a>
+  <ul class="collapse">
+  <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version Control</a></li>
+  </ul></li>
   <li><a href="#list-of-abbreviations" id="toc-list-of-abbreviations" class="nav-link" data-scroll-target="#list-of-abbreviations">List of abbreviations</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#description-of-the-study" id="toc-description-of-the-study" class="nav-link" data-scroll-target="#description-of-the-study">Description of the study</a></li>
   <li><a href="#data-extraction" id="toc-data-extraction" class="nav-link" data-scroll-target="#data-extraction">Data extraction</a></li>
   <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data">Missing data</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#examples-for-quick-reference" id="toc-examples-for-quick-reference" class="nav-link" data-scroll-target="#examples-for-quick-reference">Examples for quick reference</a>
+  <ul class="collapse">
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables">Tables</a></li>
+  </ul></li>
   <li><a href="#remarks" id="toc-remarks" class="nav-link" data-scroll-target="#remarks">Remarks</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
@@ -85,11 +95,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <div style="page-break-after: always;"></div>
-<section id="actual-talk" class="level2">
-<h2 class="anchored" data-anchor-id="actual-talk">Actual talk</h2>
-</section>
-<section id="title-page" class="level2">
-<h2 class="anchored" data-anchor-id="title-page">Title page</h2>
+<section id="title-page" class="level1">
+<h1>Title page</h1>
 <p>&nbsp;<br>
 &nbsp;<br>
 &nbsp;<br>
@@ -104,9 +111,14 @@ ul.task-list li input[type="checkbox"] {
 &nbsp;<br>
 &nbsp;<br>
 </p>
-<section id="authors-declaration" class="level3">
-<h3 class="anchored" data-anchor-id="authors-declaration">Author’s declaration</h3>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="authors-declaration" class="level1">
+<h1>Author’s declaration</h1>
 <p>&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
 </p>
 <p>I am the author of this report and confirm that to the best of my knowledge this report accurately describes the results of the study.</p>
 <p>&nbsp;<br>
@@ -119,9 +131,8 @@ ul.task-list li input[type="checkbox"] {
 &nbsp;<br>
 &nbsp;<br>
 </p>
-</section>
-<section id="version-control" class="level3">
-<h3 class="anchored" data-anchor-id="version-control">Version Control</h3>
+<section id="version-control" class="level2">
+<h2 class="anchored" data-anchor-id="version-control">Version Control</h2>
 <p>&nbsp;<br>
 </p>
 <ul>
@@ -130,8 +141,8 @@ ul.task-list li input[type="checkbox"] {
 <div style="page-break-after: always;"></div>
 </section>
 </section>
-<section id="list-of-abbreviations" class="level2">
-<h2 class="anchored" data-anchor-id="list-of-abbreviations">List of abbreviations</h2>
+<section id="list-of-abbreviations" class="level1">
+<h1>List of abbreviations</h1>
 <p>&nbsp;<br>
 </p>
 <ul>
@@ -142,51 +153,236 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>&nbsp;&nbsp;</p>
 <p>[…] It is my report template in Quarto. It has most Rmd features and can generate .docx. Table of Contents should be wrangled after that at the moment. PDF can be generated via Word (save as..). The auto-generated .html is nice too. Computationally intensive stuff should be referenced. None of this Vignette precompile nonsense I’ve been working so hard to implement :( Computationally intensive stuff should be referenced externally.</p>
 </section>
-<section id="description-of-the-study" class="level2">
-<h2 class="anchored" data-anchor-id="description-of-the-study">Description of the study</h2>
+<section id="description-of-the-study" class="level1">
+<h1>Description of the study</h1>
 <p>&nbsp;<br>
 </p>
 <p>[…]</p>
 <p>&nbsp;</p>
-<div style="page-break-after: always;"></div>
 </section>
-<section id="data-extraction" class="level2">
-<h2 class="anchored" data-anchor-id="data-extraction">Data extraction</h2>
+<section id="data-extraction" class="level1">
+<h1>Data extraction</h1>
 <p>&nbsp;&nbsp; &nbsp;&nbsp;</p>
 <p>[…]</p>
 <p>&nbsp;&nbsp;</p>
 </section>
-<section id="missing-data" class="level2">
-<h2 class="anchored" data-anchor-id="missing-data">Missing data</h2>
+<section id="missing-data" class="level1">
+<h1>Missing data</h1>
 <p>&nbsp;&nbsp;</p>
 <p>[…]</p>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
-</section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="examples-for-quick-reference" class="level1">
+<h1>Examples for quick reference</h1>
+<section id="tables" class="level2">
+<h2 class="anchored" data-anchor-id="tables">Tables</h2>
+<p>Tables may be in a huxtable object for “seamless” word processing. The resulting table is ugly.</p>
+<p>&nbsp;<br>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table id="tab:unnamed-chunk-9" class="huxtable table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;"><p><strong>Characteristic</strong></p></td>
+<td data-quarto-table-cell-role="th" style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;"><p><strong>Setosa</strong>, N = 50</p></td>
+<td data-quarto-table-cell-role="th" style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;"><p><strong>Verginica</strong>, N = 50</p></td>
+<td data-quarto-table-cell-role="th" style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;"><p><strong>Versicolor</strong>, N = 50</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">These are the width of the petals</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">0.20 (0.20 – 0.30)</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">2.00 (1.80 – 2.30)</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">1.30 (1.20 – 1.50)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">These are the length of the petals</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">1.50 (1.40 – 1.58)</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">5.55 (5.10 – 5.88)</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">4.35 (4.00 – 4.60)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">These are the width of the sepals</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">3.40 (3.20 – 3.68)</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">3.00 (2.80 – 3.18)</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">2.80 (2.53 – 3.00)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">These are the length of the sepals</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">5.00 (4.80 – 5.20)</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">6.50 (6.23 – 6.90)</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">5.90 (5.60 – 6.30)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">This is a date column to illustrate transformations</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">2022-01-01 to 2022-02-19</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">2022-04-11 to 2022-05-30</td>
+<td style="text-align: center; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">2022-02-20 to 2022-04-10</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 0pt 6pt 0pt 6pt; font-weight: normal; font-size: 8pt;">Median (IQR); Range</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>&nbsp;<br>
+</p>
+<p>Having a custom ref. docx file, I played around with the formatting and cooked up something passable. Its not modifiable however.</p>
+<p>&nbsp;<br>
+</p>
+<div class="cell" data-layout-align="center" data-df-print="kable" data-tbl_colwidths="auto">
+<div class="cell-output-display">
+
+<table data-quarto-disable-processing="true" class="table" style="font-size: 8px; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption style="font-size: initial !important;">Example table</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Characteristic </th>
+   <th style="text-align:center;"> Setosa, N = 50 </th>
+   <th style="text-align:center;"> Verginica, N = 50 </th>
+   <th style="text-align:center;"> Versicolor, N = 50 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> These are the width of the petals </td>
+   <td style="text-align:center;"> 0.20 (0.20 – 0.30) </td>
+   <td style="text-align:center;"> 2.00 (1.80 – 2.30) </td>
+   <td style="text-align:center;"> 1.30 (1.20 – 1.50) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> These are the length of the petals </td>
+   <td style="text-align:center;"> 1.50 (1.40 – 1.58) </td>
+   <td style="text-align:center;"> 5.55 (5.10 – 5.88) </td>
+   <td style="text-align:center;"> 4.35 (4.00 – 4.60) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> These are the width of the sepals </td>
+   <td style="text-align:center;"> 3.40 (3.20 – 3.68) </td>
+   <td style="text-align:center;"> 3.00 (2.80 – 3.18) </td>
+   <td style="text-align:center;"> 2.80 (2.53 – 3.00) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> These are the length of the sepals </td>
+   <td style="text-align:center;"> 5.00 (4.80 – 5.20) </td>
+   <td style="text-align:center;"> 6.50 (6.23 – 6.90) </td>
+   <td style="text-align:center;"> 5.90 (5.60 – 6.30) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> This is a date column to illustrate transformations </td>
+   <td style="text-align:center;"> 2022-01-01 to 2022-02-19 </td>
+   <td style="text-align:center;"> 2022-04-11 to 2022-05-30 </td>
+   <td style="text-align:center;"> 2022-02-20 to 2022-04-10 </td>
+  </tr>
+</tbody>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup>1</sup> Median (IQR); Range</td></tr></tfoot>
+</table>
+
+</div>
+</div>
+<p>&nbsp;<br>
+</p>
+<p>You <em>will</em> face an issue where a package outputs a “marvellously formatted” html table which would be horrible for your use case. That is a promise, but don’t know how to handle it.</p>
+<p>&nbsp;<br>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">These are the width of<br>
+the petals</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Estimates</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">p</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.20&nbsp;–&nbsp;0.02</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.109</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Character representation<br>
+of the species: Verginica</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.84</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.55&nbsp;–&nbsp;1.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Character representation<br>
+of the species:<br>
+Versicolor</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.44</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23&nbsp;–&nbsp;0.64</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">These are the length of<br>
+the petals</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.16&nbsp;–&nbsp;0.30</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">150</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.946 / 0.944</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>&nbsp;<br>
+</p>
+<p>Plots are nothing fancy.</p>
+<p>&nbsp;<br>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="2100"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;<br>
+</p>
+<p>Text outputs; prints computationally intensive output loaded at the beginning.</p>
+<p>&nbsp;<br>
+</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>3.14</code></pre>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 <div style="page-break-after: always;"></div>
+</section>
 </section>
 <section id="remarks" class="level1">
 <h1>Remarks</h1>
@@ -219,7 +415,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="time-of-compilation" class="level3">
 <h3 class="anchored" data-anchor-id="time-of-compilation">Time of compilation</h3>
 <div class="cell" data-layout-align="center">
-<p>[1] “2023-11-26 17:19:06 CET”</p>
+<p>2023-11-27 12:35:12.732281</p>
 </div>
 </section>
 </section>
