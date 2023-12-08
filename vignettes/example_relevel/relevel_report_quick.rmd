@@ -1,0 +1,216 @@
+---
+title: "**Factor relevelling example**"
+subtitle: |
+  | A Practical Foray into Lengthy Subtitle Management, Iris Dataset Tampering, 
+  | and the Unceasing Pursuit of Stakeholder-Friendly Data Presentation.
+  | From Markdown Mastery to Factor Finagling: 
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
+date: 4242.10.11
+number_Sections: yes
+sign_page: true
+output:
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
+    toc: true
+    toc-title: Contents
+    template:
+      template_pdflike.html
+  html_document:
+    df_print: paged
+    keep_tex: yes
+    fig_caption: yes
+    toc: no
+    css: styles.css
+bibliography: packages.bib # Causes crash??
+link-citations: yes
+---
+
+
+
+# Summary {.chapter}
+
+This is a lightweight document for me to kink out the particulars of producing serious-looking but verstile documents. Rendering for 10 minutes would be unpalatable for this document, however I wanted it to serve some useful purpose besides flaunting my template.
+
+
+# Relevelling & *Forcats* {.chapter}
+
+Factors sometimes get on my nerve. Their levels' order keep changing, you want to switch between human readable (stakeholder readable) and easy-to-type names, etc.
+
+Take a look at the *'iris'* dataset. Species is clearly a factor.
+
+
+
+```r
+unique(iris$Species)
+```
+
+[1] setosa     versicolor virginica 
+Levels: setosa versicolor virginica
+
+Lets rename some species. The below code is a bit bloated but intuitive IMHO.
+
+
+```r
+library(dplyr)
+
+iris_recode <- iris %>%
+  mutate(Species_hr = 
+           forcats::fct_recode( Species, 
+                                 smelly = as.character(unique(iris$Species)[1]),
+                                 fluffy = as.character(unique(iris$Species)[2])
+                                 #Didn't recode 'virginica' as an example
+                                 ))
+```
+
+And to test the results, lets see what a printout would say. Can I reference said table? Lets try (\@ref(tab:atable)):
+
+
+```r
+source(here::here("R","theme_marty_flextable.r"))
+
+set.seed(12345)
+
+iris_recode %>%
+  .[sort(sample(nrow(.),10)),] %>% 
+  flextable::flextable() %>%
+  theme_marty() 
+```
+
+<div class="tabwid"><style>.cl-ad17e6d8{}.cl-ad06e734{font-family:'Times New Roman';font-size:9pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ad06e752{font-family:'Times New Roman';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ad0d1c44{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ad0d1c58{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ad0d3e2c{width:0.75in;background-color:rgba(204, 204, 204, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ad0d3e2d{width:0.75in;background-color:rgba(204, 204, 204, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ad0d3e36{width:0.75in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ad0d3e37{width:0.75in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ad0d3e40{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ad0d3e41{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ad0d3e4a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ad0d3e4b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.tabwid {
+  font-size: initial;
+  padding-bottom: 1em;
+}
+
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  border-color: transparent;
+  caption-side: top;
+}
+.tabwid-caption-bottom table{
+  caption-side: bottom;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td, .tabwid th {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}</style><table data-quarto-disable-processing='true' class='cl-ad17e6d8'><thead><tr style="overflow-wrap:break-word;"><th class="cl-ad0d3e2c"><p class="cl-ad0d1c44"><span class="cl-ad06e734">Sepal.Length</span></p></th><th class="cl-ad0d3e2c"><p class="cl-ad0d1c44"><span class="cl-ad06e734">Sepal.Width</span></p></th><th class="cl-ad0d3e2c"><p class="cl-ad0d1c44"><span class="cl-ad06e734">Petal.Length</span></p></th><th class="cl-ad0d3e2c"><p class="cl-ad0d1c44"><span class="cl-ad06e734">Petal.Width</span></p></th><th class="cl-ad0d3e2d"><p class="cl-ad0d1c58"><span class="cl-ad06e734">Species</span></p></th><th class="cl-ad0d3e2d"><p class="cl-ad0d1c58"><span class="cl-ad06e734">Species_hr</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">4.90</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">3.00</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">1.40</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">0.20</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">setosa</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">smelly</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">4.90</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">3.60</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">1.40</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">0.10</span></p></td><td class="cl-ad0d3e41"><p class="cl-ad0d1c58"><span class="cl-ad06e752">setosa</span></p></td><td class="cl-ad0d3e41"><p class="cl-ad0d1c58"><span class="cl-ad06e752">smelly</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">7.00</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">3.20</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">4.70</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">1.40</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">versicolor</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">fluffy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">4.90</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">2.40</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">3.30</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">1.00</span></p></td><td class="cl-ad0d3e41"><p class="cl-ad0d1c58"><span class="cl-ad06e752">versicolor</span></p></td><td class="cl-ad0d3e41"><p class="cl-ad0d1c58"><span class="cl-ad06e752">fluffy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">6.40</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">2.90</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">4.30</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">1.30</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">versicolor</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">fluffy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">6.00</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">3.40</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">4.50</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">1.60</span></p></td><td class="cl-ad0d3e41"><p class="cl-ad0d1c58"><span class="cl-ad06e752">versicolor</span></p></td><td class="cl-ad0d3e41"><p class="cl-ad0d1c58"><span class="cl-ad06e752">fluffy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">5.80</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">2.60</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">4.00</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">1.20</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">versicolor</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">fluffy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">5.70</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">3.00</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">4.20</span></p></td><td class="cl-ad0d3e40"><p class="cl-ad0d1c44"><span class="cl-ad06e752">1.20</span></p></td><td class="cl-ad0d3e41"><p class="cl-ad0d1c58"><span class="cl-ad06e752">versicolor</span></p></td><td class="cl-ad0d3e41"><p class="cl-ad0d1c58"><span class="cl-ad06e752">fluffy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">6.90</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">3.10</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">5.10</span></p></td><td class="cl-ad0d3e36"><p class="cl-ad0d1c44"><span class="cl-ad06e752">2.30</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">virginica</span></p></td><td class="cl-ad0d3e37"><p class="cl-ad0d1c58"><span class="cl-ad06e752">virginica</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ad0d3e4a"><p class="cl-ad0d1c44"><span class="cl-ad06e752">6.70</span></p></td><td class="cl-ad0d3e4a"><p class="cl-ad0d1c44"><span class="cl-ad06e752">3.00</span></p></td><td class="cl-ad0d3e4a"><p class="cl-ad0d1c44"><span class="cl-ad06e752">5.20</span></p></td><td class="cl-ad0d3e4a"><p class="cl-ad0d1c44"><span class="cl-ad06e752">2.30</span></p></td><td class="cl-ad0d3e4b"><p class="cl-ad0d1c58"><span class="cl-ad06e752">virginica</span></p></td><td class="cl-ad0d3e4b"><p class="cl-ad0d1c58"><span class="cl-ad06e752">virginica</span></p></td></tr></tbody></table></div>
+
+# Notes
+
+Information regarding the compilation of this document:
+
+<!---
+Example of printing chunk stuff without the hideous '##' 
+--->
+
+
+```r
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>% report::report() %>% cat()
+```
+
+Analyses were conducted using the R Statistical language (version 4.3.1; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.25; Allaire J et al., 2023), flextable (version 0.9.1; Gohel D, Skintzos P, 2023), gtsummary (version 1.7.2; Sjoberg D et al., 2021), ggplot2 (version 3.4.4; Wickham H, 2016), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.3; Wickham H et al., 2023) and pagedown (version 0.20; Xie Y et al., 2022).
+
+References
+----------
+  - Allaire J, Xie Y, Dervieux C, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R (2023). _rmarkdown: Dynamic Documents for R_. R package version 2.25, <https://github.com/rstudio/rmarkdown>. Xie Y, Allaire J, Grolemund G (2018). _R Markdown: The Definitive Guide_. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9781138359338, <https://bookdown.org/yihui/rmarkdown>. Xie Y, Dervieux C, Riederer E (2020). _R Markdown Cookbook_. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9780367563837, <https://bookdown.org/yihui/rmarkdown-cookbook>.
+  - Gohel D, Skintzos P (2023). _flextable: Functions for Tabular Reporting_. R package version 0.9.1, <https://CRAN.R-project.org/package=flextable>.
+  - R Core Team (2023). _R: A Language and Environment for Statistical Computing_. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
+  - Sjoberg D, Whiting K, Curry M, Lavery J, Larmarange J (2021). "Reproducible Summary Tables with the gtsummary Package." _The R Journal_, *13*, 570-580. doi:10.32614/RJ-2021-053 <https://doi.org/10.32614/RJ-2021-053>, <https://doi.org/10.32614/RJ-2021-053>.
+  - Wickham H (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. ISBN 978-3-319-24277-4, <https://ggplot2.tidyverse.org>.
+  - Wickham H, Danenberg P, Csárdi G, Eugster M (2022). _roxygen2: In-Line Documentation for R_. R package version 7.2.3, <https://CRAN.R-project.org/package=roxygen2>.
+  - Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.3, <https://CRAN.R-project.org/package=dplyr>.
+  - Xie Y, Lesur R, Thorne B, Tan X (2022). _pagedown: Paginate the HTML Output of R Markdown with CSS for Print_. R package version 0.20, <https://CRAN.R-project.org/package=pagedown>.
+
+This document was compiled at:
+
+
+```r
+Sys.time()
+```
+
+```
+[1] "2023-10-14 20:44:16 CEST"
+```
+
+```r
+save.image(file = here::here("inst","states","cookbook_out.Rdata"))
+```
+
+
+# Appendix
+
+This is how put all your code into an appendix.
+
+
+```r
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.align = 'center',
+                      warning = FALSE,
+                      message = FALSE)
+
+unique(iris$Species)
+
+library(dplyr)
+
+iris_recode <- iris %>%
+  mutate(Species_hr = 
+           forcats::fct_recode( Species, 
+                                 smelly = as.character(unique(iris$Species)[1]),
+                                 fluffy = as.character(unique(iris$Species)[2])
+                                 #Didn't recode 'virginica' as an example
+                                 ))
+
+source(here::here("R","theme_marty_flextable.r"))
+
+set.seed(12345)
+
+iris_recode %>%
+  .[sort(sample(nrow(.),10)),] %>% 
+  flextable::flextable() %>%
+  theme_marty() 
+
+
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>% report::report() %>% cat()
+
+Sys.time()
+save.image(file = here::here("inst","states","cookbook_out.Rdata"))
+
+# This throws a warning everytime so lets forget about it
+#| tidy=TRUE
+```

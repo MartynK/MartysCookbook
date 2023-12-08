@@ -4,21 +4,17 @@
 \alias{precompile_quick_vignette}
 \title{Precompiles a quick vignette from a computationally expensive report}
 \usage{
-precompile_quick_vignette(file_name)
+precompile_quick_vignette(input_file)
 }
 \arguments{
-\item{file_name}{The name of the .Rmd file to be precompiled (must include the ".rmd" extension)}
+\item{input_file}{The name of the .Rmd file to be precompiled (must include the ".rmd" extension)}
 }
 \value{
-Invisible NULL
+Invisible NULL; the output will be in the same directory as the source named ..._quick.Rmd
 }
 \description{
 This function takes an R Markdown file that generates a computationally expensive report
-and turns it into a quicker markdown document. This markdown document is intended to be
-turned into a vignette. This is achieved by copying the .Rmd file, renaming it to .Rmd.orig,
-and knitting it with the output sent to a "vignettes/" directory. The function will also
-move any figures generated in the project directory to the "vignettes/" directory.
-If a PDF of the report is available, it will also be copied to the "docs/articles/" directory.
+and turns it into a quicker markdown document.
 }
 \examples{
 \dontrun{

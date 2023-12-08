@@ -4,13 +4,37 @@
     <loc>http://MartynK.github.io/MartysCookbook/404.html</loc>
   </url>
   <url>
-    <loc>http://MartynK.github.io/MartysCookbook/articles/cookbook.html</loc>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_cookbook/cookbook_quick.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_cookbook/cookbook_quick_pdflike.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_cookbook/template_pdflike.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_data_import/data_import_quick.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_data_import/data_import_quick_pdflike.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_data_import/template_pdflike.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_relevel/relevel_report_quick.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_relevel/relevel_report_quick_pdflike.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_relevel/template_pdflike.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_relevel/_relevel_report.html</loc>
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>http://MartynK.github.io/MartysCookbook/articles/longexample.html</loc>
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/authors.html</loc>
@@ -26,6 +50,9 @@
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/news/index.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/reference/compile_rmd_multiple_outputs.html</loc>
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/reference/data.html</loc>

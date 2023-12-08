@@ -1,0 +1,199 @@
+---
+title: "**Data import example**"
+subtitle: Example of how I import excel data
+author: 
+  name: "Márton Kiss MD"
+committee:
+  - name: Márton Kiss MD
+    position: Applied Biostatistician
+date: 4242.10.10
+number_Sections: yes
+sign_page: true
+output:
+  pagedown::thesis_paged: 
+    # # DO NOT overwrite the default css-s! Breaks the pagination
+    #  - default-fonts
+    #  - default-page
+    #  - styles.css
+    #css:
+    lof: true
+    lot: true
+    toc: true
+    toc-title: Contents
+    template:
+      template_pdflike.html
+bibliography: packages.bib # Causes crash??
+link-citations: yes
+header-includes:
+  \DeclareUnicodeCharacter{0081}{ }
+  \DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+  \DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
+  \DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+  \DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+#lang: en-US
+---
+
+
+
+# Summary {.chapter}
+
+When handling the good ol' source data if given in excel I like to import it as detailed here. With a second excel sheet with labels/colnames to my liking. I find this useful in the long run if the data has more than 3-5 columns as this lets me quickly adapt to new iterations by the client (eg. 'I just inserted a column...'). Enjoy.
+
+
+# Data import {.chapter}
+
+When the document is long, I like to put this section in a separate *.r* file and *source()* it in the main document. It basically:  
+
+ - Reads the 'labels' as I typed them in the descriprion excel sheet and attaches them to the dataset
+ - transforms the columns flagged in the description as appropriate
+
+
+
+```r
+descriptor <- 
+  file.path(data_directory,"description.xlsx") %>% 
+    readxl::read_excel(skip = 0)
+
+# make a list to be used as labels for 'labelled::'
+labs <- 
+  # take a 1xN matrix
+  matrix( descriptor$description,
+         ncol = length(descriptor$description)
+       ) %>% 
+ as.list() %>%
+ # add column names as 'names'
+ `names<-`(descriptor$name_new)
+
+# Making the actual dataset
+data <- file.path(data_directory,"Iris.xls") %>%
+  readxl::read_excel( ., skip = 0) %>%
+                  mutate( across( .cols = which( descriptor$trf == "factor"),
+                          .fns = as.factor
+                          ),
+                   across( .cols = which( descriptor$trf == "numeric"),
+                          .fns = as.numeric # removing potential '?', 'NA', '.' etc.
+                          ),
+                   across( .cols = which( descriptor$trf == "date"),
+                          .fns = as_date # works only if excel recognizes the date..(?)
+                          )
+                  ) %>%
+  `colnames<-`( descriptor$name_new) %>%
+  labelled::`var_label<-`(   labs  ) %>%
+  mutate( 
+    # making up a new variable as an example
+    newvar = petal_width + sepal_width
+    ) %>%
+  # This is how to set up the labels for new variables
+  `var_label<-`( list(newvar = "This is my new example variable, adding up petal and sepal width")) %>%
+  # One of these days I'm gonna learn when to use this
+  rowwise() %>%
+  mutate(
+    mock_ID = runif(1, .1, 20) %>% round %>% as.integer
+  ) %>%
+  set_variable_labels( mock_ID = "Mock ID")
+```
+
+\newpage
+
+The data should be read properly, doing nothing fancy just reporting the first 20 lines after switching the labels back (maybe there is another better way...?)  
+
+
+<div class="tabwid"><style>.cl-bd288756{}.cl-bd1926b2{font-family:'Times New Roman';font-size:8pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bd1926d0{font-family:'Times New Roman';font-size:9pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bd1926da{font-family:'Times New Roman';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bd1eccfc{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-bd1ecd06{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-bd1ef1c8{width:0.1in;background-color:rgba(204, 204, 204, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1d2{width:0.75in;background-color:rgba(204, 204, 204, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1dc{width:0.75in;background-color:rgba(204, 204, 204, 1.00);vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1dd{width:0.1in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1e6{width:0.75in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1f0{width:0.75in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1f1{width:0.1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1f2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1fa{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef1fb{width:0.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef204{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bd1ef20e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.tabwid {
+  font-size: initial;
+  padding-bottom: 1em;
+}
+
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  border-color: transparent;
+  caption-side: top;
+}
+.tabwid-caption-bottom table{
+  caption-side: bottom;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td, .tabwid th {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}</style><table data-quarto-disable-processing='true' class='cl-bd288756'><thead><tr style="overflow-wrap:break-word;"><th class="cl-bd1ef1c8"><p class="cl-bd1eccfc"><span class="cl-bd1926b2">Numeric representation of species</span></p></th><th class="cl-bd1ef1d2"><p class="cl-bd1eccfc"><span class="cl-bd1926d0">These are the width of the petals</span></p></th><th class="cl-bd1ef1d2"><p class="cl-bd1eccfc"><span class="cl-bd1926d0">These are the length of the petals</span></p></th><th class="cl-bd1ef1d2"><p class="cl-bd1eccfc"><span class="cl-bd1926d0">These are the width of the sepals</span></p></th><th class="cl-bd1ef1d2"><p class="cl-bd1eccfc"><span class="cl-bd1926d0">These are the length of the sepals</span></p></th><th class="cl-bd1ef1dc"><p class="cl-bd1ecd06"><span class="cl-bd1926d0">Character representation of the species</span></p></th><th class="cl-bd1ef1d2"><p class="cl-bd1eccfc"><span class="cl-bd1926d0">This is a date column to illustrate transformations</span></p></th><th class="cl-bd1ef1d2"><p class="cl-bd1eccfc"><span class="cl-bd1926d0">This is my new example variable, adding up petal and sepal width</span></p></th><th class="cl-bd1ef1d2"><p class="cl-bd1eccfc"><span class="cl-bd1926d0">Mock ID</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.40</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.50</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.10</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-01</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.70</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.40</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.00</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.90</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-02</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.20</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">18</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.30</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.70</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-03</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.40</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">11</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.50</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.10</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.60</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-04</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.30</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">17</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.40</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.60</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.00</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-05</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.80</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">15</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.40</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.70</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.90</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.40</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-06</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.30</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">19</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.30</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.40</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.40</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.60</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-07</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.70</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.50</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.40</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.00</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-08</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.60</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">16</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.40</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2.90</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.40</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-09</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.10</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.10</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.50</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.10</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.90</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-10</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.20</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">7</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.50</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.70</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.40</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-11</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.90</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.60</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.40</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.80</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-12</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.60</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">19</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.10</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.40</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.00</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.80</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-13</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.10</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">16</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.10</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.10</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.00</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.30</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-14</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.10</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">15</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.00</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.80</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-15</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.20</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.40</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.50</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.40</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.70</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-16</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.80</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.40</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.30</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.90</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.40</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-17</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.30</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1f1"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.30</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.40</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.50</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.10</span></p></td><td class="cl-bd1ef1fa"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-18</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.80</span></p></td><td class="cl-bd1ef1f2"><p class="cl-bd1eccfc"><span class="cl-bd1926da">14</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1dd"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.30</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.70</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.80</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.70</span></p></td><td class="cl-bd1ef1f0"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-19</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.10</span></p></td><td class="cl-bd1ef1e6"><p class="cl-bd1eccfc"><span class="cl-bd1926da">10</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bd1ef1fb"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1</span></p></td><td class="cl-bd1ef204"><p class="cl-bd1eccfc"><span class="cl-bd1926da">0.30</span></p></td><td class="cl-bd1ef204"><p class="cl-bd1eccfc"><span class="cl-bd1926da">1.50</span></p></td><td class="cl-bd1ef204"><p class="cl-bd1eccfc"><span class="cl-bd1926da">3.80</span></p></td><td class="cl-bd1ef204"><p class="cl-bd1eccfc"><span class="cl-bd1926da">5.10</span></p></td><td class="cl-bd1ef20e"><p class="cl-bd1ecd06"><span class="cl-bd1926da">Setosa</span></p></td><td class="cl-bd1ef204"><p class="cl-bd1eccfc"><span class="cl-bd1926da">2022-01-20</span></p></td><td class="cl-bd1ef204"><p class="cl-bd1eccfc"><span class="cl-bd1926da">4.10</span></p></td><td class="cl-bd1ef204"><p class="cl-bd1eccfc"><span class="cl-bd1926da">8</span></p></td></tr></tbody></table></div>
+
+
+
+# Notes
+
+Information regarding the compilation of this document:
+
+<!---
+Example of printing chunk stuff without the hideous '##' 
+--->
+
+
+```r
+knitr::opts_chunk$set(comment = NA)
+sessionInfo() %>%
+    report::report() %>%
+    cat()
+```
+
+Analyses were conducted using the R Statistical language (version 4.3.0; R Core Team, 2023) on Windows 10 x64 (build 19045), using the packages rmarkdown (version 2.23; Allaire J et al., 2023), effects (version 4.2.2; Fox J, Weisberg S, 2019), carData (version 3.0.5; Fox J et al., 2022), flextable (version 0.9.2; Gohel D, Skintzos P, 2023), lubridate (version 1.9.2; Grolemund G, Wickham H, 2011), DHARMa (version 0.4.6; Hartig F, 2022), huxtable (version 5.5.2; Hugh-Jones D, 2022), labelled (version 2.12.0; Larmarange J, 2023), emmeans (version 1.8.7; Lenth R, 2023), nlme (version 3.1.162; Pinheiro J et al., 2023), gtsummary (version 1.7.1; Sjoberg D et al., 2021), ggplot2 (version 3.4.2; Wickham H, 2016), readxl (version 1.4.2; Wickham H, Bryan J, 2023), roxygen2 (version 7.2.3; Wickham H et al., 2022), dplyr (version 1.1.2; Wickham H et al., 2023), knitr (version 1.43; Xie Y, 2023), pagedown (version 0.20; Xie Y et al., 2022) and kableExtra (version 1.3.4.9000; Zhu H, 2023).
+
+References
+----------
+  - Allaire J, Xie Y, Dervieux C, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R (2023). _rmarkdown: Dynamic Documents for R_. R package version 2.23, <https://github.com/rstudio/rmarkdown>. Xie Y, Allaire J, Grolemund G (2018). _R Markdown: The Definitive Guide_. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9781138359338, <https://bookdown.org/yihui/rmarkdown>. Xie Y, Dervieux C, Riederer E (2020). _R Markdown Cookbook_. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 9780367563837, <https://bookdown.org/yihui/rmarkdown-cookbook>.
+  - Fox J, Weisberg S (2019). _An R Companion to Applied Regression_, 3rd edition. Sage, Thousand Oaks CA. <https://socialsciences.mcmaster.ca/jfox/Books/Companion/index.html>. Fox J, Weisberg S (2018). "Visualizing Fit and Lack of Fit in Complex Regression Models with Predictor Effect Plots and Partial Residuals." _Journal of Statistical Software_, *87*(9), 1-27. doi:10.18637/jss.v087.i09 <https://doi.org/10.18637/jss.v087.i09>. Fox J (2003). "Effect Displays in R for Generalised Linear Models." _Journal of Statistical Software_, *8*(15), 1-27. doi:10.18637/jss.v008.i15 <https://doi.org/10.18637/jss.v008.i15>. Fox J, Hong J (2009). "Effect Displays in R for Multinomial and Proportional-Odds Logit Models: Extensions to the effects Package." _Journal of Statistical Software_, *32*(1), 1-24. doi:10.18637/jss.v032.i01 <https://doi.org/10.18637/jss.v032.i01>.
+  - Fox J, Weisberg S, Price B (2022). _carData: Companion to Applied Regression Data Sets_. R package version 3.0-5, <https://CRAN.R-project.org/package=carData>.
+  - Gohel D, Skintzos P (2023). _flextable: Functions for Tabular Reporting_. R package version 0.9.2, <https://CRAN.R-project.org/package=flextable>.
+  - Grolemund G, Wickham H (2011). "Dates and Times Made Easy with lubridate." _Journal of Statistical Software_, *40*(3), 1-25. <https://www.jstatsoft.org/v40/i03/>.
+  - Hartig F (2022). _DHARMa: Residual Diagnostics for Hierarchical (Multi-Level / Mixed) Regression Models_. R package version 0.4.6, <https://CRAN.R-project.org/package=DHARMa>.
+  - Hugh-Jones D (2022). _huxtable: Easily Create and Style Tables for LaTeX, HTML and Other Formats_. R package version 5.5.2, <https://CRAN.R-project.org/package=huxtable>.
+  - Larmarange J (2023). _labelled: Manipulating Labelled Data_. R package version 2.12.0, <https://CRAN.R-project.org/package=labelled>.
+  - Lenth R (2023). _emmeans: Estimated Marginal Means, aka Least-Squares Means_. R package version 1.8.7, <https://CRAN.R-project.org/package=emmeans>.
+  - Pinheiro J, Bates D, R Core Team (2023). _nlme: Linear and Nonlinear Mixed Effects Models_. R package version 3.1-162, <https://CRAN.R-project.org/package=nlme>. Pinheiro JC, Bates DM (2000). _Mixed-Effects Models in S and S-PLUS_. Springer, New York. doi:10.1007/b98882 <https://doi.org/10.1007/b98882>.
+  - R Core Team (2023). _R: A Language and Environment for Statistical Computing_. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
+  - Sjoberg D, Whiting K, Curry M, Lavery J, Larmarange J (2021). "Reproducible Summary Tables with the gtsummary Package." _The R Journal_, *13*, 570-580. doi:10.32614/RJ-2021-053 <https://doi.org/10.32614/RJ-2021-053>, <https://doi.org/10.32614/RJ-2021-053>.
+  - Wickham H (2016). _ggplot2: Elegant Graphics for Data Analysis_. Springer-Verlag New York. ISBN 978-3-319-24277-4, <https://ggplot2.tidyverse.org>.
+  - Wickham H, Bryan J (2023). _readxl: Read Excel Files_. R package version 1.4.2, <https://CRAN.R-project.org/package=readxl>.
+  - Wickham H, Danenberg P, Csárdi G, Eugster M (2022). _roxygen2: In-Line Documentation for R_. R package version 7.2.3, <https://CRAN.R-project.org/package=roxygen2>.
+  - Wickham H, François R, Henry L, Müller K, Vaughan D (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.2, <https://CRAN.R-project.org/package=dplyr>.
+  - Xie Y (2023). _knitr: A General-Purpose Package for Dynamic Report Generation in R_. R package version 1.43, <https://yihui.org/knitr/>. Xie Y (2015). _Dynamic Documents with R and knitr_, 2nd edition. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 978-1498716963, <https://yihui.org/knitr/>. Xie Y (2014). "knitr: A Comprehensive Tool for Reproducible Research in R." In Stodden V, Leisch F, Peng RD (eds.), _Implementing Reproducible Computational Research_. Chapman and Hall/CRC. ISBN 978-1466561595.
+  - Xie Y, Lesur R, Thorne B, Tan X (2022). _pagedown: Paginate the HTML Output of R Markdown with CSS for Print_. R package version 0.20, <https://CRAN.R-project.org/package=pagedown>.
+  - Zhu H (2023). _kableExtra: Construct Complex Table with 'kable' and Pipe Syntax_. http://haozhu233.github.io/kableExtra/, https://github.com/haozhu233/kableExtra.
+
+This document was compiled at:
+
+
+```r
+Sys.time()
+```
+
+```
+[1] "2023-07-06 17:35:31 CEST"
+```
+
+```r
+save.image(file = here::here("inst", "states", "dat_import_out.Rdata"))
+```

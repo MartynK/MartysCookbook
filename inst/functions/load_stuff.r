@@ -16,6 +16,16 @@ require(nlme)
 require(splines)
 require(DHARMa) # cool model diagnostic tool
 
+source_all_files <- function(directory) {
+  file_paths <- list.files(directory, pattern = "\\.[rR]$", full.names = TRUE)
+  
+  for (file_path in file_paths) {
+    source(file_path)
+  }
+}
+
+source_all_files(here::here("R"))
+
 
 ## Importing the custom functions
 #source( here::here( "inst", "functions", "functions.r"))

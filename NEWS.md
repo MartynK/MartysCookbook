@@ -1,3 +1,42 @@
+# MartysCookbook 0.2.2
+
+## New features
+
+## Fixes
+
+- Much better 'Cookbook'
+- Fixed reference for 'Relevel'
+
+## Issues
+
+- Should double-check function documentation
+- Cookbook 'appendix' missing(?)
+- Cookbook cyclic figures wont survive recompilation
+- Cookbook .pdf version won't compile
+- Cyclic call's two plots not side-by-side
+- 'Precompiled' figures are at the same place they should be, their manipulation cumbersome & unnecessary
+
+## Notes
+
+# MartysCookbook 0.2.1
+
+## New features
+
+- New easy-to-compile .Rmd *Relevel* added
+
+## Fixes
+
+## Issues
+
+- Compiled vignettes missing some(?) pictures
+- 'Cookbook' uses old workflow, sig.pg. ugly
+- Should figure out figures
+- Should double-check function documentation
+- Tables in 'Cookbook' look like sh*t
+
+## Notes
+
+
 # MartysCookbook 0.2.0
 
 ## New features

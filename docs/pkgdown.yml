@@ -1,9 +1,10 @@
-pandoc: 2.19.2
+pandoc: 3.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  cookbook: cookbook.html
-last_built: 2023-06-08T11:34Z
+  data_import_quick: example_data_import/data_import_quick.html
+  relevel_report_quick: example_relevel/relevel_report_quick.html
+last_built: 2023-07-10T15:14Z
 urls:
   reference: http://MartynK.github.io/MartysCookbook/reference
   article: http://MartynK.github.io/MartysCookbook/articles
