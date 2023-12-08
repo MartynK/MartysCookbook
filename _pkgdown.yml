@@ -2,22 +2,36 @@ url: http://MartynK.github.io/MartysCookbook
 
 navbar:
   structure:
-    left:  [intro, reference, articles, tutorials, news]
+    left:  [intro, reference, articles, tutorials, articles_pdflike, news]
     right: [github]
   components:
    github:
-    text: "GitHub"
+    text: GitHub
     href: https://github.com/MartynK/MartysCookbook/
+   articles_pdflike:
+    text: PDF-like articles
+    menu:
+    - text: PDF-like documents
+    - text: Cookbook
+      href: articles/example_cookbook/cookbook_quick_pdflike.html
+    - text: Relevel
+      href: articles/example_relevel/relevel_report_quick_pdflike.html
+    - text: -------
+    - text: Actual PDFs
+    - text: Cookbook
+      href: articles/example_cookbook/cookbook_quick.pdf
+    - text: Relevel
+      href: articles/example_relevel/relevel_report_quick.pdf
    articles:
-    text: Articles
+    text: Html-like articles
     menu:
     - text: Main Stuff
-    - text: Main Vignette
-      href: articles/cookbook.html
-    - text: "PDF version"
-      href: articles/cookbook.pdf
+    - text: Cookbook
+      href: articles/example_cookbook/cookbook_quick.html
     - text: -------
-    - text: Other Section
+    - text: Snippets
+    - text: Relevel
+      href: articles/example_relevel/relevel_report_quick.html
   
     
 home:
