@@ -1,0 +1,156 @@
+---
+title: "child2"
+format: docx
+editor: visual
+---
+
+
+# Cyclic child Rmd call
+
+With regards to my teacher ATZS whose work is plagiarized within. It is kind of horrible cross-referencing all that stuff within; recommend using only if there are 10+ variables to go through. Alternatively you can put tables/graphs in functions and call them with *get(varname)* after you set *varname<-""*.
+
+```{r child-cycle}
+valtozok <- c("cyl", "gear", "carb")
+
+fig_directory     <- paste0(
+  #here::here("inst","example_cookbook"), 
+  "/figures/")
+
+# Get the current value
+current_fig_path <- knitr::opts_chunk$get('fig.path')
+
+out <- NULL
+for (i in 1:length(valtozok)) {
+  out <- c(out, paste0("\n### ", valtozok[i], "\n")) # Defining "title"
+  
+  # Set the fig.path for each iteration
+  fig_path <- #knitr::current_input() %>% 
+                #dirname() %>%
+                paste0("/figure_cycl/")
+  
+  params <- list(x              = valtozok[i],
+                 top_level      = 4,
+                 figname_prefix = valtozok[i])
+  out <- c(out,
+           knitr::knit_child(here::here("inst","example_cookbook",'_cyclic_chap2.Rmd'),
+                             quiet = T,
+                             options = opts_chunk$get() 
+           #envir = globalenv()
+                             ))
+}
+out <- paste(out, collapse = "\n")
+
+# Reset fig.path to its default value
+knitr::opts_chunk$set(fig.path = current_fig_path)
+
+
+```
+
+
+<!---
+Inserting the de-facto-honest-to-god output of the cyclic child .rmd call.
+'Out' is the tex(?) output of the child .rmd file
+--->
+
+`r out`
+
+# Plot compilation to be referenced
+
+```{r referenced_chunk}
+#| fig.cap = "Executive graph for executive thoughts"
+
+set.seed(12345)
+
+x <- rnorm(100)
+y <- 0.5 * x + rnorm(100)
+
+plot(x,y, main = "Important plot to reference before its compiled")
+
+```
+
+
+## Tables
+
+Tables may be in a huxtable object for "seamless" word processing. The resulting table is ugly.
+
+ \
+
+```{r}
+
+# generating the table which is comp.expensive for some reason
+tab <- data %>%
+  dplyr::select(!(species_no)) %>%
+  gtsummary::tbl_summary(
+    by = species_char
+  )
+
+tab %>%
+  as_hux_table()
+
+```
+
+ \
+
+Having a custom ref. docx file, I played around with the formatting and cooked up something passable. Its not modifiable however.
+
+ \
+
+```{r}
+#| df-print: kable
+#| tbl_colwidths: auto
+
+tab %>%
+    gtsummary::as_kable_extra(table.attr = 'data-quarto-disable-processing="true"',
+          caption = "Example table") 
+
+
+```
+
+ \
+
+You *will* face an issue where a package outputs a "marvellously formatted" html table which would be horrible for your use case. That is a promise, but don't know how to handle it.
+
+ \
+
+```{r}
+
+mod <- lm(petal_width ~ species_char + petal_length, data)
+
+sjPlot::tab_model(mod)
+
+
+```
+
+ \
+
+## Plots
+
+ \
+
+Plots are nothing fancy.
+
+ \
+
+```{r}
+
+ggstatsplot::ggbetweenstats(data, 
+                            species_char,
+                            petal_width,
+                            results.subtitle = FALSE) +
+  theme_bw()
+
+```
+
+ \
+
+Text outputs; prints computationally intensive output loaded at the beginning.
+
+ \
+
+```{r}
+
+cat(pi_estimate)
+
+```
+
+

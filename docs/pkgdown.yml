@@ -3,8 +3,9 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   data_import_quick: example_data_import/data_import_quick.html
+  relevel_report_quick-DESKTOP-RUPHT8L: example_relevel/relevel_report_quick-DESKTOP-RUPHT8L.html
   relevel_report_quick: example_relevel/relevel_report_quick.html
-last_built: 2023-07-10T15:14Z
+last_built: 2023-12-09T17:07Z
 urls:
   reference: http://MartynK.github.io/MartysCookbook/reference
   article: http://MartynK.github.io/MartysCookbook/articles

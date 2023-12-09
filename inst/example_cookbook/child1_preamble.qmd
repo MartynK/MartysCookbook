@@ -1,0 +1,68 @@
+---
+title: ""
+format: docx
+editor: visual
+---
+
+\newpage
+
+# Title page
+
+# Author's declaration
+
+# List of abbreviations
+
+# Executive summary
+
+More corporate name for 'Abstract'. A hefty chunk of stakeholders won't read anything else. Example of referencing a later compiled figure.
+
+```{r chunk-a}
+#| ref.label=c('referenced_chunk'),
+#| fig.cap = "Executive graph for executive thoughts"
+
+plot(x,y)
+
+```
+
+This is my report template in Quarto beefed up a bit. It has most Rmd features and can generate .docx. PDF can be generated via Word (save as..). The auto-generated .html is nice too. Computationally intensive stuff should be referenced. None of this Vignette precompile nonsense I've been working so hard to implement :( Computationally intensive stuff should be referenced externally.
+
+Links can be given in this format (for html versions): [link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6852019/)
+
+If you're feeling cocky, spruce up your report with model descriptions in Latex, eg.:
+
+<!-- Két megoldás egyenletekre... a '$$' 'rósz szokás' a latex xpertek szerint,  -->
+
+<!-- eetleg az 'amsmath' latex package segíthet, hogy 'alapból' elfogadja a \\ -->
+
+<!-- parancsot sortördelésnek, mert egyébként nem akarja, láttam még jobbra zárt -->
+
+<!-- sorokat a kalandjaim során. -->
+
+```{=latex}
+\begin{align} \begin{aligned} FPR = \frac{FP}{N} = \dfrac{FP}{FP+TN}\\ TPR = \frac{TP}{P} = \dfrac{FP}{FP+FN} \end{aligned} \end{align}
+```
+$$log(Cool variable\_{i,j}) = \alpha_0 + \alpha_1\times Independent\ variable_1 + \alpha_2\times Independent\ variable_{2,i,j} \\+ \alpha_3\times Sex_i + \alpha_4\times Independent\ variable_{3,i,j} \\+ \delta_{0,i}+\delta_{1,i}+ + \epsilon_{i,j}$$
+
+where,
+
+-   **i** is the subject number,
+-   **j** is the time point,
+-   **k** is the treatment,
+-   $\epsilon$ is the residual error, and
+-   $\delta$ represents the random effects.
+
+------------------------------------------------------------------------
+
+::: callout-note
+You can do boxes, tips and warnings like this
+:::
+
+# 
+
+# Introduction
+
+# Description of the study
+
+# Data extraction
+
+# Missing data

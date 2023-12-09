@@ -1,3 +1,19 @@
+# MartysCookbook 0.3.0
+
+## Fixes
+
+- 'Cookbook' transformed to Quarto
+
+## Issues
+
+- Should double-check function documentation
+- Cookbook 'appendix' missing(?)
+- Cyclic call's two plots not side-by-side
+
+## Notes
+
+- Planning on cutting the whole 'precompilation' thing; comp.intensive stuff should be stored in a separate folder
+
 # MartysCookbook 0.2.2
 
 ## New features

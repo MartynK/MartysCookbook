@@ -4,13 +4,7 @@
     <loc>http://MartynK.github.io/MartysCookbook/404.html</loc>
   </url>
   <url>
-    <loc>http://MartynK.github.io/MartysCookbook/articles/example_cookbook/cookbook_quick.html</loc>
-  </url>
-  <url>
-    <loc>http://MartynK.github.io/MartysCookbook/articles/example_cookbook/cookbook_quick_pdflike.html</loc>
-  </url>
-  <url>
-    <loc>http://MartynK.github.io/MartysCookbook/articles/example_cookbook/template_pdflike.html</loc>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_cookbook/report.html</loc>
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/articles/example_data_import/data_import_quick.html</loc>
@@ -22,7 +16,13 @@
     <loc>http://MartynK.github.io/MartysCookbook/articles/example_data_import/template_pdflike.html</loc>
   </url>
   <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_relevel/relevel_report_quick-DESKTOP-RUPHT8L.html</loc>
+  </url>
+  <url>
     <loc>http://MartynK.github.io/MartysCookbook/articles/example_relevel/relevel_report_quick.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/articles/example_relevel/relevel_report_quick_pdflike-DESKTOP-RUPHT8L.html</loc>
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/articles/example_relevel/relevel_report_quick_pdflike.html</loc>
@@ -58,10 +58,22 @@
     <loc>http://MartynK.github.io/MartysCookbook/reference/data.html</loc>
   </url>
   <url>
+    <loc>http://MartynK.github.io/MartysCookbook/reference/get_current_file_location.html</loc>
+  </url>
+  <url>
     <loc>http://MartynK.github.io/MartysCookbook/reference/index.html</loc>
   </url>
   <url>
+    <loc>http://MartynK.github.io/MartysCookbook/reference/load_all_Rdata.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/reference/martys_format_p.html</loc>
+  </url>
+  <url>
     <loc>http://MartynK.github.io/MartysCookbook/reference/martys_table_style.html</loc>
+  </url>
+  <url>
+    <loc>http://MartynK.github.io/MartysCookbook/reference/martys_table_style_legacy_huxtable.html</loc>
   </url>
   <url>
     <loc>http://MartynK.github.io/MartysCookbook/reference/move_recent_files.html</loc>

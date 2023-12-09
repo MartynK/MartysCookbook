@@ -1,5 +1,5 @@
 ---
-title: "Két grafikon, egy táblázat"
+title: "Not shown"
 output:
   pdf_document: 
     fig_caption: yes
@@ -39,11 +39,6 @@ Ezt ugyan használja a file, de nem tudja felülírni a load() paranccsal a rég
 
 # Defining stuff, including the renaming scheme, and the structure of the output
 
-
-source(here::here("inst","functions","load_stuff.r")) # for independent compilation
-load( file = here::here("inst","states", "before_chap2.Rdata"))
-
-
 if(!exists("child_counter")) {
   child_counter <- 1
 } else {
@@ -52,7 +47,7 @@ if(!exists("child_counter")) {
 
 if(!exists("params")) {
     params <- list(x              = "cyl",
-                   top_level      = 4,
+                   top_level      = 2,
                    figname_prefix = "cyl"
     )
 }
@@ -65,9 +60,7 @@ knitr::opts_chunk$set(fig.process = function(x) {
   if (file.rename(x, x2)) x2 else x
 })
 
-my <- list()
-my$table <- t(table(params$x))
-rownames(my$table) <- c("Darabszámok")
+
 ```
 
 #`r paste(rep("#", params$top_level - 1), collapse = "")` Table
@@ -87,18 +80,30 @@ mtcars[[params$x]] %>%
 
 ```{r,}
 #| fig.cap=paste0('\\label{fig:param_plot1', 
-#| child_counter, '}A negyedik paraméteres kód ábrái'),
+#| child_counter, '}Figure 1 from the cyclic call No.',child_counter),
 #| out.width='45%',
 #| fig.align='center', tidy=F, results='hide', collapse=T,
-#| fig.path=paste0(fig_directory, params$figname_prefix, '-fig1-')
 
-child_counter <- child_counter + 1
+# fig.path=paste0(fig_directory, params$figname_prefix, '-fig1-')
 
 mtcars %>%
   ggplot( aes(x = mpg,
           y = .data[[params$x]])) +
   theme_default_ggplot +
   geom_point()
+
+
+
+```
+
+```{r,}
+#| fig.cap=paste0('\\label{fig:param_plot1', 
+#| child_counter, '}Figure 2 from the cyclic call No.',child_counter),
+#| out.width='45%',
+#| fig.align='center', tidy=F, results='hide', collapse=T,
+
+# fig.path=paste0(fig_directory, params$figname_prefix, '-fig1-')
+
 
 mtcars %>%
   ggplot( aes(x = qsec,
@@ -108,32 +113,10 @@ mtcars %>%
 
 ```
 
-
-
-\begin{figure}[h]
-\begin{multicols}{2}
-\begin{figure}[H]
-\includegraphics[width = \linewidth]{`r paste0(fig_directory, params$figname_prefix, '-fig1-1')`}
-\caption{Bal oldali ábra}
-\label{fig:bar2_a`r child_counter`}
-\end{figure}
-
-\columnbreak
-
-\begin{figure}[H]
-\includegraphics[width = \linewidth]{`r paste0(fig_directory, params$figname_prefix, '-fig1-2')`}
-\centering
-\caption{Jobb oldali ábra}
-\label{fig:bar2_b`r child_counter`}
-\end{figure}
-\end{multicols}
-\end{figure}
-
-
-És még hivatkozni is tudunk a(z) \ref{fig:param_plot1`r child_counter`}. ábrára.
+<!-- És még hivatkozni is tudunk a(z) \ref{fig:param_plot1`r child_counter`}. ábrára. -->
 
 ```{r}
-rm(my)
+
 
 # resetting stuff
 knitr::opts_chunk$set(
@@ -143,4 +126,6 @@ knitr::opts_chunk$set(
   )
 
 ```
+
+\newpage
 

@@ -2,7 +2,10 @@
 
 export(compile_rmd_multiple_outputs)
 export(get_current_file_location)
+export(load_all_Rdata)
+export(martys_format_p)
 export(martys_table_style)
+export(martys_table_style_legacy_huxtable)
 export(move_recent_files)
 export(precompile_quick_vignette)
 export(theme_default_ggplot)
