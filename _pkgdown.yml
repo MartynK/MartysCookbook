@@ -12,15 +12,18 @@ navbar:
     text: Docx-like articles
     menu:
     - text: Docx document
-    - text: Cookbook
+    - text: Cookbook, an example Quarto report
       href: articles/example_cookbook/report.docx
     - text: -------
    articles:
     text: Html-like articles
     menu:
     - text: Main Stuff
-    - text: Cookbook
+    - text: Cookbook, an example Quarto report
       href: articles/example_cookbook/report.html
+    - text: -------
+    - text: Modelling Weight with splines 
+      href: https://martynk.github.io/Martysweight/articles/splines_vignette.html
     - text: -------
     - text: Snippets
     - text: Relevel
